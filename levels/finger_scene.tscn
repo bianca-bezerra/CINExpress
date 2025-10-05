@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuyp6bxmyijvn"]
+
+[ext_resource type="Texture2D" uid="uid://bl2wvqfmsfv80" path="res://icon.svg" id="1_auwtq"]
+[ext_resource type="Script" uid="uid://dlledv2s8nm1x" path="res://scripts/finger.gd" id="2_oquuh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21gu7"]
+size = Vector2(42, 296)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1sdx"]
+size = Vector2(122, 123)
+
+[node name="World" type="Node2D"]
+
+[node name="digital_reader" type="Area2D" parent="."]
+position = Vector2(1060, 952)
+collision_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="digital_reader"]
+position = Vector2(-1, -20.624996)
+scale = Vector2(0.38281256, 2.2910142)
+texture = ExtResource("1_auwtq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="digital_reader"]
+position = Vector2(-3, -19)
+shape = SubResource("RectangleShape2D_21gu7")
+
+[node name="Finger" type="CharacterBody2D" parent="."]
+script = ExtResource("2_oquuh")
+
+[node name="Sprite2D" type="Sprite2D" parent="Finger"]
+position = Vector2(954, 936)
+texture = ExtResource("1_auwtq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Finger"]
+position = Vector2(955, 935.5)
+shape = SubResource("RectangleShape2D_p1sdx")
+
+[connection signal="body_entered" from="digital_reader" to="Finger" method="_on_digital_reader_body_entered"]
+[connection signal="body_exited" from="digital_reader" to="Finger" method="_on_digital_reader_body_exited"]

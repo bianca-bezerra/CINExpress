@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbgncko8kqajj"]
+
+[ext_resource type="Script" uid="uid://cavxmkxm3gft0" path="res://scripts/control.gd" id="1_jac8s"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_jac8s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 449.0
+offset_top = 190.0
+offset_right = 783.0
+offset_bottom = 350.0
+
+[node name="PromptLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="InputLineEdit" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="FeedbackLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[connection signal="text_submitted" from="VBoxContainer/InputLineEdit" to="." method="_on_input_submitted"]
