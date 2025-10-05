@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://goa6kliyqk64"]
+
+[ext_resource type="Script" uid="uid://ddhd14mp8cqaf" path="res://scripts/game_level.gd" id="1_cymlp"]
+
+[node name="GameLevel" type="Node2D"]
+script = ExtResource("1_cymlp")
+
+[connection signal="level_completed" from="." to="." method="_on_level_completed"]
