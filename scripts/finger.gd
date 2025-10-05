@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 300.0
+@export var speed = 0
 @onready var _scoring_zone: Area2D = $"../digital_reader"
 @onready var _level = $".."
 
@@ -14,8 +14,7 @@ var _half_zone_width = 0.0
 var _direction = -1
 
 func _ready():
-	if GameManager.current_level != 0:
-		speed = SPEED_INCREASE * GameManager.current_level
+	speed = SPEED_INCREASE * (GameManager.current_level + 1)
 	
 	# Define posição inicial aleatória no eixo X
 	var random_x = randf_range(SCREEN_LIMIT_LEFT, SCREEN_LIMIT_RIGHT)

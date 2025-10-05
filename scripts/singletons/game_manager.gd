@@ -2,10 +2,39 @@ extends Node
 
 signal score_chaged(new_score: float)
 
-var names: Array[String] = [
-	"Ana Carolina de Souza", "Bruno dos Santos Oliveira", "Carlos Eduardo Pereira",
-	"Daniela Ferreira Lima", "Eduardo Almeida Costa", "Fernanda Gonçalves Ribeiro",
-	"Gustavo Rodrigues Martins", "Helena Barbosa Gomes", "Igor de Castro Alves"
+var names := [
+	[
+		"Julia Ferraz Lima", "Lucas Costa Souza", "Maria Clara Dias",
+		"Ana Luiza Chaves", "João Pedro Barros", "Sofia Ribeiro Alves",
+		"Carlos Eduardo Reis", "Livia Gomes Pinto"
+	],
+	[
+		"Laura Fernandes dos Reis", "Bernardo Martins Ribeiro", "Valentina Gonçalves de Almeida",
+		"Samuel da Conceição e Silva", "Heloísa de Jesus Medeiros", "Lorenzo de Paula e Santos",
+		"Cecília Nogueira de Barros", "Benjamin de Assis Tavares"
+	],
+	[
+		"Giovanna de Oliveira Lima e Costa", "Matheus Ribeiro de Carvalho e Souza",
+		"Manuela dos Santos Pereira Gomes", "Felipe de Almeida Castro e Silva",
+		"Larissa Barbosa de Medeiros Lima", "Vinicius de Moraes e Albuquerque",
+		"Esther de Campos Freire e Paiva"
+	],
+	[
+		"Guilherme de Albuquerque Cavalcanti Neto", "Gabriela Nogueira de Vasconcelos Menezes",
+		"Thiago dos Anjos de Assunção Guimarães", "Rafaela da Cunha Sampaio e Medeiros",
+		"Francisco de Borja e Drummond de Andrade", "Júlia de Magalhães e Vasconcelos Pires",
+		"Rodrigo de Gusmão e Resende de Oliveira"
+	],
+	[
+		"Alexandre Magno de Oliveira e Vasconcelos", "Carolina Francisca Peixoto de Abreu e Lima",
+		"Leonardo de Castro Marins da Anunciação", "Fernanda do Espírito Santo de Guimarães e Prado",
+		"Sebastião de Albuquerque Brandão e Cavalcanti", "Isadora da Anunciação de Assis e Medeiros"
+	],
+	[
+		"Benjamin Constant de Albuquerque Sampaio e Mello", "Maria do Carmo de Medeiros Brandão Cavalcanti",
+		"João Evangelista de Assis Chateaubriand Bandeira", "Antônio de Pádua e Bragança de Orleans e Silva",
+		"Teresinha do Menino Jesus de Gusmão e Vasconcelos", "Luís Inácio de Gonzaga e Proença de Almeida"
+	]
 ]
 
 var _player_score: int = 0
