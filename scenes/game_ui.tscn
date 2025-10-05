@@ -7,18 +7,18 @@ rotation = -0.000232998
 script = ExtResource("1_jn2l2")
 
 [node name="TimerProgress" type="ProgressBar" parent="."]
-offset_left = 460.00003
-offset_top = 30.000002
-offset_right = 1460.0
-offset_bottom = 57.0
+offset_left = 46.997204
+offset_top = 13.018872
+offset_right = 361.39752
+offset_bottom = 40.01887
 
 [node name="ScoreLabel" type="Label" parent="."]
-offset_left = 1574.0
-offset_top = 27.0
-offset_right = 1692.0
-offset_bottom = 72.0
-theme_override_font_sizes/font_size = 32
+offset_left = 375.9958
+offset_top = 18.087606
+offset_right = 435.9958
+offset_bottom = 41.08761
+theme_override_font_sizes/font_size = 12
 text = "SCORE: "
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(1726, 78)
+position = Vector2(407.99066, 40.09506)

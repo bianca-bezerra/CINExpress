@@ -2,7 +2,13 @@ extends Node
 
 signal score_chaged(new_score: float)
 
-var _player_score: float = 0
+var names: Array[String] = [
+	"Ana Carolina de Souza", "Bruno dos Santos Oliveira", "Carlos Eduardo Pereira",
+	"Daniela Ferreira Lima", "Eduardo Almeida Costa", "Fernanda Gonçalves Ribeiro",
+	"Gustavo Rodrigues Martins", "Helena Barbosa Gomes", "Igor de Castro Alves"
+]
+
+var _player_score: int = 0
 var player_name: String = ""
 
 var current_level := 0
@@ -18,7 +24,7 @@ var _can_show_game_ui = false
 func _process(_delta: float) -> void:
 	$GameUI.visible = _can_show_game_ui
 
-func update_score(add_score: float):
+func update_score(add_score: int):
 	_player_score += add_score
 	score_chaged.emit(add_score)
 	
