@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://qs0r364dg7b0"]
+
+[ext_resource type="Script" uid="uid://cm24fa4tfnstg" path="res://scripts/add_score_label.gd" id="1_ri8fp"]
+
+[node name="AddScoreLabel" type="Label"]
+text = "ROBERTO CARLOS"
+script = ExtResource("1_ri8fp")

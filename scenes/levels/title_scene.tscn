@@ -1,0 +1,92 @@
+[gd_scene load_steps=2 format=3 uid="uid://il0r1gff85a6"]
+
+[ext_resource type="Script" uid="uid://dliyiku3wym45" path="res://scripts/title_scene.gd" id="1_vqa17"]
+
+[node name="TitleScene" type="Node2D"]
+script = ExtResource("1_vqa17")
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="GUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.074
+anchor_right = 0.5
+anchor_bottom = 0.074
+offset_left = -218.5
+offset_top = 0.08000183
+offset_right = 218.5
+offset_bottom = 99.08
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 72
+text = "CIN EXPRESS"
+
+[node name="Dashboard" type="HBoxContainer" parent="GUI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 436.0
+offset_top = -324.0
+offset_right = -436.0
+offset_bottom = -68.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 54
+alignment = 1
+
+[node name="p1" type="Label" parent="GUI/Dashboard"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = " 1- CIN EXPRESS"
+
+[node name="p2" type="Label" parent="GUI/Dashboard"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "2 - CIN EXPRESS"
+
+[node name="p3" type="Label" parent="GUI/Dashboard"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "3 - CIN EXPRESS"
+
+[node name="ButtonGroup" type="VBoxContainer" parent="GUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -26.5
+offset_right = 54.0
+offset_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="GUI/ButtonGroup"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "JOGAR"
+
+[node name="ExitButton" type="Button" parent="GUI/ButtonGroup"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "SAIR"
+
+[connection signal="pressed" from="GUI/ButtonGroup/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="GUI/ButtonGroup/ExitButton" to="." method="_on_exit_button_pressed"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdp5hy2owkfhu"]
+
+[ext_resource type="Script" uid="uid://crfcpslsb0bo8" path="res://scripts/game_ui.gd" id="1_jn2l2"]
+
+[node name="ScoreScene" type="Node2D"]
+rotation = -0.000232998
+script = ExtResource("1_jn2l2")
+
+[node name="TimerProgress" type="ProgressBar" parent="."]
+offset_left = 460.00003
+offset_top = 30.000002
+offset_right = 1460.0
+offset_bottom = 57.0
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 1574.0
+offset_top = 27.0
+offset_right = 1692.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 32
+text = "SCORE: "
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(1726, 78)

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcyjddp51fs2j"]
+
+[ext_resource type="Script" uid="uid://1alnokbcjm6p" path="res://scripts/singletons/game_manager.gd" id="1_hwd4i"]
+[ext_resource type="PackedScene" uid="uid://bdp5hy2owkfhu" path="res://scenes/game_ui.tscn" id="2_glms7"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_hwd4i")
+total_game_duration = 60
+
+[node name="GameTimer" type="Timer" parent="."]
+
+[node name="GameUI" parent="." instance=ExtResource("2_glms7")]
+
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

@@ -10,14 +10,14 @@ config_version=5
 
 [application]
 
-config/name="Reaction Time Game"
-run/main_scene="res://levels/finger_scene.tscn"
+config/name="CIN-Express"
+run/main_scene="uid://il0r1gff85a6"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Game="*res://scripts/game.gd"
+GameManager="*res://scenes/game_manager.tscn"
 
 [display]
 

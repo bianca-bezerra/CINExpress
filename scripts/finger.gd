@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 800.0
 @onready var scoring_zone: Area2D = $"../digital_reader"
+@onready var level = $".."
 
 var direction = -1
 const LIMIT_LEFT = -800.0
@@ -10,10 +11,9 @@ const SPEED_INCREASE = 300.0
 const MAX_SCORE_PER_HIT = 100
 
 var is_in_scoring_zone = false
-var score = 0
 var half_zone_width = 0.0 
 
-func _ready():
+func _ready():	
 	if scoring_zone:
 		var collision_shape = scoring_zone.get_node("CollisionShape2D")
 		half_zone_width = collision_shape.shape.size.x / 2.0
@@ -25,17 +25,18 @@ func _physics_process(_delta):
 		if is_in_scoring_zone:
 			var distance_from_center = abs(self.global_position.x - scoring_zone.global_position.x)
 			
-			var score_percentage = 1.0 - (distance_from_center / half_zone_width)
+			var score_percentage = (distance_from_center / half_zone_width)
 			var points_added = int(MAX_SCORE_PER_HIT * score_percentage)
 			
-			score += points_added
+			GameManager.update_score(points_added)
 			
 			if speed >= 0:
 				speed += SPEED_INCREASE
 			else:
 				speed -= SPEED_INCREASE
 				
-			print("PONTOU! +", points_added, " | Pontuação Total: ", score, " | Nova Velocidade: ", speed)
+			level.win_count += 1
+			print("PONTOU! +", points_added, " | Pontuação Total: ", GameManager.get_score(), " | Nova Velocidade: ", speed)
 
 	self.velocity.x = direction * speed
 	self.move_and_slide()
