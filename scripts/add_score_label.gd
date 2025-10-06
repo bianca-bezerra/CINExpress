@@ -1,4 +1,4 @@
-extends Label	
+extends RichTextLabel	
 
 func _process(delta: float) -> void:
 	modulate.a -= delta

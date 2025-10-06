@@ -28,7 +28,6 @@ func unnanbrazile(letter: String) -> String:
 	return letter
 
 func _change_finger_scene():
-	GameManager.current_level += 1
 	get_tree().change_scene_to_file("res://scenes/levels/finger_scene.tscn")
 
 func _on_input_change(typed_char: String) -> void:
