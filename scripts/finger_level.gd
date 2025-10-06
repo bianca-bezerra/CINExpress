@@ -12,12 +12,12 @@ var text_spawned = false
 func spawn_motivation_text():
 	var score = finger.score_percentage
 	var text = ""
-	if score >= 0.7:
-		text = "Perfeito!!"
+	if score >= 0.5:
+		text = "[rainbow]Perfeito!![/rainbow]"
 	elif score >= 0.4:
 		text = "Boa!"
 	else:
-		text = "Err..."
+		text = "[shake rate=10.0 level=2]Err...[/shake]"
 	var floating_text = floating_text_scene.instantiate()
 	floating_text.text = text
 	floating_text.scale = Vector2(2, 2)
@@ -35,7 +35,6 @@ func _process(_delta: float) -> void:
 		if win_timer.is_stopped():
 			win_timer.start(1.2)
 
-
 func _on_win_timer_timeout() -> void:
 	GameManager.game_timer.paused = false
-	get_tree().change_scene_to_file("res://scenes/levels/type_quickly.tscn")
+	GameManager.change_to_next_level()

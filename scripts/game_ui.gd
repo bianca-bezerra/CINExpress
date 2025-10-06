@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 	
 
 func spawn_added_score(added_score: float):
-	var added_score_obj: Label = floating_text_scene.instantiate()
+	var added_score_obj: RichTextLabel = floating_text_scene.instantiate()
 	added_score_obj.text = "+ %.2f" % added_score
 	added_score_obj.global_position = added_score_mark.global_position
 	add_child(added_score_obj)

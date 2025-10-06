@@ -42,6 +42,7 @@ var _player_score: int = 0
 var player_name: String = ""
 
 var current_level := 0
+var cin_counter := 0
 
 ## O total que o ciclo de jogo TOTAL vai durar
 @export var total_game_duration := 15
@@ -50,6 +51,15 @@ var current_level := 0
 @onready var game_timer = $GameTimer
 
 var _can_show_game_ui = false
+
+var game_levels  = {
+	"type": preload("res://scenes/levels/type_quickly.tscn"),
+	"finger": preload("res://scenes/levels/finger_scene.tscn"),
+	"cam": preload("res://scenes/levels/cam_level.tscn") 
+}
+
+var current_game_level = 0
+var current_run = ["type", "finger", "cam"]
 
 func _process(_delta: float) -> void:
 	$GameUI.visible = _can_show_game_ui
@@ -62,12 +72,22 @@ func start_game():
 	_can_show_game_ui = true
 	game_timer.start(total_game_duration)
 
+func change_to_next_level():
+	if current_game_level >= len(current_run):
+		current_game_level = 0
+	var scene_name = current_run[current_game_level]
+	var scene = game_levels[scene_name]
+	current_game_level += 1
+	get_tree().change_scene_to_packed(scene)
+
 func end_game():
-	pass
+	_can_show_game_ui = false
+	current_level += 1
+	cin_counter += 1
+	get_tree().change_scene_to_file("res://scenes/levels/menu_scene.tscn")
 
 func get_score():
 	return _player_score
 
 func _on_game_timer_timeout() -> void:
-	_can_show_game_ui = false
-	get_tree().change_scene_to_file("res://scenes/levels/title_scene.tscn")
+	end_game();
