@@ -3,7 +3,7 @@ extends Node2D
 @onready var added_score_mark: Marker2D = $Marker2D
 @onready var timer_progress: ProgressBar = $TimerProgress
 
-var added_score_scene: PackedScene = preload("res://scenes/add_score_label.tscn")
+var floating_text_scene: PackedScene = preload("res://scenes/floating_text.tscn")
 
 func update_score_text():
 	$ScoreLabel.text = "SCORE: %.2f" % GameManager.get_score()
@@ -21,8 +21,8 @@ func _process(_delta: float) -> void:
 	
 
 func spawn_added_score(added_score: float):
-	var added_score_obj: Label = added_score_scene.instantiate()
-	added_score_obj.added_score = added_score
+	var added_score_obj: Label = floating_text_scene.instantiate()
+	added_score_obj.text = "+ %.2f" % added_score
 	added_score_obj.global_position = added_score_mark.global_position
 	add_child(added_score_obj)
 

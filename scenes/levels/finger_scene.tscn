@@ -1,42 +1,69 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuyp6bxmyijvn"]
+[gd_scene load_steps=10 format=3 uid="uid://cuyp6bxmyijvn"]
 
 [ext_resource type="Script" uid="uid://bth8stp3ey7b" path="res://scripts/finger_level.gd" id="1_5skfb"]
-[ext_resource type="Texture2D" uid="uid://bl2wvqfmsfv80" path="res://icon.svg" id="2_kaagg"]
+[ext_resource type="Texture2D" uid="uid://vuac0l7mxgkv" path="res://assets/sprites/coletor_digital.png" id="2_eni27"]
 [ext_resource type="Script" uid="uid://dlledv2s8nm1x" path="res://scripts/finger.gd" id="3_eni27"]
+[ext_resource type="Texture2D" uid="uid://d0wwed25gcoay" path="res://assets/sprites/dedo_sozinho1.png" id="4_kaagg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kaagg"]
+atlas = ExtResource("2_eni27")
+region = Rect2(0, 0, 264, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eni27"]
+atlas = ExtResource("2_eni27")
+region = Rect2(264, 0, 264, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k7tmn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kaagg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eni27")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_21gu7"]
-size = Vector2(23, 117)
+size = Vector2(32, 39)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1sdx"]
-size = Vector2(36, 31)
+size = Vector2(18, 18)
 
 [node name="FingerLevel" type="Node2D"]
 script = ExtResource("1_5skfb")
 
 [node name="digital_reader" type="Area2D" parent="."]
-position = Vector2(259, 229)
+position = Vector2(240, 204)
 collision_layer = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="digital_reader"]
-position = Vector2(-9.250003, -16.5)
-scale = Vector2(0.23828125, 0.92968756)
-texture = ExtResource("2_kaagg")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="digital_reader"]
+position = Vector2(-0.055, 0)
+sprite_frames = SubResource("SpriteFrames_k7tmn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="digital_reader"]
-position = Vector2(-9.5, -19.5)
+position = Vector2(1, 36)
 shape = SubResource("RectangleShape2D_21gu7")
 
 [node name="Finger" type="CharacterBody2D" parent="."]
+position = Vector2(241, 249)
 script = ExtResource("3_eni27")
 
 [node name="Sprite2D" type="Sprite2D" parent="Finger"]
-position = Vector2(136.5, 241)
-scale = Vector2(0.30468765, 0.2812501)
-texture = ExtResource("2_kaagg")
+texture = ExtResource("4_kaagg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Finger"]
-position = Vector2(136, 239)
+position = Vector2(0, -11)
 shape = SubResource("RectangleShape2D_p1sdx")
+
+[node name="WinTimer" type="Timer" parent="."]
+
+[node name="FeedbackMarker" type="Marker2D" parent="."]
+position = Vector2(220, 75)
 
 [connection signal="body_entered" from="digital_reader" to="Finger" method="_on_digital_reader_body_entered"]
 [connection signal="body_exited" from="digital_reader" to="Finger" method="_on_digital_reader_body_exited"]
+[connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]
