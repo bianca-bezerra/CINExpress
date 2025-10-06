@@ -4,14 +4,20 @@ extends CharacterBody2D
 @onready var _scoring_zone: Area2D = $"../digital_reader"
 @onready var _level = $".."
 
+const FINGER_MARGIN = 80
+
 const SPEED_INCREASE = 300.0
 const MAX_SCORE_PER_HIT = 100
-const SCREEN_LIMIT_LEFT = -100.0
-const SCREEN_LIMIT_RIGHT = 300.0
+const SCREEN_LIMIT_LEFT = 0.0 + FINGER_MARGIN
+const SCREEN_LIMIT_RIGHT = 480.0 - FINGER_MARGIN
 
 var _is_in_scoring_zone = false
 var _half_zone_width = 0.0 
 var _direction = -1
+
+var can_move = true
+var score_percentage := 0.0
+var distance_from_center := 0.0
 
 func _ready():
 	speed = SPEED_INCREASE * (GameManager.current_level + 1)
@@ -28,14 +34,13 @@ func _ready():
 
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("space"): 
-		if _is_in_scoring_zone:
-			var distance_from_center = abs(self.global_position.x - _scoring_zone.global_position.x)
-			var score_percentage = (distance_from_center / _half_zone_width)
-			var points_added = int(MAX_SCORE_PER_HIT * score_percentage)
-			
-			GameManager.update_score(points_added)
-			_level.is_win = true
-
+		distance_from_center = abs(self.global_position.x - _scoring_zone.global_position.x)
+		score_percentage = clamp(1 - (distance_from_center / _half_zone_width), 0, 1)
+		var points_added = int(MAX_SCORE_PER_HIT * score_percentage)
+		GameManager.update_score(points_added)
+		_level.is_win = true
+	if not can_move: 
+		return
 	velocity.x = _direction * speed
 	move_and_slide()
 

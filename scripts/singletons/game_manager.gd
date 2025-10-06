@@ -2,6 +2,7 @@ extends Node
 
 signal score_chaged(new_score: float)
 
+## Lista de nomes utilizados no minigame "type quickly", organizados por ordem de dificuldade
 var names := [
 	[
 		"Julia Ferraz Lima", "Lucas Costa Souza", "Maria Clara Dias",
