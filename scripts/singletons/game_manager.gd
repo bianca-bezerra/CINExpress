@@ -30,10 +30,24 @@ var names := [
 		"Sebastião de Albuquerque Brandão e Cavalcanti", "Isadora da Anunciação de Assis e Medeiros"
 	],
 	[
-		"Benjamin Constant de Albuquerque Sampaio e Mello", "Maria do Carmo de Medeiros Brandão Cavalcanti",
-		"João Evangelista de Assis Chateaubriand Bandeira", "Antônio de Pádua e Bragança de Orleans e Silva",
-		"Teresinha do Menino Jesus de Gusmão e Vasconcelos", "Luís Inácio de Gonzaga e Proença de Almeida"
-	]
+	"Benjamin Constant de Albuquerque Sampaio e Mello",
+	"Maria do Carmo de Medeiros Brandão Cavalcanti",
+	"João Evangelista de Assis Chateaubriand Bandeira",
+	"Antônio de Pádua e Bragança de Orleans e Silva",
+	"Teresinha do Menino Jesus de Gusmão e Vasconcelos",
+	"Luís Inácio de Gonzaga e Proença de Almeida",
+	"Francisco José de Guimarães e Azevedo Couto",
+	"Pedro de Alcântara Fonseca de Menezes e Alencar",
+	"Isabel Cristina Leopoldina de Bragança e Bourbon",
+	"Joaquim José da Silva Xavier de Albuquerque e Lacerda",
+	"Carlos Alberto de Andrade e Vasconcelos Guimarães",
+	"Ana Carolina de Gusmão e Resende de Oliveira e Couto",
+	"José Bonifácio de Andrada e Silva de Magalhães",
+	"Beatriz de Castro Alves e Menezes de Albuquerque",
+	"Fernando de Noronha e Vasconcelos Pires de Almeida",
+	"Catarina de Siena e Gusmão da Frota Pessoa",
+	"Manuel Inácio da Silva Alvarenga e Peixoto"
+]
 ]
 var current_level := 0
 
