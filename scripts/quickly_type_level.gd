@@ -46,7 +46,7 @@ func finish_game() -> void:
 	var score_multiplication = SCORE_FACTOR * (GameManager.current_level + 1)
 	var points_added = int((len(_current_name) * score_multiplication) / time_spent_seg)
 	
-	GameManager.update_score(points_added)
+	PlayerManager.add_score(points_added)
 	_feedback_label.text = "Boa! +%d pontos (%.2f seg)" % [points_added, time_spent_seg]
 	await get_tree().create_timer(2.0).timeout
 	GameManager.change_to_next_level()

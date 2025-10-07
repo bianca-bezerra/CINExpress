@@ -1,7 +1,5 @@
 extends Node
 
-signal score_chaged(new_score: float)
-
 ## Lista de nomes utilizados no minigame "type quickly", organizados por ordem de dificuldade
 var names := [
 	[
@@ -37,12 +35,7 @@ var names := [
 		"Teresinha do Menino Jesus de Gusmão e Vasconcelos", "Luís Inácio de Gonzaga e Proença de Almeida"
 	]
 ]
-
-var _player_score: int = 0
-var player_name: String = ""
-
 var current_level := 0
-var cin_counter := 0
 
 ## O total que o ciclo de jogo TOTAL vai durar
 @export var total_game_duration := 15
@@ -62,23 +55,23 @@ var game_levels  = {
 var current_game_level = 0
 var current_run = ["type", "finger", "cam"]
 
+func _ready() -> void:
+	PlayerManager.reset_current_player_data()
+
 func _process(_delta: float) -> void:
 	$GameUI.visible = _can_show_game_ui
-
-func update_score(add_score: int):
-	_player_score += add_score
-	score_chaged.emit(add_score)
 	
 func start_game():
 	_can_show_game_ui = true
 	game_timer.start(total_game_duration)
+	change_to_next_level()
 
 func change_to_next_level():
 	if current_game_level >= len(current_run):
 		current_game_level = 0
 	var scene_name = current_run[current_game_level]
 	if scene_name == "cam":
-		cin_counter += 1	
+		PlayerManager.increment_cin_count()
 		current_level += 1
 	var scene = game_levels[scene_name]
 	current_game_level += 1
@@ -86,12 +79,33 @@ func change_to_next_level():
 	get_tree().change_scene_to_packed(scene)
 	scene_transintion_animation.play("fade_out")
 
+func change_to_username_scene():
+	scene_transintion_animation.play("fade_in")
+	get_tree().change_scene_to_file("res://scenes/levels/username_scene.tscn")
+	scene_transintion_animation.play("fade_out")
+
 func end_game():
 	_can_show_game_ui = false
+	PlayerManager.save_current_player()
 	get_tree().change_scene_to_file("res://scenes/levels/menu_scene.tscn")
 
-func get_score():
-	return _player_score
+func get_dashboard():
+	return SaveManager.game_data["dashboard"]
 
 func _on_game_timer_timeout() -> void:
 	end_game();
+
+func _enter_tree() -> void:
+	SaveManager.load_game()
+	
+func _exit_tree() -> void:
+	SaveManager.save_game()
+
+## Botões secretos (sigilo total)
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_page_down"):
+		print("[Botão secreto] - Resetando Saves")
+		SaveManager.reset_save()
+	if event.is_action_pressed("ui_text_delete"):
+		print("[Botão secreto] - Reload")
+		get_tree().reload_current_scene()

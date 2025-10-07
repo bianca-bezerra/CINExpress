@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx7cu3vfvagu6"]
+
+[ext_resource type="Script" uid="uid://b4kvlqnohlgll" path="res://scripts/username_scene.gd" id="1_0tmcr"]
+
+[node name="UsernameScene" type="Node2D"]
+script = ExtResource("1_0tmcr")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 22.0
+offset_top = 31.0
+offset_right = 255.0
+offset_bottom = 56.0
+grow_horizontal = 2
+size_flags_vertical = 4
+text = "Como você se chama?"
+
+[node name="NameInput" type="LineEdit" parent="."]
+offset_left = 81.0
+offset_top = 96.0
+offset_right = 359.0
+offset_bottom = 127.0
+
+[connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_text_submitted"]

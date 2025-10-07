@@ -6,35 +6,61 @@ class_name FingerLevel
 @onready var digital_reader_sprite = $digital_reader/Sprite2D
 @onready var floating_text_scene = preload("res://scenes/floating_text.tscn")
 
-var is_win := false
-var text_spawned = false
+var can_win := false
+var can_try := false
+var _animation_played := false
+
+
+var perfect_phrases = [
+	"Perfeito!!",
+	"Incrível!!",
+	"Show!!"
+]
+
+var good_phrases = [
+	"Boa",
+	"Legal",
+	"Bacana",
+    "Nice"
+]
+
+var bad_phrases = [
+	"Err..",
+	"Ops..",
+	"Hã..?",
+    "Ihh"
+]
+
 
 func spawn_motivation_text():
 	var score = finger.score_percentage
 	var text = ""
+	
 	if score >= 0.5:
-		text = "[rainbow]Perfeito!![/rainbow]"
-	elif score >= 0.4:
-		text = "Boa!"
+		text = perfect_phrases[randi() % perfect_phrases.size()]
+		text = "[shake][rainbow]%s[/rainbow][/shake]" % text
+	elif score >= 0.01:
+		text = good_phrases[randi() % good_phrases.size()]
 	else:
-		text = "[shake rate=10.0 level=2]Err...[/shake]"
+		text = bad_phrases[randi() % bad_phrases.size()]
+		text = "[shake rate=10.0 level=2]%s[/shake]" % text
+	
 	var floating_text = floating_text_scene.instantiate()
 	floating_text.text = text
 	floating_text.scale = Vector2(2, 2)
 	floating_text.global_position = $FeedbackMarker.global_position
 	add_child(floating_text)
 
+
 func _process(_delta: float) -> void:
-	if is_win:
-		GameManager.game_timer.paused = true
-		if not text_spawned:
-			spawn_motivation_text()
-			text_spawned = true
+	$Finger/DebugLabel.text = "is win? %s | c_dist: %.2f" % [can_win, finger.distance_from_center]	
+	if can_win and not _animation_played:
 		digital_reader_sprite.play()
-		finger.can_move = false
-		if win_timer.is_stopped():
-			win_timer.start(1.2)
+		_animation_played = true	
 
 func _on_win_timer_timeout() -> void:
 	GameManager.game_timer.paused = false
-	GameManager.change_to_next_level()
+	if can_win:
+		GameManager.change_to_next_level()
+	else:
+		finger.can_move = true
