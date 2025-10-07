@@ -7,7 +7,7 @@ extends Node2D
 var floating_text_scene: PackedScene = preload("res://scenes/floating_text.tscn")
 
 func update_score_text():
-	$ScoreLabel.text = "SCORE: %.2f" % GameManager.get_score()
+	$ScoreLabel.text = "SCORE: %.2f" % PlayerManager.get_score()
 	
 	
 func _format_time(remaining_time: float) -> String:
@@ -19,12 +19,12 @@ func _format_time(remaining_time: float) -> String:
 
 func _ready() -> void:
 	update_score_text()
-	GameManager.score_chaged.connect(_on_player_score_changed)
+	PlayerManager.score_chaged.connect(_on_player_score_changed)
 	
 func _process(_delta: float) -> void:
 	var timer: Timer = GameManager.game_timer
 	timer_progress.text = _format_time(timer.time_left)
-	wallet.text = "CINs: %d" % GameManager.cin_counter
+	wallet.text = "CINs: %d" % PlayerManager.get_cin_count()
 	
 
 func spawn_added_score(added_score: float):

@@ -7,6 +7,8 @@ rotation = -0.000232998
 script = ExtResource("1_jn2l2")
 
 [node name="TimerLabel" type="Label" parent="."]
+z_index = 10
+z_as_relative = false
 offset_left = 10.997406
 offset_top = 11.002562
 offset_right = 81.3952
@@ -15,6 +17,8 @@ theme_override_font_sizes/font_size = 12
 text = "02:00"
 
 [node name="ScoreLabel" type="Label" parent="."]
+z_index = 10
+z_as_relative = false
 offset_left = 387.99765
 offset_top = 10.090403
 offset_right = 447.99765
@@ -26,6 +30,8 @@ text = "SCORE: "
 position = Vector2(421.99393, 26.098324)
 
 [node name="WalletLabel" type="Label" parent="."]
+z_index = 10
+z_as_relative = false
 offset_left = 340.9979
 offset_top = 9.079452
 offset_right = 394.9979

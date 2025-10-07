@@ -1,9 +1,41 @@
-[gd_scene load_steps=6 format=3 uid="uid://1r3pfb0em8ow"]
+[gd_scene load_steps=8 format=3 uid="uid://1r3pfb0em8ow"]
 
 [ext_resource type="Shader" uid="uid://36vk6bexpyhj" path="res://scenes/levels/pixelate_filter.gdshader" id="1_0v84v"]
 [ext_resource type="Script" uid="uid://dos4sq85agvu2" path="res://scenes/levels/cam_level.gd" id="1_r3o5b"]
 [ext_resource type="Texture2D" uid="uid://c4bdeh4vffm5b" path="res://assets/sprites/camera_point_of_view.png" id="2_oh5ai"]
 [ext_resource type="Texture2D" uid="uid://derrqbcyjmlrw" path="res://assets/sprites/ninguem.png" id="2_r3o5b"]
+
+[sub_resource type="Animation" id="Animation_oh5ai"]
+resource_name = "flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 0.8862745, 1), Color(1, 1, 0.8862745, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l4ifs"]
+_data = {
+&"flash": SubResource("Animation_oh5ai")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r3o5b"]
 shader = ExtResource("1_0v84v")
@@ -12,6 +44,12 @@ shader_parameter/offset = 0.0
 [node name="CamLevel" type="Node2D"]
 script = ExtResource("1_r3o5b")
 MAX_POINTS = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../ColorRect")
+libraries = {
+&"": SubResource("AnimationLibrary_l4ifs")
+}
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(240, 132)
@@ -24,13 +62,12 @@ scale = Vector2(4, 4)
 texture = ExtResource("2_r3o5b")
 
 [node name="RectBlur" type="ColorRect" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_r3o5b")
-offset_left = 1.0
-offset_top = -11.0
-offset_right = 481.0
-offset_bottom = 274.0
-color = Color(1, 1, 1, 0.03529412)
+offset_left = 47.0
+offset_top = 4.0
+offset_right = 431.0
+offset_bottom = 258.0
+color = Color(1, 0.42352942, 1, 0.03529412)
 
 [node name="VSlider" type="VSlider" parent="."]
 offset_left = 430.0
@@ -40,7 +77,21 @@ offset_bottom = 216.0
 max_value = 10.0
 
 [node name="DebugLabel" type="Label" parent="."]
+visible = false
 offset_left = 45.0
 offset_top = 36.0
 offset_right = 155.0
 offset_bottom = 59.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(280, 0)
+offset_left = 46.0
+offset_top = 2.0
+offset_right = 433.0
+offset_bottom = 264.0
+color = Color(1, 1, 1, 0)
+
+[node name="FeedbackMarker" type="Marker2D" parent="."]
+position = Vector2(353, 31)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

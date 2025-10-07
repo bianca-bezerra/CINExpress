@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bth8stp3ey7b" path="res://scripts/finger_level.gd" id="1_5skfb"]
 [ext_resource type="Texture2D" uid="uid://vuac0l7mxgkv" path="res://assets/sprites/coletor_digital.png" id="2_eni27"]
 [ext_resource type="Script" uid="uid://dlledv2s8nm1x" path="res://scripts/finger.gd" id="3_eni27"]
-[ext_resource type="Texture2D" uid="uid://d0wwed25gcoay" path="res://assets/sprites/dedo_sozinho1.png" id="4_kaagg"]
+[ext_resource type="Texture2D" uid="uid://b4vqe0lqs3w36" path="res://assets/sprites/mao.png" id="4_kaagg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kaagg"]
 atlas = ExtResource("2_eni27")
@@ -31,7 +31,7 @@ animations = [{
 size = Vector2(32, 39)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1sdx"]
-size = Vector2(18, 18)
+size = Vector2(17, 27)
 
 [node name="FingerLevel" type="Node2D"]
 script = ExtResource("1_5skfb")
@@ -41,23 +41,33 @@ position = Vector2(240, 204)
 collision_layer = 4
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="digital_reader"]
-position = Vector2(-0.055, 0)
+position = Vector2(0.99999267, -24)
 sprite_frames = SubResource("SpriteFrames_k7tmn")
+frame_progress = 0.49256065
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="digital_reader"]
 position = Vector2(1, 36)
 shape = SubResource("RectangleShape2D_21gu7")
 
 [node name="Finger" type="CharacterBody2D" parent="."]
-position = Vector2(241, 249)
+position = Vector2(241, 260)
 script = ExtResource("3_eni27")
 
 [node name="Sprite2D" type="Sprite2D" parent="Finger"]
+position = Vector2(23, -40)
+scale = Vector2(1.925, 2)
 texture = ExtResource("4_kaagg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Finger"]
-position = Vector2(0, -11)
+position = Vector2(0, -31)
 shape = SubResource("RectangleShape2D_p1sdx")
+
+[node name="DebugLabel" type="Label" parent="Finger"]
+visible = false
+offset_left = 10.0
+offset_top = -17.0
+offset_right = 50.0
+offset_bottom = 6.0
 
 [node name="WinTimer" type="Timer" parent="."]
 
