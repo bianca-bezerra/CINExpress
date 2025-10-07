@@ -39,7 +39,7 @@ func spawn_motivation_text():
 	if score >= 0.5:
 		text = perfect_phrases[randi() % perfect_phrases.size()]
 		text = "[shake][rainbow]%s[/rainbow][/shake]" % text
-	elif score >= 0.01:
+	elif score >= 0.1:
 		text = good_phrases[randi() % good_phrases.size()]
 	else:
 		text = bad_phrases[randi() % bad_phrases.size()]
