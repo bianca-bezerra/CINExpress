@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpa7aggcq7yn8"]
+
+[ext_resource type="Texture2D" uid="uid://derrqbcyjmlrw" path="res://assets/sprites/ninguem.png" id="1_n441k"]
+
+[node name="PersonScene" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Person")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(134, 166)
+scale = Vector2(2, 2)
+
+[node name="Person" type="Sprite2D" parent="."]
+position = Vector2(134, 166)
+scale = Vector2(2, 2)
+texture = ExtResource("1_n441k")

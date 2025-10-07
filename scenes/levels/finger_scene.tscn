@@ -46,7 +46,7 @@ sprite_frames = SubResource("SpriteFrames_k7tmn")
 frame_progress = 0.49256065
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="digital_reader"]
-position = Vector2(1, 36)
+position = Vector2(1, 11)
 shape = SubResource("RectangleShape2D_21gu7")
 
 [node name="Finger" type="CharacterBody2D" parent="."]
