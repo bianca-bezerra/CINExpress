@@ -25,3 +25,12 @@ offset_right = 327.0
 offset_bottom = 179.0
 size_flags_horizontal = 0
 size_flags_vertical = 8
+
+[node name="InputLineEdit" type="LineEdit" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 68.5625
+offset_bottom = 31.0
+drag_and_drop_selection_enabled = false
+
+[connection signal="text_changed" from="InputLineEdit" to="." method="_on_text_changed"]
