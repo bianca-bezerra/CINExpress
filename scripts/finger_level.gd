@@ -39,7 +39,7 @@ func spawn_motivation_text():
 	if score >= 0.5:
 		text = perfect_phrases[randi() % perfect_phrases.size()]
 		text = "[shake][rainbow]%s[/rainbow][/shake]" % text
-	elif score >= 0.1:
+	elif score >= 0.1 or can_win:
 		text = good_phrases[randi() % good_phrases.size()]
 	else:
 		text = bad_phrases[randi() % bad_phrases.size()]
@@ -53,7 +53,7 @@ func spawn_motivation_text():
 
 
 func _process(_delta: float) -> void:
-	$Finger/DebugLabel.text = "is win? %s | c_dist: %.2f" % [can_win, finger.distance_from_center]	
+	$Finger/DebugLabel.text = "is win? %s | score %.2f" % [can_win, finger.score_percentage]	
 	if can_win and not _animation_played:
 		digital_reader_sprite.play()
 		_animation_played = true	

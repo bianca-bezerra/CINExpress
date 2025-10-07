@@ -43,7 +43,7 @@ func _try():
 	can_move = false
 	if _level.win_timer.is_stopped():
 		_level.win_timer.start(1.2)
-	if _is_in_scoring_zone:
+	if _is_in_scoring_zone and score_percentage > 0:
 		_initial_pos = _dest
 		_level.can_win = true
 		score_percentage = clamp(1 - (distance_from_center / _half_zone_width), 0, 1)
