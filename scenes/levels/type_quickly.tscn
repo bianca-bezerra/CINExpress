@@ -14,16 +14,14 @@ offset_bottom = 174.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="PromptLabel" type="RichTextLabel" parent="VBoxContainer"]
-custom_minimum_size = Vector2(400, 100)
-layout_mode = 2
-bbcode_enabled = true
-
-[node name="InputLineEdit" type="LineEdit" parent="VBoxContainer"]
-layout_mode = 2
-
 [node name="FeedbackLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_pwse7")
 
-[connection signal="text_submitted" from="VBoxContainer/InputLineEdit" to="." method="_on_input_submitted"]
+[node name="HFlowContainer" type="HFlowContainer" parent="."]
+offset_left = 43.0
+offset_top = 59.0
+offset_right = 327.0
+offset_bottom = 179.0
+size_flags_horizontal = 0
+size_flags_vertical = 8

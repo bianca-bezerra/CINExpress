@@ -49,6 +49,7 @@ var cin_counter := 0
 
 ## Timer do ciclo total de jogo
 @onready var game_timer = $GameTimer
+@onready var scene_transintion_animation = $SceneTransitionAnimation/AnimationPlayer
 
 var _can_show_game_ui = false
 
@@ -76,14 +77,17 @@ func change_to_next_level():
 	if current_game_level >= len(current_run):
 		current_game_level = 0
 	var scene_name = current_run[current_game_level]
+	if scene_name == "cam":
+		cin_counter += 1	
+		current_level += 1
 	var scene = game_levels[scene_name]
 	current_game_level += 1
+	scene_transintion_animation.play("fade_in")
 	get_tree().change_scene_to_packed(scene)
+	scene_transintion_animation.play("fade_out")
 
 func end_game():
 	_can_show_game_ui = false
-	current_level += 1
-	cin_counter += 1
 	get_tree().change_scene_to_file("res://scenes/levels/menu_scene.tscn")
 
 func get_score():

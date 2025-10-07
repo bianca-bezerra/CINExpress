@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://n3avy5hgldwk"]
+
+[ext_resource type="Script" uid="uid://criwse73lf142" path="res://scripts/type_feeadback_write.gd" id="1_fycwi"]
+[ext_resource type="FontFile" uid="uid://28uh6cr1uypa" path="res://assets/fonts/Jersey25-Regular.ttf" id="2_1q88x"]
+
+[node name="TypeFeeadbackWrite" type="VBoxContainer"]
+offset_right = 13.0
+offset_bottom = 39.0
+script = ExtResource("1_fycwi")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_1q88x")
+theme_override_font_sizes/font_size = 16
+text = "F"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 8

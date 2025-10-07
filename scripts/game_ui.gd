@@ -1,23 +1,30 @@
 extends Node2D
 
 @onready var added_score_mark: Marker2D = $Marker2D
-@onready var timer_progress: ProgressBar = $TimerProgress
+@onready var timer_progress: Label = $TimerLabel
+@onready var wallet: Label = $WalletLabel
 
 var floating_text_scene: PackedScene = preload("res://scenes/floating_text.tscn")
 
 func update_score_text():
 	$ScoreLabel.text = "SCORE: %.2f" % GameManager.get_score()
 	
+	
+func _format_time(remaining_time: float) -> String:
+	@warning_ignore("integer_division")
+	var minutes: int = int(remaining_time) / 60 
+	var seconds: int = int(remaining_time) % 60
+
+	return "%02d:%02d" % [minutes, seconds]
 
 func _ready() -> void:
-	timer_progress.max_value = GameManager.total_game_duration
-	timer_progress.value = GameManager.total_game_duration
 	update_score_text()
 	GameManager.score_chaged.connect(_on_player_score_changed)
 	
 func _process(_delta: float) -> void:
 	var timer: Timer = GameManager.game_timer
-	timer_progress.value = timer.time_left
+	timer_progress.text = _format_time(timer.time_left)
+	wallet.text = "CINs: %d" % GameManager.cin_counter
 	
 
 func spawn_added_score(added_score: float):
