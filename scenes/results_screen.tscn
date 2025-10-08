@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0i20cpneku7k"]
+
+[ext_resource type="Script" uid="uid://bhrioocci4c3" path="res://scripts/results_screen.gd" id="1_fqf1x"]
+[ext_resource type="PackedScene" uid="uid://duma53j5l7fqo" path="res://scenes/levels/game_button.tscn" id="2_j5vbe"]
+
+[node name="ResultsScreen" type="Node2D"]
+script = ExtResource("1_fqf1x")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_left = 145.0
+offset_top = 47.0
+offset_right = 344.0
+offset_bottom = 158.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 164.0
+offset_top = 68.0
+offset_right = 251.0
+offset_bottom = 91.0
+text = "Pontuação:"
+
+[node name="ScorePointsLabel" type="Label" parent="."]
+offset_left = 260.0
+offset_top = 69.0
+offset_right = 300.0
+offset_bottom = 92.0
+text = "0"
+
+[node name="CinsPointsLabel" type="Label" parent="."]
+offset_left = 212.0
+offset_top = 110.0
+offset_right = 222.0
+offset_bottom = 133.0
+text = "0"
+
+[node name="CinsLabel" type="Label" parent="."]
+offset_left = 165.0
+offset_top = 109.0
+offset_right = 205.0
+offset_bottom = 132.0
+text = "CINs:"
+
+[node name="HBoxContainer" type="HSplitContainer" parent="."]
+offset_left = 152.0
+offset_top = 173.0
+offset_right = 336.0
+offset_bottom = 193.0
+
+[node name="RetryGameButton" parent="HBoxContainer" instance=ExtResource("2_j5vbe")]
+layout_mode = 2
+text = "JOGAR NOVAMENTE"
+
+[node name="MenuButton" parent="HBoxContainer" instance=ExtResource("2_j5vbe")]
+layout_mode = 2
+text = "MENU
+"
+
+[connection signal="pressed" from="HBoxContainer/RetryGameButton" to="." method="_on_retry_game_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

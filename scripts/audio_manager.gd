@@ -9,7 +9,9 @@ var _sfxs = {
 	"combo_sound" : preload("res://assets/audio/pirilimpompom(combo).mp3"),
 	"right_hit" : "",
 	"wrong_hit": preload("res://assets/audio/wrong_hit.wav"),
-	"text_type": preload("res://assets/audio/text_type.wav")
+	"text_type": preload("res://assets/audio/text_type.wav"),
+	"spinner_sound": preload("res://assets/audio/spinner.mp3"),
+	"bang_sound": preload("res://assets/audio/bang.mp3")
 }
 
 func _ready() -> void:
@@ -26,3 +28,6 @@ func play_sfx(sound_name: String, pitch_scale: float = 1.0):
 	_sfx_stream.pitch_scale = pitch_scale
 	if not _sfx_stream.playing:
 		_sfx_stream.play()
+
+func stop_sfx():
+	_sfx_stream.stop()

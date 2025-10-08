@@ -78,6 +78,8 @@ func _process(_delta: float) -> void:
 func start_game():
 	_can_show_game_ui = true
 	game_timer.start(total_game_duration)
+	PlayerManager.reset_score()
+	PlayerManager.reset_current_player_data()
 	change_to_next_level()
 
 func change_to_next_level():
@@ -97,6 +99,11 @@ func change_to_username_scene():
 	scene_transintion_animation.play("fade_in")
 	get_tree().change_scene_to_file("res://scenes/levels/username_scene.tscn")
 	scene_transintion_animation.play("fade_out")
+	
+func change_to_menu_scene():
+	scene_transintion_animation.play("fade_in")
+	get_tree().change_scene_to_file("res://scenes/levels/menu_scene.tscn")
+	scene_transintion_animation.play("fade_out")
 
 
 func end_game():
@@ -104,8 +111,9 @@ func end_game():
 	current_level = 0
 	current_game_level = 0	
 	PlayerManager.save_current_player()
-	PlayerManager.reset_score()
-	get_tree().change_scene_to_file("res://scenes/levels/menu_scene.tscn")
+	scene_transintion_animation.play("fade_in")
+	get_tree().change_scene_to_file("res://scenes/results_screen.tscn")
+	scene_transintion_animation.play("fade_out")
 
 func get_dashboard():
 	return SaveManager.game_data["dashboard"]
