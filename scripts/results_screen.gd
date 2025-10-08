@@ -1,0 +1,87 @@
+extends Node2D
+
+@onready var score_label: Label = $ScorePointsLabel
+@onready var cins_label: Label = $CinsPointsLabel
+@onready var retry_game_button: Button = $HBoxContainer/RetryGameButton
+
+const DELAY_BETWEEN_CATEGORIES: float = 0.3
+const FADE_DURATION: float = 0.4
+const ZOOM_SCALE: float = 2.0  # quanto o texto aumenta no "bang"
+const ZOOM_DURATION: float = 0.25
+
+func _ready() -> void:
+	score_label.text = "0"
+	cins_label.text = "0"
+	start_score_animation()
+	retry_game_button.grab_focus.call_deferred()
+
+func start_score_animation() -> void:
+	await _animate_score_label(score_label, PlayerManager.get_score())
+	await get_tree().create_timer(DELAY_BETWEEN_CATEGORIES).timeout
+
+	await _animate_score_label(cins_label, PlayerManager.get_cin_count())
+	await get_tree().create_timer(DELAY_BETWEEN_CATEGORIES).timeout
+
+
+func _animate_score_label(label_to_animate: Label, target_score: int) -> void:
+	if target_score <= 0:
+		label_to_animate.text = "0"
+		return
+		
+	var duration = clamp(target_score / 150.0, 0.6, 1.5)
+
+	# 🔹 Fade-in inicial
+	label_to_animate.modulate.a = 0.0
+	var fade_in_tween := create_tween()
+	fade_in_tween.tween_property(label_to_animate, "modulate:a", 1.0, FADE_DURATION)
+	await fade_in_tween.finished
+
+	
+	var sound_tween := create_tween()
+	sound_tween.tween_property(AudioManager.play_sfx("spinner_sound", 2.0), "pitch_scale", 1.0, duration)
+
+	# 🔹 Tween da contagem
+	var tween := create_tween().set_parallel()
+	tween.tween_method(
+		_update_label_text.bind(label_to_animate),
+		0.0,
+		float(target_score),
+		duration
+	).set_ease(Tween.EaseType.EASE_OUT)
+
+	await tween.finished
+
+	# 🔹 Garante o valor final e para o som
+	label_to_animate.text = str(target_score)
+	AudioManager.stop_sfx()	
+
+	# 🔹 Efeito de zoom final + som de "bang"
+	await _play_zoom_bang(label_to_animate)
+
+	# 🔹 Fade-out leve depois do efeito
+	var fade_out_tween := create_tween()
+	fade_out_tween.tween_property(label_to_animate, "modulate:a", 0.8, FADE_DURATION)
+	await fade_out_tween.finished
+
+
+func _update_label_text(value: float, label: Label) -> void:
+	label.text = str(roundi(value))
+
+
+func _play_zoom_bang(label: Label) -> void:
+	var zoom_tween := create_tween().set_parallel()
+	label.scale = Vector2.ONE
+	zoom_tween.tween_property(label, "scale", Vector2(ZOOM_SCALE, ZOOM_SCALE), ZOOM_DURATION).set_ease(Tween.EaseType.EASE_OUT)
+	zoom_tween.tween_property(label, "scale", Vector2.ONE, ZOOM_DURATION).set_delay(ZOOM_DURATION).set_ease(Tween.EaseType.EASE_IN)
+	await zoom_tween.finished
+	
+	AudioManager.play_sfx("bang_sound")
+
+
+func _on_retry_game_button_pressed() -> void:
+	GameManager.change_to_username_scene()
+
+
+func _on_menu_button_pressed() -> void:
+	GameManager.change_to_menu_scene()
+	

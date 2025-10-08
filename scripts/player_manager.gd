@@ -33,7 +33,6 @@ func increment_cin_count():
 func save_current_player():
 	SaveManager.game_data["dashboard"].append(_current_player_data)
 	SaveManager.save_game()
-	reset_current_player_data()
 
 func get_score():
 	return _current_player_data["score"]
