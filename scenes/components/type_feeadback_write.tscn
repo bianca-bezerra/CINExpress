@@ -21,3 +21,8 @@ clip_contents = true
 custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
 size_flags_vertical = 8
+
+[node name="CursorTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="CursorTimer" to="." method="_on_cursor_timer_timeout"]

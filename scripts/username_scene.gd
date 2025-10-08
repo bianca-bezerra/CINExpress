@@ -3,6 +3,7 @@ extends Node2D
 
 func _ready() -> void:
 	input.grab_focus()
+	
 
 func _on_name_input_text_submitted(new_text: String) -> void:
 	var player_name = new_text
