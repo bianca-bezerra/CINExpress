@@ -18,11 +18,11 @@ var _round_start_time: float = 0.0
 
 
 func unnanbrazile(letter: String) -> String:
-	if letter == 'á' or letter == 'ã': return 'a'
-	if letter == 'é' or letter == 'ẽ': return 'e'
-	if letter == 'í': return 'i'
-	if letter == 'ó' or letter == 'õ': return 'o'
-	if letter == 'ú': return 'u'
+	if letter == 'á' or letter == 'ã' or letter == 'â': return 'a'
+	if letter == 'é' or letter == 'ẽ' or letter == 'ê': return 'e'
+	if letter == 'í' or letter == 'î': return 'i'
+	if letter == 'ó' or letter == 'õ' or letter == 'ô': return 'o'
+	if letter == 'ú' or letter == 'û':  return 'u'
 	if letter == 'ç': return 'c'
 	return letter
 

@@ -94,4 +94,11 @@ color = Color(1, 1, 1, 0)
 [node name="FeedbackMarker" type="Marker2D" parent="."]
 position = Vector2(353, 31)
 
+[node name="HSlider" type="HSlider" parent="."]
+custom_minimum_size = Vector2(198, 16)
+offset_left = 140.0
+offset_top = 237.0
+offset_right = 338.0
+offset_bottom = 253.0
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

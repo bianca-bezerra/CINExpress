@@ -4,11 +4,10 @@ extends Node2D
 @onready var timer_progress: Label = $TimerLabel
 @onready var wallet: Label = $WalletLabel
 
-var floating_text_scene: PackedScene = preload("res://scenes/components/floating_text.tscn")
+var floating_text_scene: PackedScene = preload("res://scenes/floating_text.tscn")
 var _score_to_show = 0.0
-
 func update_score_text():
-	_score_to_show = lerpf(_score_to_show, PlayerManager.get_score(), 0.1)
+	_score_to_show = move_toward(_score_to_show, PlayerManager.get_score(), 5)
 	$ScoreLabel.text = "SCORE: %.2f" % _score_to_show
 	
 func _format_time(remaining_time: float) -> String:

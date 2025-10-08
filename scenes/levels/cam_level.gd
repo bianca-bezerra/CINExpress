@@ -3,7 +3,6 @@ extends GameLevel
 @export var MAX_POINTS = 100
 @export var SLIDER_GROW_FACTOR = 5 
 
-@onready var slider = $VSlider
 @onready var shaderRect = $RectBlur
 @onready var v_slider_default_modulate = $VSlider.modulate
 @onready var floating_text_scene = preload("res://scenes/components/floating_text.tscn")
@@ -14,11 +13,21 @@ var score_times = 0
 
 var _phrases = ["Diga Xiss!", "Uau!", "Massa!"]
 
+@onready var _sliders = [$HSlider, $VSlider]
+@onready var _current_slider = _sliders.pick_random()
+
 func _ready() -> void:
-	slider.grab_focus()
-	slider.max_value = slider_len
-	slider.max_value = slider_len
-	point = randi_range(slider_len/2, 2 + slider_len/2) 
+	for _slider in _sliders:
+		if _slider != _current_slider:
+			_slider.visible = false
+	_current_slider.grab_focus()
+	_current_slider.max_value = slider_len
+	_current_slider.max_value = slider_len
+	point = randi_range(slider_len/2, 2 + slider_len/2)
+	_current_slider.value = randi_range(point - slider_len/2, point + slider_len/2)
+	while _current_slider.value == point:
+		_current_slider.value = randi_range(point - slider_len/2, point + slider_len/2)
+
 	
 func handle_win():
 	var floating_text: RichTextLabel = floating_text_scene.instantiate()
@@ -29,25 +38,22 @@ func handle_win():
 	add_child(floating_text)
 	PlayerManager.add_score(100)
 	$AnimationPlayer.play("flash")
-
-func _handle_bar_color(actual_point):
-	if actual_point == point:
-		$VSlider.modulate = Color.GREEN
-	elif abs(actual_point - point) < 3:
-		$VSlider.modulate = Color.YELLOW
-	else:
-		$VSlider.modulate = v_slider_default_modulate
 	
+	# TODO: Padronizar a lógica do score
+	PlayerManager.add_score(100)
 
 func _process(_delta: float) -> void:
-	var actual_point = slider.value
+	var actual_point = _current_slider.value
 	$DebugLabel.text = "Ponto atual: %d | Ponto: %d" % [actual_point, point]
-	if Input.is_action_just_pressed("space"):	
-		if actual_point == point:
+	if actual_point == point:
+		if Input.is_action_just_pressed("space"):
 			handle_win()
 			return
-		else:
-			GameManager.stop_combo()
+		_current_slider.modulate = Color.GREEN
+	elif abs(actual_point - point) < 3:
+		_current_slider.modulate = Color.YELLOW
+	else:
+		_current_slider.modulate = v_slider_default_modulate
 
 	shaderRect.material.set("shader_parameter/offset", 2 * (point  - actual_point))
 
