@@ -1,11 +1,12 @@
 extends Node2D
 
-@onready var start_button = $GUI/ButtonGroup/StartButton
-@onready var exit_button = $GUI/ButtonGroup/ExitButton
-
+@onready var start_button = $GUI/GUIControl/ButtonGroup/StartButton
+@onready var exit_button = $GUI/GUIControl/ButtonGroup/ExitButton
 
 func _ready() -> void:
 	start_button.grab_focus.call_deferred()
+	start_button.connect("pressed", _on_start_button_pressed)
+	exit_button.connect("pressed", _on_exit_button_pressed)
 	
 func _process(_delta: float) -> void:
 	pass
