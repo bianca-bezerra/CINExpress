@@ -49,6 +49,9 @@ var names := [
 	"Manuel Inácio da Silva Alvarenga e Peixoto"
 ]
 ]
+
+signal combo_stopped()
+
 var current_level := 0
 
 ## O total que o ciclo de jogo TOTAL vai durar
@@ -56,6 +59,7 @@ var current_level := 0
 
 ## Timer do ciclo total de jogo
 @onready var game_timer = $GameTimer
+@onready var combo_timer = $ComboTimer
 @onready var scene_transintion_animation = $SceneTransitionAnimation/AnimationPlayer
 
 var _can_show_game_ui = false
@@ -68,12 +72,31 @@ var game_levels  = {
 
 var current_game_level = 0
 var current_run = ["type", "finger", "cam"]
+var multiplier := 1
+
+func _on_score_changed(_new_score: float):
+	print("Aumentando multiplicador")
+	var timer_duration = 5 / (multiplier/5.0)
+	multiplier += 1
+	combo_timer.start(timer_duration)
+	print(multiplier)
+
+func stop_combo():
+	combo_timer.stop()
+	multiplier = 1
+	combo_stopped.emit()
+	var cam = get_viewport().get_camera_2d()
+	if cam:
+		cam.reset_smoothing()
 
 func _ready() -> void:
+	PlayerManager.score_chaged.connect(_on_score_changed)
 	PlayerManager.reset_current_player_data()
 
 func _process(_delta: float) -> void:
 	$GameUI.visible = _can_show_game_ui
+	combo_timer.paused = game_timer.paused
+	
 	
 func start_game():
 	_can_show_game_ui = true
@@ -103,6 +126,12 @@ func end_game():
 	PlayerManager.save_current_player()
 	get_tree().change_scene_to_file("res://scenes/levels/menu_scene.tscn")
 
+func get_combo_timer_value():
+	return combo_timer.time_left
+
+func get_combo_timer_total_time():
+	return combo_timer.wait_time
+
 func get_dashboard():
 	return SaveManager.game_data["dashboard"]
 
@@ -123,3 +152,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_text_delete"):
 		print("[Botão secreto] - Reload")
 		get_tree().reload_current_scene()
+
+
+func _on_combo_timer_timeout() -> void:
+	stop_combo()

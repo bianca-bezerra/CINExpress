@@ -6,9 +6,10 @@ extends Node2D
 
 var floating_text_scene: PackedScene = preload("res://scenes/components/floating_text.tscn")
 var _score_to_show = 0.0
+
 func update_score_text():
-	$ScoreLabel.text = "SCORE: %.2f" % PlayerManager.get_score()
-	
+	_score_to_show = lerpf(_score_to_show, PlayerManager.get_score(), 0.1)
+	$ScoreLabel.text = "SCORE: %.2f" % _score_to_show
 	
 func _format_time(remaining_time: float) -> String:
 	@warning_ignore("integer_division")
@@ -18,10 +19,11 @@ func _format_time(remaining_time: float) -> String:
 	return "%02d:%02d" % [minutes, seconds]
 
 func _ready() -> void:
-	update_score_text()
 	PlayerManager.score_chaged.connect(_on_player_score_changed)
+	GameManager.combo_stopped.connect(_on_combo_stopped)
 	
 func _process(_delta: float) -> void:
+	update_score_text()
 	var timer: Timer = GameManager.game_timer
 	timer_progress.text = _format_time(timer.time_left)
 	wallet.text = "CINs: %d" % PlayerManager.get_cin_count()
@@ -33,6 +35,9 @@ func spawn_added_score(added_score: float):
 	added_score_obj.global_position = added_score_mark.global_position
 	add_child(added_score_obj)
 
+func _on_combo_stopped():
+	$ComboGauge.visible = false
+
 func _on_player_score_changed(new_score: float):
-	update_score_text()
 	spawn_added_score(new_score)
+	$ComboGauge.visible = true

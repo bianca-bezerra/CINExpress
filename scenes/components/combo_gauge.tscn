@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctkoma8d2bmey"]
+
+[ext_resource type="Script" uid="uid://m0mpun3kg73v" path="res://scripts/combo_gauge.gd" id="1_4hpbh"]
+
+[node name="ComboGauge" type="VBoxContainer"]
+offset_left = 5.0
+offset_top = -2.0
+offset_right = 61.0
+offset_bottom = 34.0
+alignment = 1
+script = ExtResource("1_4hpbh")
+
+[node name="MultiplierLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+bbcode_enabled = true
+text = "[shake rate=3.000000] x1 [/shake]"
+fit_content = true
+scroll_active = false
+vertical_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 10
+max_value = 0.0
+show_percentage = false

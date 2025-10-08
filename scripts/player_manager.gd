@@ -3,15 +3,15 @@ signal score_chaged(new_score: float)
 
 var _current_player_data = {
 	"name": "",
-	"score": 0,
-	"cin_count": 0
+	"score": 0.0,
+	"cin_count": 0.0
 }
 
 func reset_current_player_data():
 	_current_player_data = {
 		"name": "",
-		"score": 0,
-		"cin_count": 0
+		"score": 0.0,
+		"cin_count": 0.0
 	}
 
 func register_new_player(player_name: String):
@@ -20,7 +20,10 @@ func register_new_player(player_name: String):
 func add_score(score: float):
 	AudioManager.play_sfx("combo_sound")
 	print("adicionando %.2f" % score)
-	_current_player_data["score"] += score
+	var _new_score = score * GameManager.multiplier
+	if GameManager.multiplier >= 1:
+		var cam = get_viewport().get_camera_2d()
+	_current_player_data["score"] += _new_score
 	score_chaged.emit(score)
 
 func increment_cin_count():

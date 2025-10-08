@@ -1,10 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdp5hy2owkfhu"]
+[gd_scene load_steps=3 format=3 uid="uid://bdp5hy2owkfhu"]
 
 [ext_resource type="Script" uid="uid://crfcpslsb0bo8" path="res://scripts/game_ui.gd" id="1_jn2l2"]
+[ext_resource type="PackedScene" uid="uid://ctkoma8d2bmey" path="res://scenes/components/combo_gauge.tscn" id="2_rns2u"]
 
 [node name="ScoreScene" type="Node2D"]
 rotation = -0.000232998
 script = ExtResource("1_jn2l2")
+
+[node name="ComboGauge" parent="." instance=ExtResource("2_rns2u")]
+z_index = 10
+offset_left = 31.989048
+offset_top = 47.007458
+offset_right = 87.989044
+offset_bottom = 83.00745
+scale = Vector2(1.5, 1.5)
 
 [node name="TimerLabel" type="Label" parent="."]
 z_index = 10
@@ -27,7 +36,7 @@ theme_override_font_sizes/font_size = 12
 text = "SCORE: "
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(421.99393, 26.098324)
+position = Vector2(391.99182, 35.091335)
 
 [node name="WalletLabel" type="Label" parent="."]
 z_index = 10

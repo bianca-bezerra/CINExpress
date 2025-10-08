@@ -27,20 +27,27 @@ func handle_win():
 	floating_text.rotation_degrees = 45
 	floating_text.text = _phrases.pick_random()
 	add_child(floating_text)
+	PlayerManager.add_score(100)
 	$AnimationPlayer.play("flash")
 
-func _process(_delta: float) -> void:
-	var actual_point = slider.value
-	$DebugLabel.text = "Ponto atual: %d | Ponto: %d" % [actual_point, point]
+func _handle_bar_color(actual_point):
 	if actual_point == point:
-		if Input.is_action_just_pressed("space"):
-			handle_win()
-			return
 		$VSlider.modulate = Color.GREEN
 	elif abs(actual_point - point) < 3:
 		$VSlider.modulate = Color.YELLOW
 	else:
 		$VSlider.modulate = v_slider_default_modulate
+	
+
+func _process(_delta: float) -> void:
+	var actual_point = slider.value
+	$DebugLabel.text = "Ponto atual: %d | Ponto: %d" % [actual_point, point]
+	if Input.is_action_just_pressed("space"):	
+		if actual_point == point:
+			handle_win()
+			return
+		else:
+			GameManager.stop_combo()
 
 	shaderRect.material.set("shader_parameter/offset", 2 * (point  - actual_point))
 
