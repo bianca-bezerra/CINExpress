@@ -4,11 +4,11 @@ class_name FingerLevel
 @onready var win_timer = $WinTimer
 @onready var finger = $Finger
 @onready var digital_reader_sprite = $digital_reader/Sprite2D
-@onready var floating_text_scene = preload("res://scenes/floating_text.tscn")
+@onready var floating_text_scene = preload("res://scenes/components/floating_text.tscn")
 
 var can_win := false
 var can_try := false
-var _animation_played := false
+var _animation_stopped := false
 
 
 var perfect_phrases = [
@@ -51,12 +51,15 @@ func spawn_motivation_text():
 	floating_text.global_position = $FeedbackMarker.global_position
 	add_child(floating_text)
 
+func _ready() -> void:
+	digital_reader_sprite.play()
 
 func _process(_delta: float) -> void:
 	$Finger/DebugLabel.text = "is win? %s | score %.2f" % [can_win, finger.score_percentage]	
-	if can_win and not _animation_played:
-		digital_reader_sprite.play()
-		_animation_played = true	
+	if can_win and not _animation_stopped:
+		digital_reader_sprite.frame = 1
+		digital_reader_sprite.pause()
+		_animation_stopped = true	
 
 func _on_win_timer_timeout() -> void:
 	GameManager.game_timer.paused = false

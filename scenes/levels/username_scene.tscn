@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cx7cu3vfvagu6"]
+[gd_scene load_steps=3 format=3 uid="uid://cx7cu3vfvagu6"]
 
 [ext_resource type="Script" uid="uid://b4kvlqnohlgll" path="res://scripts/username_scene.gd" id="1_0tmcr"]
+[ext_resource type="PackedScene" uid="uid://yrnpjaxxbe5o" path="res://scenes/components/game_type.tscn" id="2_e03c0"]
 
 [node name="UsernameScene" type="Node2D"]
 script = ExtResource("1_0tmcr")
@@ -17,10 +18,13 @@ grow_horizontal = 2
 size_flags_vertical = 4
 text = "Como você se chama?"
 
-[node name="NameInput" type="LineEdit" parent="."]
-offset_left = 81.0
+[node name="NameInput" parent="." instance=ExtResource("2_e03c0")]
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+offset_left = 82.0
 offset_top = 96.0
 offset_right = 359.0
 offset_bottom = 127.0
 
 [connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_text_submitted"]
+[connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_2_text_submitted"]

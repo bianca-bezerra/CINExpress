@@ -2,7 +2,7 @@ extends GameLevel
 class_name QuicklyType
 
 # Preload da cena para a letra
-const type_feedback_write = preload("res://scenes/type_feeadback_write.tscn")
+const type_feedback_write = preload("res://scenes/components/type_feeadback_write.tscn")
 
 # Referências aos nós da cena (Onready vars)
 @onready var hflow_container: HFlowContainer = $HFlowContainer

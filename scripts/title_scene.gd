@@ -28,7 +28,6 @@ func _process(delta: float) -> void:
 	for ind in range(len(dash_children)):
 		_angle += delta * 2
 		dash_children[ind].position.y = 10 * cos(_angle + (ind+1))
-		
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()

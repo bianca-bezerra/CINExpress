@@ -6,7 +6,7 @@ extends GameLevel
 @onready var slider = $VSlider
 @onready var shaderRect = $RectBlur
 @onready var v_slider_default_modulate = $VSlider.modulate
-@onready var floating_text_scene = preload("res://scenes/floating_text.tscn")
+@onready var floating_text_scene = preload("res://scenes/components/floating_text.tscn")
 
 var slider_len = clamp(10 + SLIDER_GROW_FACTOR * GameManager.current_level, 0, MAX_POINTS)
 var point = randi_range(1, slider_len/2)

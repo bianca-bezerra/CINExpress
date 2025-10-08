@@ -18,6 +18,7 @@ func register_new_player(player_name: String):
 	_current_player_data["name"] = player_name
 
 func add_score(score: float):
+	AudioManager.play_sfx("combo_sound")
 	print("adicionando %.2f" % score)
 	_current_player_data["score"] += score
 	score_chaged.emit(score)

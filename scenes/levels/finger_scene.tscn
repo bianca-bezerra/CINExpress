@@ -1,26 +1,20 @@
 [gd_scene load_steps=10 format=3 uid="uid://cuyp6bxmyijvn"]
 
 [ext_resource type="Script" uid="uid://bth8stp3ey7b" path="res://scripts/finger_level.gd" id="1_5skfb"]
-[ext_resource type="Texture2D" uid="uid://vuac0l7mxgkv" path="res://assets/sprites/coletor_digital.png" id="2_eni27"]
+[ext_resource type="Texture2D" uid="uid://clyle04neisfe" path="res://assets/sprites/pov_leitor_digital.png" id="2_k7tmn"]
 [ext_resource type="Script" uid="uid://dlledv2s8nm1x" path="res://scripts/finger.gd" id="3_eni27"]
+[ext_resource type="Texture2D" uid="uid://by8f7fiyh44vk" path="res://assets/sprites/leitor.png" id="3_k7tmn"]
 [ext_resource type="Texture2D" uid="uid://b4vqe0lqs3w36" path="res://assets/sprites/mao.png" id="4_kaagg"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kaagg"]
-atlas = ExtResource("2_eni27")
-region = Rect2(0, 0, 264, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eni27"]
-atlas = ExtResource("2_eni27")
-region = Rect2(264, 0, 264, 128)
+[ext_resource type="Texture2D" uid="uid://b3p13pu0g6ohv" path="res://assets/sprites/leitor_ativo.png" id="4_vpvu3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k7tmn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kaagg")
+"texture": ExtResource("3_k7tmn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eni27")
+"texture": ExtResource("4_vpvu3")
 }],
 "loop": true,
 "name": &"default",
@@ -40,13 +34,17 @@ script = ExtResource("1_5skfb")
 position = Vector2(240, 204)
 collision_layer = 4
 
+[node name="Sprite2D2" type="Sprite2D" parent="digital_reader"]
+position = Vector2(3, -60)
+texture = ExtResource("2_k7tmn")
+
 [node name="Sprite2D" type="AnimatedSprite2D" parent="digital_reader"]
-position = Vector2(0.99999267, -24)
+position = Vector2(6.999993, -17)
 sprite_frames = SubResource("SpriteFrames_k7tmn")
-frame_progress = 0.49256065
+frame_progress = 0.47124112
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="digital_reader"]
-position = Vector2(1, 36)
+position = Vector2(7, 16)
 shape = SubResource("RectangleShape2D_21gu7")
 
 [node name="Finger" type="CharacterBody2D" parent="."]

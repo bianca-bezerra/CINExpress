@@ -2,12 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dliyiku3wym45" path="res://scripts/title_scene.gd" id="1_h3swb"]
 [ext_resource type="FontFile" uid="uid://28uh6cr1uypa" path="res://assets/fonts/Jersey25-Regular.ttf" id="2_862h5"]
+[ext_resource type="PackedScene" uid="uid://duma53j5l7fqo" path="res://scenes/levels/game_button.tscn" id="3_0cg38"]
 
 [sub_resource type="Theme" id="Theme_0cg38"]
 default_font = ExtResource("2_862h5")
 RichTextLabel/font_sizes/normal_font_size = 32
-
-[sub_resource type="Theme" id="Theme_h3swb"]
 
 [node name="TitleScene" type="Node2D"]
 script = ExtResource("1_h3swb")
@@ -70,15 +69,11 @@ offset_bottom = 26.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StartButton" type="Button" parent="GUI/ButtonGroup"]
+[node name="StartButton" parent="GUI/ButtonGroup" instance=ExtResource("3_0cg38")]
 layout_mode = 2
-theme = SubResource("Theme_h3swb")
-theme_override_font_sizes/font_size = 8
-text = "JOGAR"
 
-[node name="ExitButton" type="Button" parent="GUI/ButtonGroup"]
+[node name="ExitButton" parent="GUI/ButtonGroup" instance=ExtResource("3_0cg38")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "SAIR"
 
 [connection signal="pressed" from="GUI/ButtonGroup/StartButton" to="." method="_on_start_button_pressed"]

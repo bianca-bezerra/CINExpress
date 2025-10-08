@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://qs0r364dg7b0"]
 
-[ext_resource type="Script" uid="uid://cm24fa4tfnstg" path="res://scripts/add_score_label.gd" id="1_45khh"]
+[ext_resource type="Script" uid="uid://cm24fa4tfnstg" path="res://scripts/add_score_label.gd" id="1_4dws6"]
 
 [node name="FloatingTextLabel" type="RichTextLabel"]
 anchors_preset = 8
@@ -18,4 +18,4 @@ size_flags_horizontal = 4
 bbcode_enabled = true
 text = "Score Label"
 vertical_alignment = 1
-script = ExtResource("1_45khh")
+script = ExtResource("1_4dws6")

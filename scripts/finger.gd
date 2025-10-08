@@ -42,7 +42,7 @@ func _try():
 	_level.spawn_motivation_text()
 	can_move = false
 	if _level.win_timer.is_stopped():
-		_level.win_timer.start(1.2)
+		_level.win_timer.start(1.3)
 	if _is_in_scoring_zone and score_percentage > 0:
 		_initial_pos = _dest
 		_level.can_win = true
@@ -51,6 +51,7 @@ func _try():
 		PlayerManager.add_score(points_added)
 		_tween.tween_property(self, "position:y", _initial_pos, 0.5)
 		return
+	AudioManager.play_sfx("wrong_hit")
 	_tween.tween_property(self, "position:y", _initial_pos, 1.3).from(_dest)
 
 
