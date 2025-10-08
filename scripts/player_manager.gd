@@ -13,6 +13,10 @@ func reset_current_player_data():
 		"score": 0,
 		"cin_count": 0
 	}
+	
+func reset_score():
+	_current_player_data["score"] = 0
+	score_chaged.emit(_current_player_data["score"])
 
 func register_new_player(player_name: String):
 	_current_player_data["name"] = player_name

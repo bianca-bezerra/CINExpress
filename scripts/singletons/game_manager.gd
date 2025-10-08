@@ -98,9 +98,13 @@ func change_to_username_scene():
 	get_tree().change_scene_to_file("res://scenes/levels/username_scene.tscn")
 	scene_transintion_animation.play("fade_out")
 
+
 func end_game():
 	_can_show_game_ui = false
+	current_level = 0
+	current_game_level = 0	
 	PlayerManager.save_current_player()
+	PlayerManager.reset_score()
 	get_tree().change_scene_to_file("res://scenes/levels/menu_scene.tscn")
 
 func get_dashboard():
