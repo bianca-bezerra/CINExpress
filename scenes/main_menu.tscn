@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bik28xfrv6w6x"]
+[gd_scene load_steps=9 format=3 uid="uid://bik28xfrv6w6x"]
 
 [ext_resource type="Texture2D" uid="uid://bfkj5rxbap7q1" path="res://assets/UI/Title.svg" id="1_bqqt6"]
 [ext_resource type="Texture2D" uid="uid://co5ab58xpqqx0" path="res://assets/UI/bg.png" id="1_wu84c"]
-[ext_resource type="FontFile" uid="uid://dvv4r3rtfie8o" path="res://assets/UI/Jersey25-Regular.ttf" id="2_wu84c"]
 [ext_resource type="Script" uid="uid://dnfrdjqd0eghm" path="res://scripts/GUI/menu_button_group.gd" id="4_8ln24"]
 [ext_resource type="Texture2D" uid="uid://b8fqr7idkmn1t" path="res://assets/UI/mao.png" id="5_rtw2f"]
 [ext_resource type="FontFile" uid="uid://ca7pbhhd4pu7x" path="res://assets/UI/pixelmix.ttf" id="6_oa1go"]
@@ -53,45 +52,6 @@ offset_bottom = 138.0
 size_flags_horizontal = 4
 texture = ExtResource("1_bqqt6")
 expand_mode = 1
-
-[node name="Dashboard" type="VBoxContainer" parent="GUIControl"]
-visible = false
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -129.0
-offset_top = -45.5
-offset_right = -26.0
-offset_bottom = 73.5
-grow_horizontal = 0
-grow_vertical = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 8
-alignment = 1
-
-[node name="p1" type="Label" parent="GUIControl/Dashboard"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_wu84c")
-theme_override_font_sizes/font_size = 16
-text = "1 - CIN EXPRESS"
-
-[node name="p2" type="Label" parent="GUIControl/Dashboard"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_wu84c")
-theme_override_font_sizes/font_size = 16
-text = "2 - CIN EXPRESS"
-
-[node name="p3" type="Label" parent="GUIControl/Dashboard"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_wu84c")
-theme_override_font_sizes/font_size = 16
-text = "3 - CIN EXPRESS"
 
 [node name="ButtonGroup" type="VBoxContainer" parent="GUIControl"]
 layout_mode = 1
@@ -160,11 +120,26 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -128.0
-offset_top = -39.0
-offset_right = -5.0
-offset_bottom = -5.0
+offset_left = -136.0
+offset_top = -258.0
+offset_right = -13.0
+offset_bottom = -224.0
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("6_rtw2f")
 expand_mode = 1
+
+[node name="Dashboard" type="HBoxContainer" parent="GUIControl"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -40.0
+offset_right = -5.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
