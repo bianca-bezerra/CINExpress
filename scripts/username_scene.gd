@@ -10,15 +10,47 @@ func _ready() -> void:
 
 
 func _on_name_input_text_submitted(new_text: String) -> void:
-	var player_name = new_text
+	var player_name := new_text.strip_edges()
+	var min_length := 3
+	var max_length := 20
+	var allowed_pattern := RegEx.new()
+	allowed_pattern.compile("^[A-Za-zÀ-ÿ0-9_ ]+$")  
 	
-	for dashboard in SaveManager.game_data["dashboard"]:
-		name = dashboard.get("name", "")
-		
-		if player_name == name:
-			warning_label.visible = true
+
+	if player_name == "":
+		_show_warning("Insira um nome válido")
+		return
+	
+	
+	if player_name.length() < min_length:
+		_show_warning("O nome deve ter pelo menos %d caracteres" % min_length)
+		return
+	
+	if player_name.length() > max_length:
+		_show_warning("O nome pode ter no máximo %d caracteres" % max_length)
+		return
+	
+	
+	if not allowed_pattern.search(player_name):
+		_show_warning("Use apenas letras, números e espaços")
+		return
+	
+	
+	for dashboard in SaveManager.game_data.get("dashboard", []):
+		var old_player_name := str(dashboard.get("name", "")).strip_edges()
+		if player_name.to_lower() == old_player_name.to_lower():
+			_show_warning("Esse nome já existe")
 			return 
-			
-	warning_label.visible = false
+	
+	_hide_warning()
 	PlayerManager.register_new_player(player_name)
 	GameManager.start_game()
+
+
+func _show_warning(msg: String) -> void:
+	warning_label.visible = true
+	warning_label.text = msg
+
+
+func _hide_warning() -> void:
+	warning_label.visible = false

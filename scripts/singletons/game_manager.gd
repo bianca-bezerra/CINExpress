@@ -1,5 +1,7 @@
 extends Node
 
+signal game_finished
+
 ## Lista de nomes utilizados no minigame "type quickly", organizados por ordem de dificuldade
 var names := [
 	[
@@ -75,8 +77,7 @@ func _ready() -> void:
 	PlayerManager.reset_current_player_data()
 
 func _process(_delta: float) -> void:
-	$GameUI.visible = _can_show_game_ui
-	
+	$GameUI.visible = _can_show_game_ui	
 	
 func start_game():
 	_can_show_game_ui = true
@@ -86,11 +87,10 @@ func start_game():
 
 func change_to_next_level():
 	if current_game_level >= len(current_run):
-		current_game_level = 0
-	var scene_name = current_run[current_game_level]
-	if scene_name == "cam":
 		PlayerManager.increment_cin_count()
 		current_level += 1
+		current_game_level = 0
+	var scene_name = current_run[current_game_level]		
 	var scene = game_levels[scene_name]
 	current_game_level += 1
 	scene_transintion_animation.play("fade_in")
@@ -121,6 +121,7 @@ func end_game():
 	scene_transintion_animation.play("fade_in")
 	get_tree().change_scene_to_file("res://scenes/results_screen.tscn")
 	scene_transintion_animation.play("fade_out")
+	game_finished.emit()
 
 
 func get_dashboard():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bik28xfrv6w6x"]
+[gd_scene load_steps=10 format=3 uid="uid://bik28xfrv6w6x"]
 
 [ext_resource type="Texture2D" uid="uid://bfkj5rxbap7q1" path="res://assets/UI/Title.svg" id="1_bqqt6"]
 [ext_resource type="Texture2D" uid="uid://co5ab58xpqqx0" path="res://assets/UI/bg.png" id="1_wu84c"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b8fqr7idkmn1t" path="res://assets/UI/mao.png" id="5_rtw2f"]
 [ext_resource type="FontFile" uid="uid://ca7pbhhd4pu7x" path="res://assets/fonts/pixelmix.ttf" id="6_oa1go"]
 [ext_resource type="Texture2D" uid="uid://c0uit0frx47kv" path="res://assets/UI/logo_inst_pixel.png" id="6_rtw2f"]
+[ext_resource type="Script" uid="uid://blyqdi7p7gtnv" path="res://scripts/game_button.gd" id="6_tbmy8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ln24"]
 
@@ -85,6 +86,8 @@ theme_override_font_sizes/font_size = 12
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ln24")
 theme_override_styles/focus = SubResource("StyleBoxFlat_bqqt6")
 text = "JOGAR"
+script = ExtResource("6_tbmy8")
+metadata/_custom_type_script = "uid://blyqdi7p7gtnv"
 
 [node name="RankButton" type="Button" parent="GUIControl/ButtonGroup"]
 layout_mode = 2
@@ -94,6 +97,7 @@ theme_override_font_sizes/font_size = 12
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ln24")
 theme_override_styles/focus = SubResource("StyleBoxFlat_bqqt6")
 text = "PLACAR"
+script = ExtResource("6_tbmy8")
 
 [node name="AboutButton" type="Button" parent="GUIControl/ButtonGroup"]
 layout_mode = 2
@@ -103,6 +107,7 @@ theme_override_font_sizes/font_size = 12
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ln24")
 theme_override_styles/focus = SubResource("StyleBoxFlat_bqqt6")
 text = "CREDITOS"
+script = ExtResource("6_tbmy8")
 
 [node name="ExitButton" type="Button" parent="GUIControl/ButtonGroup"]
 layout_mode = 2
@@ -112,6 +117,7 @@ theme_override_font_sizes/font_size = 12
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ln24")
 theme_override_styles/focus = SubResource("StyleBoxFlat_bqqt6")
 text = "SAIR"
+script = ExtResource("6_tbmy8")
 
 [node name="LogoGovs" type="TextureRect" parent="GUIControl"]
 layout_mode = 1
@@ -143,3 +149,5 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 10
 alignment = 1
+
+[connection signal="focus_entered" from="GUIControl/ButtonGroup/RankButton" to="GUIControl/ButtonGroup/RankButton" method="_on_focus_entered"]

@@ -36,4 +36,3 @@ theme_override_font_sizes/font_size = 12
 text = "Esse nome já existe"
 
 [connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_text_submitted"]
-[connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_2_text_submitted"]

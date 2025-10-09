@@ -7,6 +7,7 @@ var _sfxs = {
 	"button_hover": preload("res://assets/audio/botao_meleca.mp3"),
 	"button_click": preload("res://assets/audio/click_adam_sandler.mp3"),
 	"score" : preload("res://assets/audio/pirilimpompom(combo).mp3"),
+	"cin_increase" : preload("res://assets/audio/cin_increase.mp3"),
 	"wrong_hit": preload("res://assets/audio/wrong_hit.wav"),
 	"text_type": preload("res://assets/audio/text_type.wav"),
 	"spinner_sound": preload("res://assets/audio/spinner.mp3"),

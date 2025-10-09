@@ -6,6 +6,7 @@ extends GameLevel
 @onready var shaderRect = $RectBlur
 @onready var v_slider_default_modulate = $VSlider.modulate
 @onready var floating_text_scene = preload("res://scenes/components/floating_text.tscn")
+@onready var reset_timer = $ResetTimer
 
 var slider_len = clamp(10 + SLIDER_GROW_FACTOR * GameManager.current_level, 0, MAX_POINTS)
 var point = randi_range(1, slider_len/2)
@@ -15,6 +16,8 @@ var _phrases = ["Diga Xiss!", "Uau!", "Massa!"]
 
 @onready var _sliders = [$HSlider, $VSlider]
 @onready var _current_slider = _sliders.pick_random()
+
+var player_winned = false
 
 func _ready() -> void:
 	for _slider in _sliders:
@@ -43,9 +46,12 @@ func handle_win():
 func _process(_delta: float) -> void:
 	var actual_point = _current_slider.value
 	$DebugLabel.text = "Ponto atual: %d | Ponto: %d" % [actual_point, point]
+	
+	if player_winned: return
 	if Input.is_action_just_pressed("space"):
 		if actual_point == point:
 			handle_win()
+			player_winned = true
 			return
 		AudioManager.play_sfx("wrong_hit")
 		PlayerManager.stop_combo()
