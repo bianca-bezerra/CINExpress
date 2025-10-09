@@ -1,8 +1,8 @@
 extends Node2D
 
-@onready var start_button = $GUI/ButtonGroup/StartButton
-@onready var exit_button = $GUI/ButtonGroup/ExitButton
-@onready var dashboard_panel = $GUI/Dashboard
+@onready var start_button = $GUI/GUIControl/ButtonGroup/StartButton
+@onready var exit_button = $GUI/GUIControl/ButtonGroup/ExitButton
+@onready var dashboard_panel = $GUI/GUIControl/Dashboard
 @export var leatherboard_speed = 100
 
 func _ready() -> void:
@@ -21,6 +21,8 @@ func _ready() -> void:
 			dashboard_panel.add_child(label)
 
 	start_button.grab_focus.call_deferred()
+	start_button.connect("pressed", _on_start_button_pressed)
+	exit_button.connect("pressed", _on_exit_button_pressed)
 
 var _angle = 0
 func _process(delta: float) -> void:

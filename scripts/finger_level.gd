@@ -14,21 +14,26 @@ var _animation_stopped := false
 var perfect_phrases = [
 	"Perfeito!!",
 	"Incrível!!",
-	"Show!!"
+	"Show!!",
+	"Arrasou!!"
 ]
 
 var good_phrases = [
 	"Boa",
 	"Legal",
 	"Bacana",
-    "Nice"
+	"Nice",
+	"Massa"
 ]
 
 var bad_phrases = [
 	"Err..",
 	"Ops..",
 	"Hã..?",
-    "Ihh"
+	"Ihh",
+	"Vish...",
+	"Eita!",
+	"Oxe..."
 ]
 
 

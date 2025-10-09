@@ -13,7 +13,11 @@ config_version=5
 config/name="CIN-Express"
 run/main_scene="uid://il0r1gff85a6"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/fullsize=false
+boot_splash/image="uid://yeg07ptac1dm"
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=3000
 
 [autoload]
 
@@ -21,6 +25,7 @@ GameManager="*res://scenes/game_manager.tscn"
 SaveManager="*res://scenes/save_manager.tscn"
 PlayerManager="*res://scenes/player_manager.tscn"
 AudioManager="*res://scenes/audio_manager.tscn"
+CharacterManager="*res://scenes/character_manager.tscn"
 
 [display]
 
@@ -49,5 +54,3 @@ space={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"

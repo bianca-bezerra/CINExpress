@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdp5hy2owkfhu"]
+[gd_scene load_steps=4 format=3 uid="uid://bdp5hy2owkfhu"]
 
 [ext_resource type="Script" uid="uid://crfcpslsb0bo8" path="res://scripts/game_ui.gd" id="1_jn2l2"]
+[ext_resource type="FontFile" uid="uid://cphnfrxxq4efj" path="res://assets/fonts/pixelmix_bold.ttf" id="2_u001w"]
+[ext_resource type="Texture2D" uid="uid://daghbdhe61pat" path="res://assets/sprites/cin.png" id="3_u2dgd"]
 
 [node name="ScoreScene" type="Node2D"]
 rotation = -0.000232998
@@ -9,20 +11,38 @@ script = ExtResource("1_jn2l2")
 [node name="TimerLabel" type="Label" parent="."]
 z_index = 10
 z_as_relative = false
-offset_left = 10.997406
-offset_top = 11.002562
-offset_right = 81.3952
-offset_bottom = 38.002556
+offset_left = 227.99626
+offset_top = 16.05314
+offset_right = 268.99353
+offset_bottom = 31.101479
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_u001w")
 theme_override_font_sizes/font_size = 12
 text = "02:00"
 
 [node name="ScoreLabel" type="Label" parent="."]
 z_index = 10
 z_as_relative = false
-offset_left = 387.99765
-offset_top = 10.090403
-offset_right = 447.99765
-offset_bottom = 33.0904
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 29.996048
+offset_top = 17.006989
+offset_right = 84.99611
+offset_bottom = 29.006989
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_u001w")
 theme_override_font_sizes/font_size = 12
 text = "SCORE: "
 
@@ -32,10 +52,21 @@ position = Vector2(421.99393, 26.098324)
 [node name="WalletLabel" type="Label" parent="."]
 z_index = 10
 z_as_relative = false
-offset_left = 340.9979
-offset_top = 9.079452
-offset_right = 394.9979
-offset_bottom = 58.0795
+offset_left = 409.99622
+offset_top = 16.095528
+offset_right = 464.99622
+offset_bottom = 43.095528
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_u001w")
 theme_override_font_sizes/font_size = 12
 text = "CINs: 0
 "
+
+[node name="Sprite2D" type="TextureRect" parent="."]
+z_index = 4
+offset_left = 374.99673
+offset_top = 14.087375
+offset_right = 470.99673
+offset_bottom = 78.08737
+scale = Vector2(0.27, 0.27)
+texture = ExtResource("3_u2dgd")

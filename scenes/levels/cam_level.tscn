@@ -44,6 +44,7 @@ shader_parameter/offset = 0.0
 [node name="CamLevel" type="Node2D"]
 script = ExtResource("1_r3o5b")
 MAX_POINTS = 10
+SLIDER_GROW_FACTOR = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../ColorRect")
