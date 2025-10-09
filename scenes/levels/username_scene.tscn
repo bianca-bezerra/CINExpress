@@ -38,6 +38,20 @@ script = ExtResource("1_0tmcr")
 position = Vector2(240, 135)
 texture = ExtResource("2_1djc6")
 
+[node name="PreviousButton" type="Button" parent="."]
+offset_left = 137.0
+offset_top = 157.0
+offset_right = 176.505
+offset_bottom = 173.71364
+scale = Vector2(0.6581444, 0.6581444)
+theme_override_colors/font_color = Color(0.8258557, 0.04360277, 0.04360277, 1)
+theme_override_fonts/font = ExtResource("5_st0jp")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_st0jp")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gykg1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_37a74")
+text = "Voltar"
+
 [node name="NameInput" parent="." instance=ExtResource("2_e03c0")]
 modulate = Color(1, 1, 1, 1)
 self_modulate = Color(1, 1, 1, 1)
@@ -61,20 +75,6 @@ theme_override_fonts/font = ExtResource("5_st0jp")
 theme_override_font_sizes/font_size = 12
 text = "Esse nome ja existe"
 
-[node name="PreviousButton" type="Button" parent="."]
-offset_left = 137.0
-offset_top = 157.0
-offset_right = 176.505
-offset_bottom = 173.71364
-scale = Vector2(0.6581444, 0.6581444)
-theme_override_colors/font_color = Color(0.8258557, 0.04360277, 0.04360277, 1)
-theme_override_fonts/font = ExtResource("5_st0jp")
-theme_override_font_sizes/font_size = 8
-theme_override_styles/normal = SubResource("StyleBoxFlat_st0jp")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_gykg1")
-theme_override_styles/hover = SubResource("StyleBoxFlat_37a74")
-text = "Voltar"
-
+[connection signal="pressed" from="PreviousButton" to="." method="_on_previous_button_pressed"]
 [connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_2_text_submitted"]
 [connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_text_submitted"]
-[connection signal="pressed" from="PreviousButton" to="." method="_on_previous_button_pressed"]
