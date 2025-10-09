@@ -83,8 +83,10 @@ func _reset_data():
 
 
 func _on_retry_game_button_pressed() -> void:
+	_reset_data()
 	GameManager.change_to_username_scene()
 
 
 func _on_menu_button_pressed() -> void:
+	_reset_data()
 	GameManager.change_to_menu_scene()
