@@ -109,6 +109,11 @@ func change_to_menu_scene():
 	get_tree().change_scene_to_file("res://scenes/levels/menu_scene.tscn")
 	scene_transintion_animation.play("fade_out")
 
+func change_to_ranking():
+	scene_transintion_animation.play("fade_in")
+	get_tree().change_scene_to_file("res://scenes/ranking_scene.tscn")
+	scene_transintion_animation.play("fade_out")
+	
 func get_game_timer():
 	return $GameTimer
 
