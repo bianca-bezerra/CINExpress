@@ -17,8 +17,14 @@ func _on_name_input_text_submitted(new_text: String) -> void:
 		
 		if player_name == name:
 			warning_label.visible = true
+			warning_label.text = "Esse nome já existe"
 			return 
-			
+	
+	if player_name == "":
+		warning_label.visible = true
+		warning_label.text = "Insira um nome válido"
+		return
+		
 	warning_label.visible = false
 	PlayerManager.register_new_player(player_name)
 	GameManager.start_game()
