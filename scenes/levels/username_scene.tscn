@@ -26,5 +26,14 @@ offset_top = 96.0
 offset_right = 359.0
 offset_bottom = 127.0
 
+[node name="WarningLabel" type="Label" parent="."]
+offset_left = 82.0
+offset_top = 132.0
+offset_right = 195.0
+offset_bottom = 155.0
+theme_override_colors/font_color = Color(0.8156863, 0.20392157, 0.17254902, 1)
+theme_override_font_sizes/font_size = 12
+text = "Esse nome já existe"
+
 [connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_text_submitted"]
 [connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_2_text_submitted"]

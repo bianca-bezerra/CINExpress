@@ -50,12 +50,15 @@ func stop_combo():
 func increment_cin_count():
 	_current_player_data["cin_count"] +=1
 
+
 func save_current_player():
 	SaveManager.game_data["dashboard"].append(_current_player_data)
 	SaveManager.save_game()
 
+
 func get_score():
 	return _current_player_data["score"]
+
 
 func get_cin_count():
 	return _current_player_data["cin_count"]
