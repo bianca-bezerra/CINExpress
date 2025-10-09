@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://e05kcorrkffc"
-path="res://.godot/imported/poorhandwriting.ttf-b3ee6177799b775b4d9edced049cddbf.fontdata"
+path="res://.godot/imported/poorhandwriting.ttf-f6b1f8494686e192e14364665f98df72.fontdata"
 
 [deps]
 
-source_file="res://assets/poorhandwriting.ttf"
-dest_files=["res://.godot/imported/poorhandwriting.ttf-b3ee6177799b775b4d9edced049cddbf.fontdata"]
+source_file="res://assets/fonts/poorhandwriting.ttf"
+dest_files=["res://.godot/imported/poorhandwriting.ttf-f6b1f8494686e192e14364665f98df72.fontdata"]
 
 [params]
 

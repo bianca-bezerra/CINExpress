@@ -6,10 +6,17 @@ const type_feedback_write = preload("res://scenes/components/type_feeadback_writ
 
 
 @onready var hflow_container: HFlowContainer = $CanvasLayer/HFlowContainer
-@onready var feedback_label: Label = $CanvasLayer/VBoxContainer/FeedbackLabel
+@onready var feedback_label: RichTextLabel = $CanvasLayer/FeedbackLabel
 @onready var input_line_edit: LineEdit = $CanvasLayer/InputLineEdit
 @onready var warning_label = $CanvasLayer/WarningLabel
 @onready var signature: Label = $CanvasLayer/AssinaturaDigital/signature
+
+var good_phrases = [
+	"Boa",
+	"Legal",
+	"Bacana",
+    "Nice"
+]
 
 # Variáveis de estado do jogo
 var _character_boxes: Array[Node] = []
@@ -59,7 +66,8 @@ func finish_game() -> void:
 	var points_added = int((len(_current_name) * score_multiplication) / time_spent_seg)
 
 	PlayerManager.add_score(points_added)
-	feedback_label.text = "Boa! +%d pontos (%.2f seg)" % [points_added, time_spent_seg]
+	var good_phrase = good_phrases[randi() % good_phrases.size()]
+	feedback_label.text = "[shake][rainbow]%s! (%.2f seg)[/rainbow][/shake]" % [good_phrase, time_spent_seg]
 	await get_tree().create_timer(2.0).timeout
 	GameManager.change_to_next_level()
 

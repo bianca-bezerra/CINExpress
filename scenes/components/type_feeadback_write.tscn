@@ -31,6 +31,7 @@ size_flags_vertical = 8
 theme = SubResource("Theme_31dw6")
 
 [node name="CursorTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.3
+autostart = true
 
 [connection signal="timeout" from="CursorTimer" to="." method="_on_cursor_timer_timeout"]

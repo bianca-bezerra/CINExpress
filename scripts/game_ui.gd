@@ -5,6 +5,8 @@ extends Node2D
 @onready var wallet: Label = $WalletLabel
 @onready var combo_gauge = $ComboGauge
 @onready var score_label = $ScoreLabel
+@onready var timer_anim = $TimerAnim
+@onready var star_anim = $StarAnim
 
 var floating_text_scene: PackedScene = preload("res://scenes/components/floating_text.tscn")
 
@@ -15,7 +17,7 @@ var _current_score = 0.0
 
 func update_score_text():
 	_current_score = lerp(_current_score, PlayerManager.get_score(), 0.1)
-	score_label.text = "SCORE: %.2f" % _current_score
+	score_label.text = "[shake rate=10] Pontos: %.2f" % _current_score
 	
 func _format_time(remaining_time: float) -> String:
 	@warning_ignore("integer_division")
@@ -28,6 +30,8 @@ func _ready() -> void:
 	PlayerManager.combo_stopped.connect(_on_combo_stopped)
 	PlayerManager.cin_increased.connect(_on_cin_increased)
 	GameManager.game_finished.connect(_on_game_finished)
+	timer_anim.play()
+	star_anim.play()
 	combo_gauge.modulate.a = 0
 	
 func _process(_delta: float) -> void:
@@ -46,6 +50,7 @@ func _check_time_warning(remaining_time: float):
 	elif remaining_time > 10 and _is_low_time_animating:
 		_is_low_time_animating = false
 		_reset_time_label()
+		
 
 func _start_time_warning_animation():
 	var tween = get_tree().create_tween().set_loops()  # faz repetir indefinidamente

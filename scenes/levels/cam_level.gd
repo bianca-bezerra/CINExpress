@@ -37,7 +37,7 @@ func handle_win():
 	floating_text.global_position = $FeedbackMarker.global_position
 	floating_text.scale = Vector2(1.5, 1.5)
 	floating_text.rotation_degrees = 45
-	floating_text.text = _phrases.pick_random()
+	floating_text.text = "[shake][rainbow]%s[/rainbow][/shake]" % _phrases.pick_random()
 	add_child(floating_text)
 	PlayerManager.add_score(100)
 	$AnimationPlayer.play("flash")
