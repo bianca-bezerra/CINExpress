@@ -1,10 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://cx7cu3vfvagu6"]
+[gd_scene load_steps=9 format=3 uid="uid://cx7cu3vfvagu6"]
 
 [ext_resource type="Script" uid="uid://b4kvlqnohlgll" path="res://scripts/username_scene.gd" id="1_0tmcr"]
 [ext_resource type="Texture2D" uid="uid://dt6ud0nlgsg12" path="res://assets/sprites/monitor.png" id="2_1djc6"]
 [ext_resource type="PackedScene" uid="uid://yrnpjaxxbe5o" path="res://scenes/components/game_type.tscn" id="2_e03c0"]
 [ext_resource type="FontFile" uid="uid://cphnfrxxq4efj" path="res://assets/fonts/pixelmix_bold.ttf" id="4_1djc6"]
 [ext_resource type="FontFile" uid="uid://ca7pbhhd4pu7x" path="res://assets/fonts/pixelmix.ttf" id="5_st0jp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_st0jp"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gykg1"]
+bg_color = Color(0.6357732, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37a74"]
+bg_color = Color(0.6357732, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
 
 [node name="UsernameScene" type="Node2D"]
 script = ExtResource("1_0tmcr")
@@ -26,14 +51,30 @@ theme_override_font_sizes/font_size = 8
 flat = true
 
 [node name="WarningLabel" type="Label" parent="."]
-offset_left = 165.0
-offset_top = 146.0
-offset_right = 327.0
-offset_bottom = 163.0
+offset_left = 185.00002
+offset_top = 125.0
+offset_right = 347.0
+offset_bottom = 142.0
+scale = Vector2(0.7702029, 0.7702029)
 theme_override_colors/font_color = Color(0.8156863, 0.20392157, 0.17254902, 1)
 theme_override_fonts/font = ExtResource("5_st0jp")
 theme_override_font_sizes/font_size = 12
 text = "Esse nome ja existe"
 
+[node name="PreviousButton" type="Button" parent="."]
+offset_left = 137.0
+offset_top = 157.0
+offset_right = 176.505
+offset_bottom = 173.71364
+scale = Vector2(0.6581444, 0.6581444)
+theme_override_colors/font_color = Color(0.8258557, 0.04360277, 0.04360277, 1)
+theme_override_fonts/font = ExtResource("5_st0jp")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_st0jp")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gykg1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_37a74")
+text = "Voltar"
+
 [connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_2_text_submitted"]
 [connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_text_submitted"]
+[connection signal="pressed" from="PreviousButton" to="." method="_on_previous_button_pressed"]

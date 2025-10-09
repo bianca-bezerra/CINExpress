@@ -8,6 +8,9 @@ func _ready() -> void:
 	warning_label.visible = false
 	input.grab_focus()
 
+func _input(event: InputEvent):
+	if event.is_action_pressed("ui_cancel"):
+		GameManager.change_to_menu_scene()
 
 func _on_name_input_text_submitted(new_text: String) -> void:
 	var player_name := new_text.strip_edges()
@@ -39,7 +42,7 @@ func _on_name_input_text_submitted(new_text: String) -> void:
 	for dashboard in SaveManager.game_data.get("dashboard", []):
 		var old_player_name := str(dashboard.get("name", "")).strip_edges()
 		if player_name.to_lower() == old_player_name.to_lower():
-			_show_warning("Esse nome já existe")
+			_show_warning("Esse nome ja existe")
 			return 
 	
 	_hide_warning()
@@ -54,3 +57,7 @@ func _show_warning(msg: String) -> void:
 
 func _hide_warning() -> void:
 	warning_label.visible = false
+
+
+func _on_previous_button_pressed():
+	GameManager.change_to_menu_scene()

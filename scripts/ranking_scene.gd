@@ -3,6 +3,10 @@ extends Node2D
 @onready var dashboard_panel = $CanvasLayer/Dashboard
 @export var leatherboard_speed = 100
 
+func _input(event: InputEvent):
+	if event.is_action_pressed("ui_cancel"):
+		GameManager.change_to_menu_scene()
+
 func _ready() -> void:
 	var players = GameManager.get_dashboard()
 	if not players:
