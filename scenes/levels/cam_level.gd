@@ -38,17 +38,19 @@ func handle_win():
 	add_child(floating_text)
 	PlayerManager.add_score(100)
 	$AnimationPlayer.play("flash")
-	
-	# TODO: Padronizar a lógica do score
-	PlayerManager.add_score(100)
+	AudioManager.play_sfx("flash")
 
 func _process(_delta: float) -> void:
 	var actual_point = _current_slider.value
 	$DebugLabel.text = "Ponto atual: %d | Ponto: %d" % [actual_point, point]
-	if actual_point == point:
-		if Input.is_action_just_pressed("space"):
+	if Input.is_action_just_pressed("space"):
+		if actual_point == point:
 			handle_win()
 			return
+		AudioManager.play_sfx("wrong_hit")
+		PlayerManager.stop_combo()
+	
+	if actual_point == point:
 		_current_slider.modulate = Color.GREEN
 	elif abs(actual_point - point) < 3:
 		_current_slider.modulate = Color.YELLOW

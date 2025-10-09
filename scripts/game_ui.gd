@@ -18,6 +18,7 @@ func _format_time(remaining_time: float) -> String:
 func _ready() -> void:
 	PlayerManager.score_chaged.connect(_on_player_score_changed)
 	PlayerManager.combo_stopped.connect(_on_combo_stopped)
+	$ComboGauge.modulate.a = 0
 	
 func _process(_delta: float) -> void:
 	update_score_text()
@@ -32,17 +33,18 @@ func spawn_added_score(added_score: float):
 	add_child(added_score_obj)
 
 func _on_combo_stopped():
-	$ComboGauge.visible = false
+	if $ComboGauge.modulate.a > 0:
+		$ComboGauge.animation_player.play_backwards("appearing")
 
 func _on_player_score_changed(new_score: float):
 	spawn_added_score(new_score)
 	_play_score_animation()
-	if PlayerManager.multiplier > 1:
-		$ComboGauge.visible = true
+	if PlayerManager.multiplier > 1 and $ComboGauge.modulate.a <= 0:
+		$ComboGauge.animation_player.play("appearing")
 
 func _play_score_animation():
 	var tween = get_tree().create_tween()
 	tween.set_trans(Tween.TRANS_ELASTIC)
 	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property($ScoreLabel, "scale", Vector2(1.3,1.3), 0.3)
+	tween.tween_property($ScoreLabel, "scale", Vector2(1.3, 1.3), 0.3)
 	tween.tween_property($ScoreLabel, "scale", Vector2(1,1), 0.3)

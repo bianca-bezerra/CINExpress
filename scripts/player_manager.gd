@@ -32,9 +32,11 @@ func _handle_combo():
 		var timer_duration = 5 / (multiplier/5.0)
 		multiplier += 1
 		combo_timer.start(timer_duration)
+	print(multiplier)
 
 func add_score(score: float):
-	AudioManager.play_sfx("combo_sound")
+	var _pitch_scale = clamp(pow(1.05, multiplier), 1.0, 2.0)
+	AudioManager.play_sfx("score", _pitch_scale)
 	print("adicionando %.2f" % score)
 	var _new_score = score * PlayerManager.multiplier
 	_current_player_data["score"] += _new_score
@@ -49,7 +51,6 @@ func stop_combo():
 
 func increment_cin_count():
 	_current_player_data["cin_count"] +=1
-
 
 func save_current_player():
 	SaveManager.game_data["dashboard"].append(_current_player_data)

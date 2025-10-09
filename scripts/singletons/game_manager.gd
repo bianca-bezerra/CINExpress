@@ -74,7 +74,6 @@ var current_run = ["type", "finger", "cam"]
 func _ready() -> void:
 	PlayerManager.reset_current_player_data()
 
-
 func _process(_delta: float) -> void:
 	$GameUI.visible = _can_show_game_ui
 	
@@ -82,7 +81,6 @@ func _process(_delta: float) -> void:
 func start_game():
 	_can_show_game_ui = true
 	game_timer.start(total_game_duration)
-	PlayerManager.reset_current_player_data()
 	change_to_next_level()
 
 
@@ -131,10 +129,8 @@ func get_dashboard():
 func _on_game_timer_timeout() -> void:
 	end_game();
 
-
 func _enter_tree() -> void:
 	SaveManager.load_game()
-
 
 func _exit_tree() -> void:
 	SaveManager.save_game()

@@ -1,4 +1,5 @@
 extends VBoxContainer
+@onready var animation_player = $AnimationPlayer
 @onready var _progress_bar = $ProgressBar
 @onready var _label = $MultiplierLabel
 

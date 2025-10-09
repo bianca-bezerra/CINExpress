@@ -9,10 +9,10 @@ script = ExtResource("1_jn2l2")
 
 [node name="ComboGauge" parent="." instance=ExtResource("2_rns2u")]
 z_index = 10
-offset_left = 340.9831
-offset_top = 72.079445
-offset_right = 396.9831
-offset_bottom = 108.07943
+offset_left = 360.98834
+offset_top = 50.08411
+offset_right = 416.98834
+offset_bottom = 86.08409
 rotation = 0.41887903
 scale = Vector2(1.5, 1.5)
 
