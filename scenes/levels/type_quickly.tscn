@@ -29,4 +29,13 @@ size_flags_vertical = 8
 
 [node name="InputLineEdit" parent="." instance=ExtResource("3_ufyvn")]
 
+[node name="WarningLabel" type="Label" parent="."]
+visible = false
+offset_left = 51.0
+offset_top = 196.0
+offset_right = 123.0
+offset_bottom = 219.0
+theme_override_font_sizes/font_size = 8
+text = "Caps Lock ativado!"
+
 [connection signal="text_change_rejected" from="InputLineEdit" to="." method="_on_input_line_edit_text_change_rejected"]
