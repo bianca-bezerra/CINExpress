@@ -59,16 +59,6 @@ alignment = 1
 
 [node name="InputLineEdit" parent="CanvasLayer" instance=ExtResource("3_ufyvn")]
 
-[node name="WarningLabel" type="Label" parent="."]
-visible = false
-offset_left = 51.0
-offset_top = 196.0
-offset_right = 123.0
-offset_bottom = 219.0
-theme_override_font_sizes/font_size = 8
-text = "Caps Lock ativado!"
-
-[connection signal="text_change_rejected" from="InputLineEdit" to="." method="_on_input_line_edit_text_change_rejected"]
 [node name="AssinaturaDigital" type="TextureRect" parent="CanvasLayer"]
 offset_left = 160.0
 offset_top = 124.0
@@ -92,5 +82,13 @@ grow_vertical = 2
 scale = Vector2(0.20928772, 0.20928772)
 label_settings = SubResource("LabelSettings_dppqh")
 autowrap_mode = 2
+
+[node name="WarningLabel" type="Label" parent="."]
+offset_left = 347.0
+offset_top = 165.0
+offset_right = 428.0
+offset_bottom = 188.0
+theme_override_font_sizes/font_size = 8
+text = "⚠️ Caps Lock ativado!"
 
 [connection signal="text_change_rejected" from="CanvasLayer/InputLineEdit" to="." method="_on_input_line_edit_text_change_rejected"]
