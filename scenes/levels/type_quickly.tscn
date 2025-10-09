@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbgncko8kqajj"]
+[gd_scene load_steps=9 format=3 uid="uid://dbgncko8kqajj"]
 
 [ext_resource type="Script" uid="uid://cavxmkxm3gft0" path="res://scripts/quickly_type_level.gd" id="1_jac8s"]
 [ext_resource type="FontFile" uid="uid://e05kcorrkffc" path="res://assets/poorhandwriting.ttf" id="2_pwse7"]
 [ext_resource type="PackedScene" uid="uid://yrnpjaxxbe5o" path="res://scenes/components/game_type.tscn" id="3_ufyvn"]
 [ext_resource type="Texture2D" uid="uid://m18tg8qgdih2" path="res://assets/sprites/assinatura_digital.png" id="4_dppqh"]
 [ext_resource type="Texture2D" uid="uid://6uq1x8fryyfd" path="res://assets/sprites/pov_assinatural.png" id="5_oit8f"]
+[ext_resource type="FontFile" uid="uid://dvv4r3rtfie8o" path="res://assets/fonts/Jersey25-Regular.ttf" id="6_qxakt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dppqh"]
 font = ExtResource("2_pwse7")
@@ -13,6 +14,13 @@ font_color = Color(0.62152386, 0.62152386, 0.6215238, 1)
 shadow_size = 6
 shadow_color = Color(0.28627452, 0.28627452, 0.28627452, 0.14509805)
 shadow_offset = Vector2(-1, -1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kwiqn"]
+font = ExtResource("6_qxakt")
+font_size = 12
+font_color = Color(1, 0.2149123, 0, 1)
+shadow_color = Color(0.98199487, 0.53620416, 0.7446675, 1)
+shadow_offset = Vector2(0.5, 0.5)
 
 [node name="QuicklyTypeLevel" type="Node2D"]
 script = ExtResource("1_jac8s")
@@ -83,12 +91,22 @@ scale = Vector2(0.20928772, 0.20928772)
 label_settings = SubResource("LabelSettings_dppqh")
 autowrap_mode = 2
 
-[node name="WarningLabel" type="Label" parent="."]
-offset_left = 347.0
-offset_top = 165.0
-offset_right = 428.0
-offset_bottom = 188.0
+[node name="WarningLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.5
+offset_top = -35.0
+offset_right = 76.5
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 8
-text = "⚠️ Caps Lock ativado!"
+text = "⚠️ Caps Lock ativado! ⚠️"
+label_settings = SubResource("LabelSettings_kwiqn")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="text_change_rejected" from="CanvasLayer/InputLineEdit" to="." method="_on_input_line_edit_text_change_rejected"]

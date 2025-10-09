@@ -128,18 +128,3 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("6_rtw2f")
 expand_mode = 1
-
-[node name="Dashboard" type="HBoxContainer" parent="GUIControl"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 7.0
-offset_top = -40.0
-offset_right = -5.0
-offset_bottom = -6.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 10
-alignment = 1
