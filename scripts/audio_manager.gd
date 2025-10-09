@@ -6,12 +6,13 @@ extends Node2D
 var _sfxs = {
 	"button_hover": preload("res://assets/audio/botao_meleca.mp3"),
 	"button_click": preload("res://assets/audio/click_adam_sandler.mp3"),
-	"combo_sound" : preload("res://assets/audio/pirilimpompom(combo).mp3"),
-	"right_hit" : "",
+	"score" : preload("res://assets/audio/pirilimpompom(combo).mp3"),
+	"cin_increase" : preload("res://assets/audio/cin_increase.mp3"),
 	"wrong_hit": preload("res://assets/audio/wrong_hit.wav"),
 	"text_type": preload("res://assets/audio/text_type.wav"),
 	"spinner_sound": preload("res://assets/audio/spinner.mp3"),
-	"bang_sound": preload("res://assets/audio/bang.mp3")
+	"bang_sound": preload("res://assets/audio/bang.mp3"),
+	"flash": preload("res://assets/audio/flash.mp3")
 }
 
 func _ready() -> void:
