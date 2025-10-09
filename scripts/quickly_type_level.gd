@@ -5,9 +5,10 @@ class_name QuicklyType
 const type_feedback_write = preload("res://scenes/components/type_feeadback_write.tscn")
 
 # Referências aos nós da cena (Onready vars)
-@onready var hflow_container: HFlowContainer = $HFlowContainer
-@onready var _feedback_label: Label = $VBoxContainer/FeedbackLabel
-@onready var input_line_edit: LineEdit = $InputLineEdit
+@onready var hflow_container: HFlowContainer = $CanvasLayer/HFlowContainer
+@onready var _feedback_label: Label = $CanvasLayer/VBoxContainer/FeedbackLabel
+@onready var input_line_edit: LineEdit = $CanvasLayer/InputLineEdit
+@onready var signature: Label = $CanvasLayer/AssinaturaDigital/signature
 
 # Variáveis de estado do jogo
 var _character_boxes: Array[Node] = []
@@ -98,6 +99,8 @@ func _on_text_changed(new_text: String) -> void:
 
 	
 	update_ui()
+	
+	signature.text = new_text
 
 	if _current_letter_index >= _current_name.length():
 		input_line_edit.release_focus()
