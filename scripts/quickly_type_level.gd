@@ -4,10 +4,12 @@ class_name QuicklyType
 # Preload da cena para a letra
 const type_feedback_write = preload("res://scenes/components/type_feeadback_write.tscn")
 
-# Referências aos nós da cena (Onready vars)
+
 @onready var hflow_container: HFlowContainer = $HFlowContainer
-@onready var _feedback_label: Label = $VBoxContainer/FeedbackLabel
+@onready var feedback_label: Label = $VBoxContainer/FeedbackLabel
 @onready var input_line_edit: LineEdit = $InputLineEdit
+@onready var warning_label: Label = $WarningLabel
+@onready var signature: Label = $CanvasLayer/AssinaturaDigital/signature
 
 # Variáveis de estado do jogo
 var _character_boxes: Array[Node] = []
@@ -15,6 +17,7 @@ const SCORE_FACTOR = 10
 var _current_name: String = ""
 var _current_letter_index: int = 0
 var _round_start_time: float = 0.0
+var _caps_lock_enabled := false
 
 
 func unnanbrazile(letter: String) -> String:
@@ -28,15 +31,15 @@ func unnanbrazile(letter: String) -> String:
 
 
 func _ready() -> void:
+	warning_label.visible = false
 	input_line_edit.text_changed.connect(_on_text_changed)
 	start_game()
-
 
 # Inicia ou reinicia a rodada
 func start_game() -> void:
 	_current_name = ""
 	_current_letter_index = 0
-	_feedback_label.text = ""
+	feedback_label.text = ""
 
 	var dificult_index = clamp(GameManager.current_level, 0, len(GameManager.names) - 1)
 	_current_name = GameManager.names[dificult_index].pick_random()
@@ -56,7 +59,7 @@ func finish_game() -> void:
 	var points_added = int((len(_current_name) * score_multiplication) / time_spent_seg)
 
 	PlayerManager.add_score(points_added)
-	_feedback_label.text = "Boa! +%d pontos (%.2f seg)" % [points_added, time_spent_seg]
+	feedback_label.text = "Boa! +%d pontos (%.2f seg)" % [points_added, time_spent_seg]
 	await get_tree().create_timer(2.0).timeout
 	GameManager.change_to_next_level()
 
@@ -70,7 +73,6 @@ func setup_word_display() -> void:
 		char_box.set_character(char_text)
 		hflow_container.add_child(char_box)
 		_character_boxes.append(char_box)
-
 
 func _on_text_changed(new_text: String) -> void:
 	var typed_so_far = new_text
@@ -98,11 +100,12 @@ func _on_text_changed(new_text: String) -> void:
 
 	
 	update_ui()
+	
+	signature.text = new_text
 
 	if _current_letter_index >= _current_name.length():
 		input_line_edit.release_focus()
 		finish_game()
-
 
 func update_ui() -> void:
 	if _character_boxes.is_empty():
@@ -116,3 +119,10 @@ func update_ui() -> void:
 			box.set_state(box.State.ACTIVE)
 		else:
 			box.set_state(box.State.PENDING)
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_CAPSLOCK:
+			_caps_lock_enabled = not _caps_lock_enabled
+			warning_label.visible = _caps_lock_enabled
