@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cphnfrxxq4efj"
-path="res://.godot/imported/pixelmix_bold.ttf-07188eceed6b96cb6222c240566c00e9.fontdata"
+uid="uid://dolnaadbveks2"
+path="res://.godot/imported/nokiafc22.ttf-17996acd5194687507f06ba7fc057084.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/pixelmix_bold.ttf"
-dest_files=["res://.godot/imported/pixelmix_bold.ttf-07188eceed6b96cb6222c240566c00e9.fontdata"]
+source_file="res://assets/fonts/nokiafc22.ttf"
+dest_files=["res://.godot/imported/nokiafc22.ttf-17996acd5194687507f06ba7fc057084.fontdata"]
 
 [params]
 

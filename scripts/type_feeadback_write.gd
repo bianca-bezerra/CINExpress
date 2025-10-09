@@ -4,8 +4,8 @@ extends VBoxContainer
 @onready var cursor: ColorRect = $ColorRect
 @onready var cursor_timer: Timer = $CursorTimer
 
-const COLOR_DEFAULT = Color("696969ff")
-const COLOR_CORRECT = Color("008100ff")
+const COLOR_DEFAULT = Color("e4e4e4ff")
+const COLOR_CORRECT = Color("00c300ff")
 const COLOR_INCORRECT = Color("lightcoral")
 
 enum State { PENDING, ACTIVE, CORRECT, INCORRECT }

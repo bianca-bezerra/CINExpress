@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://co5ab58xpqqx0" path="res://assets/UI/bg.png" id="1_wu84c"]
 [ext_resource type="Script" uid="uid://dnfrdjqd0eghm" path="res://scripts/GUI/menu_button_group.gd" id="4_8ln24"]
 [ext_resource type="Texture2D" uid="uid://b8fqr7idkmn1t" path="res://assets/UI/mao.png" id="5_rtw2f"]
-[ext_resource type="FontFile" uid="uid://ca7pbhhd4pu7x" path="res://assets/fonts/pixelmix.ttf" id="6_oa1go"]
+[ext_resource type="FontFile" uid="uid://dolnaadbveks2" path="res://assets/fonts/nokiafc22.ttf" id="6_oa1go"]
 [ext_resource type="Texture2D" uid="uid://c0uit0frx47kv" path="res://assets/UI/logo_inst_pixel.png" id="6_rtw2f"]
 [ext_resource type="Script" uid="uid://blyqdi7p7gtnv" path="res://scripts/game_button.gd" id="6_tbmy8"]
 
@@ -106,7 +106,7 @@ theme_override_fonts/font = ExtResource("6_oa1go")
 theme_override_font_sizes/font_size = 12
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ln24")
 theme_override_styles/focus = SubResource("StyleBoxFlat_bqqt6")
-text = "CREDITOS"
+text = "CRÉDITOS"
 script = ExtResource("6_tbmy8")
 
 [node name="ExitButton" type="Button" parent="GUIControl/ButtonGroup"]

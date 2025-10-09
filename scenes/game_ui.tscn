@@ -1,10 +1,238 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdp5hy2owkfhu"]
+[gd_scene load_steps=50 format=3 uid="uid://bdp5hy2owkfhu"]
 
 [ext_resource type="Script" uid="uid://crfcpslsb0bo8" path="res://scripts/game_ui.gd" id="1_jn2l2"]
 [ext_resource type="PackedScene" uid="uid://ctkoma8d2bmey" path="res://scenes/components/combo_gauge.tscn" id="2_rns2u"]
 [ext_resource type="FontFile" uid="uid://dvv4r3rtfie8o" path="res://assets/fonts/Jersey25-Regular.ttf" id="3_u2dgd"]
+[ext_resource type="Texture2D" uid="uid://bnsgptip2a371" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass1.png" id="4_sdeak"]
+[ext_resource type="Texture2D" uid="uid://dstr0hwnrth3n" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass2.png" id="5_32nla"]
+[ext_resource type="Texture2D" uid="uid://bkhsc5w2loymq" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass3.png" id="6_h8a34"]
+[ext_resource type="Texture2D" uid="uid://bk14roqb323vk" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass4.png" id="7_wbo4m"]
+[ext_resource type="Texture2D" uid="uid://blalluoeh2mfi" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass5.png" id="8_nlan2"]
+[ext_resource type="Texture2D" uid="uid://bkhsqsgdakij8" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass6.png" id="9_sfun4"]
+[ext_resource type="Texture2D" uid="uid://cyc82hnx8lxv0" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass7.png" id="10_27ch3"]
+[ext_resource type="Texture2D" uid="uid://d32jpd446gxuw" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass8.png" id="11_bhxtc"]
+[ext_resource type="Texture2D" uid="uid://c26pd1r8k808y" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass9.png" id="12_qleia"]
+[ext_resource type="Texture2D" uid="uid://c4ogc05efnbs3" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass10.png" id="13_vvx0m"]
+[ext_resource type="Texture2D" uid="uid://klx60bspvswq" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass11.png" id="14_ptl2c"]
+[ext_resource type="Texture2D" uid="uid://dqhsbegnq551m" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass12.png" id="15_lsbho"]
+[ext_resource type="Texture2D" uid="uid://cyf7fljxfjt2n" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass13.png" id="16_3458y"]
+[ext_resource type="Texture2D" uid="uid://b45yvqep8ag5a" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass14.png" id="17_ro11t"]
+[ext_resource type="Texture2D" uid="uid://c3lb2udqvs187" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass15.png" id="18_dcyh6"]
+[ext_resource type="Texture2D" uid="uid://byqj1hwn63mw5" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass16.png" id="19_okg68"]
+[ext_resource type="Texture2D" uid="uid://6yerov5speu5" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass17.png" id="20_fw2o2"]
+[ext_resource type="Texture2D" uid="uid://cvy47pq4bma87" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass18.png" id="21_lamrv"]
+[ext_resource type="Texture2D" uid="uid://yddqr6otqpef" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass19.png" id="22_27kvd"]
+[ext_resource type="Texture2D" uid="uid://cyyy0h030p01b" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass20.png" id="23_ksu6v"]
+[ext_resource type="Texture2D" uid="uid://bwd3bh5r16vfc" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass21.png" id="24_htplj"]
+[ext_resource type="Texture2D" uid="uid://cxv4vj2bptgig" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass22.png" id="25_7mhso"]
+[ext_resource type="Texture2D" uid="uid://kiyj2d3aqrwy" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass23.png" id="26_vt4k1"]
+[ext_resource type="Texture2D" uid="uid://ujudkpji4wjy" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass24.png" id="27_hh2gf"]
+[ext_resource type="Texture2D" uid="uid://dv30o1j807v3y" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass25.png" id="28_g2yrn"]
+[ext_resource type="Texture2D" uid="uid://dcwon6l7vicnh" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass26.png" id="29_1eyn1"]
+[ext_resource type="Texture2D" uid="uid://byo5s364ta2v" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass27.png" id="30_mbdak"]
+[ext_resource type="Texture2D" uid="uid://dkj45j6gkdlw6" path="res://assets/sprites/Star.png" id="31_32nla"]
+[ext_resource type="Texture2D" uid="uid://bydbgey83ieav" path="res://assets/sprites/cin_com_face.png" id="32_h8a34"]
+[ext_resource type="Shader" uid="uid://ch56waninvx74" path="res://assets/sprites/outline.gdshader" id="32_wbo4m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u001w"]
+animations = [{
+"frames": [{
+"duration": 8.0,
+"texture": ExtResource("4_sdeak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_32nla")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_h8a34")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wbo4m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_nlan2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_sfun4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_27ch3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_bhxtc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_qleia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_vvx0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ptl2c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_lsbho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_3458y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ro11t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_dcyh6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_okg68")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_fw2o2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_lamrv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_27kvd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ksu6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_htplj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_7mhso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_vt4k1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_hh2gf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_g2yrn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_1eyn1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_mbdak")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8a34"]
+atlas = ExtResource("31_32nla")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbo4m"]
+atlas = ExtResource("31_32nla")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlan2"]
+atlas = ExtResource("31_32nla")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfun4"]
+atlas = ExtResource("31_32nla")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27ch3"]
+atlas = ExtResource("31_32nla")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhxtc"]
+atlas = ExtResource("31_32nla")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qleia"]
+atlas = ExtResource("31_32nla")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvx0m"]
+atlas = ExtResource("31_32nla")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptl2c"]
+atlas = ExtResource("31_32nla")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsbho"]
+atlas = ExtResource("31_32nla")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3458y"]
+atlas = ExtResource("31_32nla")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ro11t"]
+atlas = ExtResource("31_32nla")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcyh6"]
+atlas = ExtResource("31_32nla")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_okg68"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8a34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbo4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlan2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfun4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27ch3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhxtc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qleia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvx0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptl2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lsbho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3458y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ro11t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcyh6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nlan2"]
+shader = ExtResource("32_wbo4m")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/number_of_images = Vector2(1, 1)
 
 [node name="ScoreScene" type="Node2D"]
+z_index = 10
 rotation = -0.000232998
 script = ExtResource("1_jn2l2")
 
@@ -26,18 +254,18 @@ vertical_alignment = 1
 [node name="ScoreLabel" type="RichTextLabel" parent="."]
 z_index = 10
 z_as_relative = false
-offset_left = 164.40192
-offset_top = 7.041942
-offset_right = 312.6021
-offset_bottom = 32.041943
+offset_left = 177.99812
+offset_top = 8.041473
+offset_right = 357.24225
+offset_bottom = 34.73516
 pivot_offset = Vector2(30, 11)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 theme_override_fonts/normal_font = ExtResource("3_u2dgd")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "[shake rate=10] Score"
-horizontal_alignment = 1
+text = "[shake rate=10] Pontos"
+scroll_active = false
 vertical_alignment = 1
 
 [node name="WalletLabel" type="Label" parent="."]
@@ -64,4 +292,24 @@ rotation = 0.41887903
 scale = Vector2(2, 2)
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(227.98996, 43.05312)
+position = Vector2(251.99347, 28.058714)
+
+[node name="TimerAnim" type="AnimatedSprite2D" parent="."]
+process_mode = 3
+position = Vector2(28.994175, 25.006756)
+scale = Vector2(0.7178579, 0.7178579)
+sprite_frames = SubResource("SpriteFrames_u001w")
+frame_progress = 0.8879474
+flip_v = true
+
+[node name="StarAnim" type="AnimatedSprite2D" parent="."]
+process_mode = 3
+position = Vector2(166.9958, 18.03891)
+sprite_frames = SubResource("SpriteFrames_okg68")
+frame_progress = 0.38215315
+
+[node name="WalletSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_nlan2")
+position = Vector2(350.99393, 26.08178)
+scale = Vector2(0.26766846, 0.26766846)
+texture = ExtResource("32_h8a34")

@@ -46,16 +46,24 @@ position = Vector2(0, 1)
 script = ExtResource("1_r3o5b")
 MAX_POINTS = 10
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="bg" type="TextureRect" parent="CanvasLayer"]
+z_index = -10
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_oh5ai")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../ColorRect")
 libraries = {
 &"": SubResource("AnimationLibrary_l4ifs")
 }
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(240, 132)
-scale = Vector2(1.8068181, 2.046875)
-texture = ExtResource("2_oh5ai")
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(240, 190)

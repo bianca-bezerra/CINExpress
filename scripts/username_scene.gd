@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var input = $NameInput
-@onready var warning_label: Label = $WarningLabel
+@onready var warning_label: RichTextLabel = $WarningLabel
 
 
 func _ready() -> void:
