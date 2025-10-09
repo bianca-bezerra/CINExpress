@@ -54,10 +54,13 @@ func _show_warning(msg: String) -> void:
 	warning_label.visible = true
 	warning_label.text = msg
 
-
 func _hide_warning() -> void:
 	warning_label.visible = false
-
+	
+## workaround para todos os casos de não pegar input
+func _unhandled_input(_event: InputEvent) -> void:
+	if not input.has_focus():
+		input.grab_focus()
 
 func _on_previous_button_pressed():
 	GameManager.change_to_menu_scene()

@@ -60,17 +60,24 @@ var current_level := 0
 
 ## Timer do ciclo total de jogo
 @onready var game_timer = $GameTimer
-@onready var scene_transintion_animation = $SceneTransitionAnimation/AnimationPlayer
+@onready var scene_transintion_animation: AnimationPlayer = $SceneTransitionAnimation/AnimationPlayer
 
 var _can_show_game_ui = false
 
-var game_levels  = {
+var game_scenes  = {
 	"type": preload("res://scenes/levels/type_quickly.tscn"),
 	"finger": preload("res://scenes/levels/finger_scene.tscn"),
-	"cam": preload("res://scenes/levels/cam_level.tscn") 
+	"cam": preload("res://scenes/levels/cam_level.tscn"),
+	"menu": preload("res://scenes/levels/menu_scene.tscn"),
+	"ranking": preload("res://scenes/ranking_scene.tscn"),
+	"result": preload("res://scenes/results_screen.tscn"),
+	"username": preload("res://scenes/levels/username_scene.tscn")
 }
 
+## Guarda o atual índice da run
 var current_game_level = 0
+
+## Contém as fases em sequência, pode ser shuffled
 var current_run = ["type", "finger", "cam"]
 
 func _ready() -> void:
@@ -91,29 +98,24 @@ func change_to_next_level():
 		current_level += 1
 		current_game_level = 0
 	var scene_name = current_run[current_game_level]		
-	var scene = game_levels[scene_name]
 	current_game_level += 1
-	scene_transintion_animation.play("fade_in")
-	get_tree().change_scene_to_packed(scene)
-	scene_transintion_animation.play("fade_out")
+	transition_to(scene_name)
 
 
 func change_to_username_scene():
-	scene_transintion_animation.play("fade_in")
-	get_tree().change_scene_to_file("res://scenes/levels/username_scene.tscn")
-	scene_transintion_animation.play("fade_out")
-
+	transition_to("username")
 
 func change_to_menu_scene():
-	scene_transintion_animation.play("fade_in")
-	get_tree().change_scene_to_file("res://scenes/levels/menu_scene.tscn")
-	scene_transintion_animation.play("fade_out")
+	transition_to("menu")
 
 func change_to_ranking():
+	transition_to("ranking")
+
+func transition_to(game_scene: String) -> void:
 	scene_transintion_animation.play("fade_in")
-	get_tree().change_scene_to_file("res://scenes/ranking_scene.tscn")
+	get_tree().change_scene_to_packed(game_scenes[game_scene])
 	scene_transintion_animation.play("fade_out")
-	
+
 func get_game_timer():
 	return $GameTimer
 

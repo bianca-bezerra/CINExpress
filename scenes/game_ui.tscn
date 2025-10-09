@@ -56,10 +56,10 @@ text = "CINs: "
 
 [node name="ComboGauge" parent="." instance=ExtResource("2_rns2u")]
 z_index = 10
-offset_left = 353.97327
-offset_top = 115.08247
-offset_right = 409.97327
-offset_bottom = 151.08246
+offset_left = 354.97617
+offset_top = 102.08271
+offset_right = 410.97617
+offset_bottom = 138.0827
 rotation = 0.41887903
 scale = Vector2(2, 2)
 

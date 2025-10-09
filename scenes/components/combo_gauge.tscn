@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ctkoma8d2bmey"]
 
-[ext_resource type="Script" uid="uid://m0mpun3kg73v" path="res://scripts/combo_gauge.gd" id="1_4hpbh"]
+[ext_resource type="Script" path="res://scripts/combo_gauge.gd" id="1_4hpbh"]
 [ext_resource type="FontFile" uid="uid://dvv4r3rtfie8o" path="res://assets/fonts/Jersey25-Regular.ttf" id="2_t7ecw"]
 
 [sub_resource type="Animation" id="Animation_t7ecw"]
@@ -27,7 +27,7 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
