@@ -13,7 +13,11 @@ config_version=5
 config/name="CIN-Express"
 run/main_scene="uid://il0r1gff85a6"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/fullsize=false
+boot_splash/image="uid://yeg07ptac1dm"
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=3000
 
 [autoload]
 
