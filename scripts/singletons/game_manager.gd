@@ -80,8 +80,7 @@ func _process(_delta: float) -> void:
 	
 
 func start_game():
-
-	PlayerManager.reset_score()
+#	PlayerManager.reset_score()
 	PlayerManager.reset_current_player_data()
 	
 	_can_show_game_ui = true

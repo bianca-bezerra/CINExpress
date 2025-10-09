@@ -15,6 +15,7 @@ func _ready() -> void:
 	start_score_animation()
 	retry_game_button.grab_focus.call_deferred()
 
+
 func start_score_animation() -> void:
 	await _animate_score_label(score_label, PlayerManager.get_score())
 	await get_tree().create_timer(DELAY_BETWEEN_CATEGORIES).timeout
@@ -77,11 +78,15 @@ func _play_zoom_bang(label: Label) -> void:
 	
 	AudioManager.play_sfx("bang_sound")
 
+func _reset_data():
+	PlayerManager.reset_current_player_data()	
+
 
 func _on_retry_game_button_pressed() -> void:
+	_reset_data()
 	GameManager.change_to_username_scene()
 
 
 func _on_menu_button_pressed() -> void:
+	_reset_data()
 	GameManager.change_to_menu_scene()
-	

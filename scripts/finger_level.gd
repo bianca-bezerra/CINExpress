@@ -72,3 +72,4 @@ func _on_win_timer_timeout() -> void:
 		GameManager.change_to_next_level()
 	else:
 		finger.can_move = true
+		

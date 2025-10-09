@@ -42,9 +42,9 @@ shader = ExtResource("1_0v84v")
 shader_parameter/offset = 0.0
 
 [node name="CamLevel" type="Node2D"]
+position = Vector2(0, 1)
 script = ExtResource("1_r3o5b")
 MAX_POINTS = 10
-SLIDER_GROW_FACTOR = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../ColorRect")
@@ -77,12 +77,13 @@ offset_right = 446.0
 offset_bottom = 216.0
 max_value = 10.0
 
-[node name="DebugLabel" type="Label" parent="."]
-visible = false
-offset_left = 45.0
-offset_top = 36.0
-offset_right = 155.0
-offset_bottom = 59.0
+[node name="HSlider" type="HSlider" parent="."]
+custom_minimum_size = Vector2(198, 16)
+offset_left = 147.0
+offset_top = 143.0
+offset_right = 345.0
+offset_bottom = 341.0
+max_value = 10.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(280, 0)
@@ -90,7 +91,13 @@ offset_left = 46.0
 offset_top = 2.0
 offset_right = 433.0
 offset_bottom = 264.0
-color = Color(1, 1, 1, 0)
+color = Color(1, 1, 0.8862745, 0)
+
+[node name="DebugLabel" type="Label" parent="."]
+offset_left = 45.0
+offset_top = 36.0
+offset_right = 155.0
+offset_bottom = 59.0
 
 [node name="FeedbackMarker" type="Marker2D" parent="."]
 position = Vector2(353, 31)

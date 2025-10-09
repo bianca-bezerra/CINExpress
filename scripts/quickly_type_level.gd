@@ -8,7 +8,7 @@ const type_feedback_write = preload("res://scenes/components/type_feeadback_writ
 @onready var hflow_container: HFlowContainer = $CanvasLayer/HFlowContainer
 @onready var feedback_label: Label = $CanvasLayer/VBoxContainer/FeedbackLabel
 @onready var input_line_edit: LineEdit = $CanvasLayer/InputLineEdit
-@onready var warning_label: Label = $WarningLabel
+@onready var warning_label = $CanvasLayer/WarningLabel
 @onready var signature: Label = $CanvasLayer/AssinaturaDigital/signature
 
 # Variáveis de estado do jogo
@@ -120,9 +120,17 @@ func update_ui() -> void:
 		else:
 			box.set_state(box.State.PENDING)
 
-
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_CAPSLOCK:
 			_caps_lock_enabled = not _caps_lock_enabled
 			warning_label.visible = _caps_lock_enabled
+
+		elif event.unicode >= 65 and event.unicode <= 90:
+			if not event.shift_pressed:
+				_caps_lock_enabled = true
+				warning_label.visible = true
+		elif event.unicode >= 97 and event.unicode <= 122: 
+			if event.shift_pressed:
+				_caps_lock_enabled = true
+				warning_label.visible = true
