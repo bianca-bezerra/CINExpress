@@ -72,15 +72,16 @@ var current_run = ["type", "finger", "cam"]
 func _ready() -> void:
 	PlayerManager.reset_current_player_data()
 
+
 func _process(_delta: float) -> void:
 	$GameUI.visible = _can_show_game_ui
-	
+
+
 func start_game():
 	_can_show_game_ui = true
 	game_timer.start(total_game_duration)
-	PlayerManager.reset_score()
-	PlayerManager.reset_current_player_data()
 	change_to_next_level()
+
 
 func change_to_next_level():
 	if current_game_level >= len(current_run):
@@ -95,11 +96,13 @@ func change_to_next_level():
 	get_tree().change_scene_to_packed(scene)
 	scene_transintion_animation.play("fade_out")
 
+
 func change_to_username_scene():
 	scene_transintion_animation.play("fade_in")
 	get_tree().change_scene_to_file("res://scenes/levels/username_scene.tscn")
 	scene_transintion_animation.play("fade_out")
-	
+
+
 func change_to_menu_scene():
 	scene_transintion_animation.play("fade_in")
 	get_tree().change_scene_to_file("res://scenes/levels/menu_scene.tscn")
@@ -114,10 +117,12 @@ func end_game():
 	_can_show_game_ui = false
 	current_level = 0
 	current_game_level = 0	
+	game_timer.stop()
 	PlayerManager.save_current_player()
 	scene_transintion_animation.play("fade_in")
 	get_tree().change_scene_to_file("res://scenes/results_screen.tscn")
 	scene_transintion_animation.play("fade_out")
+
 
 func get_dashboard():
 	return SaveManager.game_data["dashboard"]
@@ -125,9 +130,11 @@ func get_dashboard():
 func _on_game_timer_timeout() -> void:
 	end_game();
 
+
 func _enter_tree() -> void:
 	SaveManager.load_game()
-	
+
+
 func _exit_tree() -> void:
 	SaveManager.save_game()
 

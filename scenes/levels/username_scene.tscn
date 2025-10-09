@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cx7cu3vfvagu6"]
+[gd_scene load_steps=6 format=3 uid="uid://cx7cu3vfvagu6"]
 
 [ext_resource type="Script" uid="uid://b4kvlqnohlgll" path="res://scripts/username_scene.gd" id="1_0tmcr"]
 [ext_resource type="Texture2D" uid="uid://dt6ud0nlgsg12" path="res://assets/sprites/monitor.png" id="2_1djc6"]
 [ext_resource type="PackedScene" uid="uid://yrnpjaxxbe5o" path="res://scenes/components/game_type.tscn" id="2_e03c0"]
 [ext_resource type="FontFile" uid="uid://cphnfrxxq4efj" path="res://assets/fonts/pixelmix_bold.ttf" id="4_1djc6"]
+[ext_resource type="FontFile" uid="uid://ca7pbhhd4pu7x" path="res://assets/fonts/pixelmix.ttf" id="5_st0jp"]
 
 [node name="UsernameScene" type="Node2D"]
 script = ExtResource("1_0tmcr")
@@ -23,6 +24,16 @@ theme_override_colors/font_color = Color(0.33028352, 0.33028352, 0.33028352, 1)
 theme_override_fonts/font = ExtResource("4_1djc6")
 theme_override_font_sizes/font_size = 8
 flat = true
+
+[node name="WarningLabel" type="Label" parent="."]
+offset_left = 165.0
+offset_top = 146.0
+offset_right = 327.0
+offset_bottom = 163.0
+theme_override_colors/font_color = Color(0.8156863, 0.20392157, 0.17254902, 1)
+theme_override_fonts/font = ExtResource("5_st0jp")
+theme_override_font_sizes/font_size = 12
+text = "Esse nome ja existe"
 
 [connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_2_text_submitted"]
 [connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_text_submitted"]
