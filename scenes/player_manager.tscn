@@ -4,6 +4,7 @@
 
 [node name="PlayerManager" type="Node"]
 script = ExtResource("1_wd4cv")
+COMBO_INIT_SCORES_IN_A_ROW = 2
 
 [node name="ComboTimer" type="Timer" parent="."]
 

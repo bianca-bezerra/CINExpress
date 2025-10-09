@@ -25,6 +25,7 @@ GameManager="*res://scenes/game_manager.tscn"
 SaveManager="*res://scenes/save_manager.tscn"
 PlayerManager="*res://scenes/player_manager.tscn"
 AudioManager="*res://scenes/audio_manager.tscn"
+CharacterManager="*res://scenes/character_manager.tscn"
 
 [display]
 

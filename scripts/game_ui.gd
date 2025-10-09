@@ -21,17 +21,17 @@ func update_score_text():
 	
 func _format_time(remaining_time: float) -> String:
 	@warning_ignore("integer_division")
-	var minutes: int = int(remaining_time) / 60 
-	var seconds: int = int(remaining_time) % 60	
+	var minutes: int = int(remaining_time) / 60
+	var seconds: int = int(remaining_time) % 60
 	return "%02d:%02d" % [minutes, seconds]
 
 func _ready() -> void:
 	PlayerManager.score_chaged.connect(_on_player_score_changed)
 	PlayerManager.combo_stopped.connect(_on_combo_stopped)
 	PlayerManager.cin_increased.connect(_on_cin_increased)
-	GameManager.game_finished.connect(_on_game_finished)
 	timer_anim.play()
 	star_anim.play()
+#	GameManager.game_finished.connect(_on_game_finished)
 	combo_gauge.modulate.a = 0
 	
 func _process(_delta: float) -> void:
@@ -53,7 +53,7 @@ func _check_time_warning(remaining_time: float):
 		
 
 func _start_time_warning_animation():
-	var tween = get_tree().create_tween().set_loops()  # faz repetir indefinidamente
+	var tween = get_tree().create_tween().set_loops() # faz repetir indefinidamente
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_IN_OUT)
 	
@@ -101,7 +101,7 @@ func _play_score_animation():
 	tween.set_trans(Tween.TRANS_ELASTIC)
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property($ScoreLabel, "scale", Vector2(1.3, 1.3), 0.3)
-	tween.tween_property($ScoreLabel, "scale", Vector2(1,1), 0.3)
+	tween.tween_property($ScoreLabel, "scale", Vector2(1, 1), 0.3)
 	
 
 func _play_cin_animation():

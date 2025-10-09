@@ -32,7 +32,6 @@ func reset_current_player_data():
 		"score": 0.0,
 		"cin_count": 0.0
 	}
-	
 
 func register_new_player(player_name: String):
 	_current_player_data["name"] = player_name
@@ -40,7 +39,7 @@ func register_new_player(player_name: String):
 func _handle_combo():
 	_scores_in_a_row += 1
 	if _scores_in_a_row >= COMBO_INIT_SCORES_IN_A_ROW:
-		var timer_duration = 5 / (multiplier/2.0)
+		var timer_duration = 5 / (multiplier/5.0)
 		multiplier += 1
 		combo_timer.start(timer_duration)
 		
