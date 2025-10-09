@@ -10,6 +10,13 @@ var posicao_y = 140
 var esta_processando = false 
 var tempo_salvo = 0.0
 
+func _enter_tree() -> void:
+	GameManager.set_ui_visible(false)
+	
+func _exit_tree() -> void:
+	GameManager.set_ui_visible(true)
+
+
 func _ready():
 	if esta_processando:
 		return
