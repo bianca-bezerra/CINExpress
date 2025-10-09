@@ -35,16 +35,16 @@ position = Vector2(240, 204)
 collision_layer = 4
 
 [node name="Sprite2D2" type="Sprite2D" parent="digital_reader"]
-position = Vector2(3, -60)
+position = Vector2(0, -69)
 texture = ExtResource("2_k7tmn")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="digital_reader"]
-position = Vector2(6.999993, -17)
+position = Vector2(3.9999924, -25)
 sprite_frames = SubResource("SpriteFrames_k7tmn")
 frame_progress = 0.47124112
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="digital_reader"]
-position = Vector2(7, 16)
+position = Vector2(4, 11)
 shape = SubResource("RectangleShape2D_21gu7")
 
 [node name="Finger" type="CharacterBody2D" parent="."]
