@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://yrnpjaxxbe5o"]
+
+[ext_resource type="Script" uid="uid://chigll168sif8" path="res://scripts/game_type.gd" id="1_7oxss"]
+
+[node name="GameType" type="LineEdit"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 68.5625
+offset_bottom = 31.0
+drag_and_drop_selection_enabled = false
+script = ExtResource("1_7oxss")
+
+[connection signal="text_changed" from="." to="." method="_on_text_changed"]
+[connection signal="text_submitted" from="." to="." method="_on_text_submitted"]
