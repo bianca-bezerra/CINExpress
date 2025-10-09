@@ -51,7 +51,7 @@ func _try():
 		PlayerManager.add_score(points_added)
 		_tween.tween_property(self, "position:y", _initial_pos, 0.5)
 		return
-	GameManager.stop_combo()
+	PlayerManager.stop_combo()
 	AudioManager.play_sfx("wrong_hit")
 	_tween.tween_property(self, "position:y", _initial_pos, 1.3).from(_dest)
 

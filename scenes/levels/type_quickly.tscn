@@ -84,11 +84,12 @@ label_settings = SubResource("LabelSettings_dppqh")
 autowrap_mode = 2
 
 [node name="WarningLabel" type="Label" parent="."]
-offset_left = 347.0
-offset_top = 165.0
-offset_right = 428.0
-offset_bottom = 188.0
+visible = false
+offset_left = 51.0
+offset_top = 196.0
+offset_right = 123.0
+offset_bottom = 219.0
 theme_override_font_sizes/font_size = 8
-text = "⚠️ Caps Lock ativado!"
+text = "Caps Lock ativado!"
 
 [connection signal="text_change_rejected" from="CanvasLayer/InputLineEdit" to="." method="_on_input_line_edit_text_change_rejected"]

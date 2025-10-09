@@ -9,29 +9,31 @@ script = ExtResource("1_jn2l2")
 
 [node name="ComboGauge" parent="." instance=ExtResource("2_rns2u")]
 z_index = 10
-offset_left = 31.989048
-offset_top = 47.007458
-offset_right = 87.989044
-offset_bottom = 83.00745
+offset_left = 340.9831
+offset_top = 72.079445
+offset_right = 396.9831
+offset_bottom = 108.07943
+rotation = 0.41887903
 scale = Vector2(1.5, 1.5)
 
 [node name="TimerLabel" type="Label" parent="."]
 z_index = 10
 z_as_relative = false
-offset_left = 10.997406
-offset_top = 11.002562
-offset_right = 81.3952
-offset_bottom = 38.002556
+offset_left = 14.0
+offset_top = 10.0
+offset_right = 84.3978
+offset_bottom = 36.999992
 theme_override_font_sizes/font_size = 12
 text = "02:00"
 
 [node name="ScoreLabel" type="Label" parent="."]
 z_index = 10
 z_as_relative = false
-offset_left = 387.99765
-offset_top = 10.090403
-offset_right = 447.99765
-offset_bottom = 33.0904
+offset_left = 210.0
+offset_top = 5.0
+offset_right = 270.0
+offset_bottom = 27.999996
+pivot_offset = Vector2(30, 11)
 theme_override_font_sizes/font_size = 12
 text = "SCORE: "
 
@@ -41,10 +43,10 @@ position = Vector2(391.99182, 35.091335)
 [node name="WalletLabel" type="Label" parent="."]
 z_index = 10
 z_as_relative = false
-offset_left = 340.9979
-offset_top = 9.079452
-offset_right = 394.9979
-offset_bottom = 58.0795
+offset_left = 376.0
+offset_top = 10.0
+offset_right = 430.0
+offset_bottom = 59.000046
 theme_override_font_sizes/font_size = 12
 text = "CINs: 0
 "

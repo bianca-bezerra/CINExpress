@@ -3,10 +3,12 @@
 [ext_resource type="Script" uid="uid://m0mpun3kg73v" path="res://scripts/combo_gauge.gd" id="1_4hpbh"]
 
 [node name="ComboGauge" type="VBoxContainer"]
+visible = false
 offset_left = 5.0
 offset_top = -2.0
 offset_right = 61.0
 offset_bottom = 34.0
+pivot_offset = Vector2(28, 18)
 alignment = 1
 script = ExtResource("1_4hpbh")
 

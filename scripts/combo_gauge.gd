@@ -4,30 +4,15 @@ extends VBoxContainer
 
 var base_position: Vector2
 var noise := FastNoiseLite.new()
-var time_passed: float = 0.0
+var time_passed: float = 0.0	
 
-func _ready() -> void:
-	visible = false
-	base_position = position
-	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
-	noise.frequency = 1.0
-
-func _process(delta: float) -> void:
-	time_passed += delta
-	var multiplier_value = GameManager.multiplier
-	var combo_value = GameManager.get_combo_timer_value()
-	var combo_total = GameManager.get_combo_timer_total_time()
-	_progress_bar.value = combo_value
+func _process(_delta: float) -> void:
+	var multiplier_value = PlayerManager.multiplier
+	var combo_value = PlayerManager.get_combo_timer_value()
+	var combo_total = PlayerManager.get_combo_timer_total_time()
+	_progress_bar.value = move_toward(_progress_bar.value, combo_value, 0.3)
 	_progress_bar.max_value = combo_total
-	_label.text = "x%d" % multiplier_value
-	
-	var shake_strength = 2.0 * multiplier_value
-	if multiplier_value > 1:
-		var x_offset = noise.get_noise_1d(time_passed * 2.0) * shake_strength
-		var y_offset = noise.get_noise_1d((time_passed + 100.0) * 2.0) * shake_strength
-		position = base_position + Vector2(x_offset, y_offset)
-	else:
-		position = base_position
+	_label.text = "[shake amount=%f] x%d [/shake]" % [multiplier_value * 0.1, multiplier_value]
 	
 	var progress_ratio = 1.0 - (combo_value / combo_total)
 	var intensity = clamp(multiplier_value / 10.0, 0.0, 1.0)

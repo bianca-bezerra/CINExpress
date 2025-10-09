@@ -8,13 +8,10 @@
 script = ExtResource("1_hwd4i")
 total_game_duration = 30
 
-[node name="ComboTimer" type="Timer" parent="."]
-
 [node name="GameTimer" type="Timer" parent="."]
 
 [node name="GameUI" parent="." instance=ExtResource("2_glms7")]
 
 [node name="SceneTransitionAnimation" parent="." instance=ExtResource("3_udu3i")]
 
-[connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
