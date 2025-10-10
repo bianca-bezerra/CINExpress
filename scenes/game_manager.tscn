@@ -6,7 +6,6 @@
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_hwd4i")
-total_game_duration = 15
 
 [node name="GameTimer" type="Timer" parent="."]
 

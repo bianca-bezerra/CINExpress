@@ -22,7 +22,6 @@ var player_winned = false
 func _ready() -> void:
 	if personagem_sprite and CharacterManager.personagem_atual:
 		personagem_sprite.texture = CharacterManager.get_sprite_cinza()
-		print("📸 Personagem no minigame da câmera: ", CharacterManager.personagem_atual)
 	
 	_current_slider.grab_focus()
 	_current_slider.max_value = slider_len
@@ -40,7 +39,6 @@ func handle_win():
 
 	if personagem_sprite:
 		personagem_sprite.texture = CharacterManager.get_sprite_feliz()
-		print("😊 Personagem ficou feliz após a foto!")
 	
 	var floating_text: RichTextLabel = floating_text_scene.instantiate()
 	floating_text.global_position = $FeedbackMarker.global_position
@@ -54,7 +52,7 @@ func handle_win():
 
 func _process(_delta: float) -> void:
 	var actual_point = _current_slider.value
-	$DebugLabel.text = "Ponto atual: %d | Ponto: %d" % [actual_point, point]
+	
 	
 	if player_winned: return
 	if Input.is_action_just_pressed("space"):

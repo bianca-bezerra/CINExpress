@@ -311,8 +311,8 @@ frame_progress = 0.38215315
 
 [node name="WalletSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_nlan2")
-position = Vector2(382.99478, 22.089233)
-scale = Vector2(0.4, 0.4)
+position = Vector2(382.99432, 24.089231)
+scale = Vector2(0.35, 0.35)
 texture = ExtResource("32_h8a34")
 
 [node name="AtendantSprite" parent="." instance=ExtResource("34_nlan2")]

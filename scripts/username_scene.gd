@@ -46,7 +46,7 @@ func _on_name_input_text_submitted(new_text: String) -> void:
 			return 
 	
 	_hide_warning()
-	print("bora")
+
 	PlayerManager.register_new_player(player_name)
 	GameManager.start_game()
 
