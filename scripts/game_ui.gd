@@ -21,7 +21,7 @@ var _current_score = 0.0
 
 func update_score_text():
 	_current_score = lerp(_current_score, PlayerManager.get_score(), 0.1)
-	score_label.text = "[shake rate=10] Pontos: %.2f" % _current_score
+	score_label.text = "[shake rate=10] Pontos: %.d" % int(_current_score)
 	
 func _format_time(remaining_time: float) -> String:
 	@warning_ignore("integer_division")
@@ -83,7 +83,7 @@ func _reset_time_label():
 
 func spawn_added_score(added_score: float):
 	var added_score_obj: RichTextLabel = floating_text_scene.instantiate()
-	added_score_obj.text = "+ %.2f" % added_score
+	added_score_obj.text = "+ %d" % int(added_score)
 	added_score_obj.global_position = added_score_mark.global_position
 	add_child(added_score_obj)
 
