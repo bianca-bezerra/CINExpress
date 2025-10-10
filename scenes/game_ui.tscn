@@ -274,10 +274,10 @@ vertical_alignment = 1
 
 [node name="ComboGauge" parent="." instance=ExtResource("2_rns2u")]
 z_index = 10
-offset_left = 376.98273
-offset_top = 74.08784
-offset_right = 432.98273
-offset_bottom = 110.08783
+offset_left = 401.32306
+offset_top = 136.09013
+offset_right = 438.1835
+offset_bottom = 172.09012
 scale = Vector2(1.5, 1.5)
 
 [node name="Marker2D" type="Marker2D" parent="."]
@@ -319,4 +319,4 @@ theme_override_font_sizes/font_size = 24
 text = "x8"
 
 [node name="AttendantGroup" parent="." instance=ExtResource("34_nlan2")]
-position = Vector2(404.96616, 154.11069)
+position = Vector2(414.9527, 212.11295)

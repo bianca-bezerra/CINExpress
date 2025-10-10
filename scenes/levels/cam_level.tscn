@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://1r3pfb0em8ow"]
+[gd_scene load_steps=12 format=3 uid="uid://1r3pfb0em8ow"]
 
 [ext_resource type="Shader" uid="uid://36vk6bexpyhj" path="res://scenes/levels/pixelate_filter.gdshader" id="1_0v84v"]
 [ext_resource type="Script" uid="uid://dos4sq85agvu2" path="res://scenes/levels/cam_level.gd" id="1_r3o5b"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bihkwjs58e840" path="res://assets/sprites/camera_ia.png" id="2_muaox"]
 [ext_resource type="Texture2D" uid="uid://c4bdeh4vffm5b" path="res://assets/sprites/camera_point_of_view.png" id="2_oh5ai"]
 [ext_resource type="Texture2D" uid="uid://derrqbcyjmlrw" path="res://assets/sprites/ninguem.png" id="2_r3o5b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_su7k0"]
 
 [sub_resource type="Animation" id="Animation_oh5ai"]
 resource_name = "flash"
@@ -43,7 +45,9 @@ _data = {
 shader = ExtResource("1_0v84v")
 shader_parameter/offset = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_su7k0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_muaox"]
+shader = ExtResource("1_0v84v")
+shader_parameter/offset = 10.0
 
 [node name="CamLevel" type="Node2D"]
 position = Vector2(0, 1)
@@ -52,13 +56,21 @@ MAX_POINTS = 10
 metadata/_edit_horizontal_guides_ = [148.0]
 metadata/_edit_vertical_guides_ = [228.0]
 
+[node name="feedbackRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_su7k0")
+offset_left = 353.0
+offset_top = 88.0
+offset_right = 383.0
+offset_bottom = 118.0
+rotation = -1.5707964
+scale = Vector2(0.5, 0.5)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-offset_top = 1.0
 offset_right = 480.0
-offset_bottom = 271.0
+offset_bottom = 270.0
 texture = ExtResource("2_l4ifs")
 
 [node name="bg" type="TextureRect" parent="CanvasLayer"]
@@ -77,33 +89,44 @@ position = Vector2(228, 191)
 scale = Vector2(4, 4)
 texture = ExtResource("2_r3o5b")
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+custom_minimum_size = Vector2(280, 0)
+offset_left = 106.0
+offset_top = 25.0
+offset_right = 386.0
+offset_bottom = 234.44827
+rotation = -0.0004662088
+color = Color(1, 1, 1, 0)
+
 [node name="camera" type="TextureRect" parent="CanvasLayer"]
-offset_left = -273.0
-offset_top = -271.0
-offset_right = -145.0
-offset_bottom = -143.0
-scale = Vector2(8, 8)
+texture_filter = 2
+offset_left = -36.000004
+offset_top = -101.00001
+offset_right = 32.249996
+offset_bottom = -32.750008
+scale = Vector2(8.216358, 8.216358)
 texture = ExtResource("2_muaox")
+expand_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../ColorRect")
+root_node = NodePath("../CanvasLayer/ColorRect")
 libraries = {
 &"": SubResource("AnimationLibrary_l4ifs")
 }
 
 [node name="RectBlur" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_r3o5b")
-offset_left = 87.0
-offset_top = 25.0
-offset_right = 375.0
-offset_bottom = 233.0
+offset_left = 96.0
+offset_top = 30.0
+offset_right = 349.0
+offset_bottom = 213.0
 color = Color(1, 0.42352942, 1, 0.03529412)
 
 [node name="VSlider" type="VSlider" parent="."]
-offset_left = 399.0
-offset_top = 28.0
-offset_right = 415.0
-offset_bottom = 226.0
+offset_left = 93.0
+offset_top = 39.0
+offset_right = 109.0
+offset_bottom = 209.0
 max_value = 10.0
 
 [node name="HSlider" type="HSlider" parent="."]
@@ -121,23 +144,15 @@ offset_right = 155.0
 offset_bottom = 59.0
 
 [node name="FeedbackMarker" type="Marker2D" parent="."]
-position = Vector2(353, 31)
+position = Vector2(361, 81)
 
-[node name="ColorRect" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(280, 0)
-offset_left = 87.58074
-offset_top = 22.884165
-offset_right = 374.37625
-offset_bottom = 232.33244
-rotation = -0.0004662088
-color = Color(1, 1, 1, 0)
-
-[node name="feedbackRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_su7k0")
-offset_left = 390.0
-offset_top = 13.0
-offset_right = 430.0
-offset_bottom = 53.0
+[node name="FeedbackBlur" type="ColorRect" parent="."]
+z_index = 7
+material = SubResource("ShaderMaterial_muaox")
+offset_left = 345.0
+offset_top = 67.0
+offset_right = 405.0
+offset_bottom = 119.0
 scale = Vector2(0.5, 0.5)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
