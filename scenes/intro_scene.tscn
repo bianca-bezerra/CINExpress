@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://da41xmrnkmogj"]
+[gd_scene load_steps=10 format=3 uid="uid://da41xmrnkmogj"]
 
 [ext_resource type="Script" uid="uid://dv3lw4gjitsir" path="res://scripts/intro_scene.gd" id="1_0y5sa"]
+[ext_resource type="Texture2D" uid="uid://b6tvo0sks0e6t" path="res://assets/sprites/balao-fala.png" id="2_01j2m"]
 [ext_resource type="Texture2D" uid="uid://by82q4ftiity4" path="res://assets/sprites/fundo (1).png" id="2_8wqor"]
 [ext_resource type="Texture2D" uid="uid://dpl87mrmqms8c" path="res://assets/sprites/cenario_icd.png" id="2_gsw8x"]
 [ext_resource type="Texture2D" uid="uid://ctfykn6rocyg1" path="res://assets/sprites/characters/lule_feliz.png" id="3_jkhwn"]
 [ext_resource type="Texture2D" uid="uid://b6l4aa6vplmsf" path="res://assets/sprites/cenario_icd_sem_biomio.png" id="4_tij55"]
-[ext_resource type="FontFile" uid="uid://dvv4r3rtfie8o" path="res://assets/fonts/Jersey25-Regular.ttf" id="5_tij55"]
-[ext_resource type="FontFile" uid="uid://dolnaadbveks2" path="res://assets/fonts/nokiafc22.ttf" id="6_01j2m"]
-[ext_resource type="Texture2D" uid="uid://b6tvo0sks0e6t" path="res://assets/sprites/balao-fala.png" id="7_0f06d"]
+[ext_resource type="PackedScene" uid="uid://c8nbef86tdjaf" path="res://scenes/attendant_group.tscn" id="7_0f06d"]
+[ext_resource type="FontFile" uid="uid://dolnaadbveks2" path="res://assets/fonts/nokiafc22.ttf" id="7_01j2m"]
+[ext_resource type="FontFile" uid="uid://dvv4r3rtfie8o" path="res://assets/fonts/Jersey25-Regular.ttf" id="7_f164h"]
 
 [node name="IntroScene" type="Node2D"]
 script = ExtResource("1_0y5sa")
@@ -28,36 +29,41 @@ position = Vector2(289, 135.7015)
 scale = Vector2(2.5, 2.423)
 texture = ExtResource("3_jkhwn")
 
+[node name="BalaoImagem" type="Sprite2D" parent="."]
+z_index = 6
+position = Vector2(356.5, 48.999992)
+scale = Vector2(1.6428572, 1.4)
+texture = ExtResource("2_01j2m")
+
 [node name="Mesa" type="Sprite2D" parent="."]
 position = Vector2(247, 141)
 scale = Vector2(2, 2)
 texture = ExtResource("4_tij55")
 
 [node name="BalaoFala" type="Label" parent="."]
-z_index = 4
-offset_left = 304.0
-offset_top = 31.0
-offset_right = 400.0
-offset_bottom = 63.0
+z_index = 6
+offset_left = 315.0
+offset_top = 30.0
+offset_right = 389.0
+offset_bottom = 59.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_01j2m")
-theme_override_font_sizes/font_size = 8
-text = " Olá, quero emitir
- minha CIN!"
-horizontal_alignment = 1
+theme_override_constants/line_spacing = -1
+theme_override_fonts/font = ExtResource("7_f164h")
+theme_override_font_sizes/font_size = 12
+text = "Olá, quero fazer
+    minha CIN!"
 
 [node name="TextoInstrucao" type="Label" parent="."]
-offset_left = 68.0
-offset_top = 97.99999
-offset_right = 265.49997
-offset_bottom = 117.999985
+offset_left = 61.000004
+offset_top = 98.00001
+offset_right = 286.0
+offset_bottom = 116.00001
 scale = Vector2(0.8, 0.8)
-theme_override_constants/outline_size = 7
-theme_override_fonts/font = ExtResource("5_tij55")
-theme_override_font_sizes/font_size = 16
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("7_01j2m")
+theme_override_font_sizes/font_size = 11
 text = "Pressione ESPAÇO para iniciar!"
 
-[node name="BalaoImagem" type="Sprite2D" parent="."]
-position = Vector2(357, 49.000004)
-scale = Vector2(1.7714286, 1.3666667)
-texture = ExtResource("7_0f06d")
+[node name="AttendantGroup" parent="." instance=ExtResource("7_0f06d")]
+position = Vector2(-52, 204)

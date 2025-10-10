@@ -26,6 +26,6 @@ scale = Vector2(2.5, 2.423)
 texture = ExtResource("3_kdr26")
 
 [node name="Mesa" type="Sprite2D" parent="."]
-position = Vector2(247, 141)
+position = Vector2(247, 142)
 scale = Vector2(2, 2)
 texture = ExtResource("4_qae4g")
