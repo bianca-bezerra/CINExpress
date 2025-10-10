@@ -7,7 +7,10 @@ extends Node2D
 @onready var score_label = $ScoreLabel
 @onready var timer_anim = $TimerAnim
 @onready var star_anim = $StarAnim
-@onready var attendant_sprite: AnimatedSprite2D = $AtendantSprite
+@onready var attendant_group = $AttendantGroup
+@onready var attendant_sprite: AnimatedSprite2D = $AttendantGroup/AtendantSprite
+@onready var attendant_group_default_scale = attendant_group.scale
+@onready var attendant_group_default_pos = attendant_group.position
 
 var floating_text_scene: PackedScene = preload("res://scenes/components/floating_text.tscn")
 
@@ -36,13 +39,16 @@ func _ready() -> void:
 	
 func _handle_animated_attendant():
 	pass
-
-func _process(_delta: float) -> void:
+	
+var _ac = 0
+func _process(delta: float) -> void:
+	_ac += delta
 	update_score_text()
 	var timer: Timer = GameManager.game_timer
 	timer_progress.text = _format_time(timer.time_left)
 	wallet.text = "x%d" % PlayerManager.get_cin_count()
 	_check_time_warning(timer.time_left)
+	attendant_group.position.x = attendant_group_default_pos.x + 1 * sin(_ac * 3) * 5
 
 func _check_time_warning(remaining_time: float):
 	# Quando o tempo estiver abaixo de 10 segundos, dispara a animação
@@ -102,12 +108,12 @@ func _on_game_finished():
 	_current_shake_intensity = 0
 
 func _play_attendant_happy_animation():
-	$AtendantSprite.play("default")
+	attendant_sprite.play("default")
 	var tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_ELASTIC)
-	tween.tween_property($AtendantSprite, "scale", Vector2(1.3, 1.3), 0.3)
-	tween.tween_property($AtendantSprite, "scale", Vector2(1, 1), 0.3)
+	tween.tween_property(attendant_group, "scale", attendant_group_default_scale + Vector2(0.3, 0.3), 0.3)
+	tween.tween_property(attendant_group, "scale", attendant_group_default_scale, 0.3)
 
 func _play_score_animation():
 	var tween = get_tree().create_tween()
@@ -157,6 +163,6 @@ func _handle_attendant_sad_animation():
 	var tween = get_tree().create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property($AtendantSprite, "scale", Vector2(1.2, 1.2), 0.15)
-	tween.tween_property($AtendantSprite, "scale", Vector2(1, 1), 0.15)
+	tween.tween_property(attendant_group, "scale", attendant_group_default_scale + Vector2(0.3, 0.3), 0.3)
+	tween.tween_property(attendant_group, "scale", attendant_group_default_scale, 0.3)
 	
