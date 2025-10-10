@@ -16,6 +16,11 @@ var _phrases = ["Diga Xiss!", "Uau!", "Massa!"]
 
 @onready var _sliders = [$HSlider, $VSlider]
 @onready var _current_slider = _sliders.pick_random()
+@onready var instruction_slider_1 = $InstructionGroup/InstructionSlider1
+@onready var instruction_slider_2 = $InstructionGroup/InstructionSlider2
+@onready var instruction_camera = $InstructionGroup/InstructionCamera
+@onready var instruction_group = $InstructionGroup
+
 
 var player_winned = false
 
@@ -35,6 +40,16 @@ func _ready() -> void:
 	_current_slider.value = randi_range(point - slider_len/2, point + slider_len/2)
 	while _current_slider.value == point:
 		_current_slider.value = randi_range(point - slider_len/2, point + slider_len/2)
+	
+	if _current_slider is HSlider:
+		instruction_slider_1.setup_instruction("arrow_left")
+		instruction_slider_2.setup_instruction("arrow_rigth")
+	elif _current_slider is VSlider:
+		instruction_slider_1.setup_instruction("arrow_up")
+		instruction_slider_2.setup_instruction("arrow_down")
+	
+	instruction_camera.setup_instruction("space")
+	instruction_group.visible = GameManager.current_level == 0
 	
 func handle_win():
 

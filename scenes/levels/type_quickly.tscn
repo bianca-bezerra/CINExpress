@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dbgncko8kqajj"]
+[gd_scene load_steps=11 format=3 uid="uid://dbgncko8kqajj"]
 
 [ext_resource type="Script" uid="uid://cavxmkxm3gft0" path="res://scripts/quickly_type_level.gd" id="1_jac8s"]
 [ext_resource type="FontFile" uid="uid://e05kcorrkffc" path="res://assets/fonts/poorhandwriting.ttf" id="2_pwse7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://m18tg8qgdih2" path="res://assets/sprites/assinatura_digital.png" id="4_dppqh"]
 [ext_resource type="Texture2D" uid="uid://6uq1x8fryyfd" path="res://assets/sprites/pov_assinatural.png" id="5_oit8f"]
 [ext_resource type="FontFile" uid="uid://dvv4r3rtfie8o" path="res://assets/fonts/Jersey25-Regular.ttf" id="6_qxakt"]
+[ext_resource type="PackedScene" uid="uid://ch0ti8rxx77mt" path="res://scenes/components/instruction.tscn" id="8_otq57"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dppqh"]
 font = ExtResource("2_pwse7")
@@ -104,5 +105,19 @@ theme_override_fonts/normal_font = ExtResource("3_kwiqn")
 bbcode_enabled = true
 text = "Boa"
 horizontal_alignment = 1
+
+[node name="Instruction1" parent="." instance=ExtResource("8_otq57")]
+position = Vector2(356, 172)
+
+[node name="Instruction2" parent="." instance=ExtResource("8_otq57")]
+position = Vector2(410, 172)
+
+[node name="PlusLabel" type="Label" parent="."]
+offset_left = 393.0
+offset_top = 168.0
+offset_right = 408.0
+offset_bottom = 191.0
+theme_override_fonts/font = ExtResource("3_kwiqn")
+text = "+"
 
 [connection signal="text_change_rejected" from="CanvasLayer/InputLineEdit" to="." method="_on_input_line_edit_text_change_rejected"]

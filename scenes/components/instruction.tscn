@@ -1,0 +1,338 @@
+[gd_scene load_steps=37 format=3 uid="uid://ch0ti8rxx77mt"]
+
+[ext_resource type="Texture2D" uid="uid://b7sm6tqvcq28x" path="res://assets/sprites/Keyboard Extras.png" id="1_n5smy"]
+[ext_resource type="Script" uid="uid://de72ptdo7kfd" path="res://scripts/instruction.gd" id="1_stmaa"]
+[ext_resource type="Texture2D" uid="uid://bv5l0efmn2gg6" path="res://assets/sprites/Keyboard Letters and Symbols.png" id="2_stmaa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8wlg"]
+atlas = ExtResource("1_n5smy")
+region = Rect2(98, 83, 28, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff2ci"]
+atlas = ExtResource("1_n5smy")
+region = Rect2(65, 99, 30, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvokf"]
+atlas = ExtResource("1_n5smy")
+region = Rect2(2, 83, 28, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bppq"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(1, 115, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e226g"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(17, 115, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ps162"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(49, 115, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3nmj"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(33, 115, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbyv3"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(1, 147, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmp63"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(17, 147, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cutlo"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(33, 147, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwkei"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(49, 147, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmni2"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(65, 147, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ucie"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(81, 147, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5uwc"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(97, 147, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rntg7"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(113, 147, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3q5m"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(1, 163, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dugoh"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(17, 163, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2q6e"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(33, 163, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fu06h"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(49, 163, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5onf"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(65, 163, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qb63b"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(81, 163, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftcse"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(97, 163, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vps7"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(113, 163, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkfjh"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(1, 179, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hw3f1"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(17, 179, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ce447"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(33, 179, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pm1op"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(49, 179, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvqqe"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(65, 179, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3k1w"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(81, 179, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygmga"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(97, 179, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2jce"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(113, 179, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54lkl"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(1, 195, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxsnc"]
+atlas = ExtResource("2_stmaa")
+region = Rect2(17, 195, 13, 11)
+
+[node name="Instruction" type="Node2D"]
+script = ExtResource("1_stmaa")
+
+[node name="Enter" type="TextureRect" parent="."]
+offset_right = 28.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_w8wlg")
+
+[node name="Space" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(28, 11)
+offset_right = 30.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_ff2ci")
+
+[node name="Shift" type="TextureRect" parent="."]
+visible = false
+offset_right = 28.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_yvokf")
+
+[node name="ArrowUp" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_6bppq")
+
+[node name="ArrowDown" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_e226g")
+
+[node name="ArrowRigth" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_ps162")
+
+[node name="ArrowLeft" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_y3nmj")
+
+[node name="A" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_nbyv3")
+
+[node name="B" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_jmp63")
+
+[node name="C" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_cutlo")
+
+[node name="D" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_qwkei")
+
+[node name="E" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_rmni2")
+
+[node name="F" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_0ucie")
+
+[node name="G" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_o5uwc")
+
+[node name="H" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_rntg7")
+
+[node name="I" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_s3q5m")
+
+[node name="J" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_dugoh")
+
+[node name="K" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_p2q6e")
+
+[node name="L" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_fu06h")
+
+[node name="M" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_l5onf")
+
+[node name="N" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_qb63b")
+
+[node name="O" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_ftcse")
+
+[node name="P" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_1vps7")
+
+[node name="Q" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_lkfjh")
+
+[node name="R" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_hw3f1")
+
+[node name="S" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_ce447")
+
+[node name="T" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_pm1op")
+
+[node name="U" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_lvqqe")
+
+[node name="V" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_y3k1w")
+
+[node name="W" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_ygmga")
+
+[node name="X" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_n2jce")
+
+[node name="Y" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_54lkl")
+
+[node name="Z" type="TextureRect" parent="."]
+visible = false
+offset_right = 13.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_bxsnc")

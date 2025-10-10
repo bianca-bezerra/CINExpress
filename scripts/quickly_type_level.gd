@@ -10,6 +10,8 @@ const type_feedback_write = preload("res://scenes/components/type_feeadback_writ
 @onready var input_line_edit: LineEdit = $CanvasLayer/InputLineEdit
 @onready var warning_label = $CanvasLayer/WarningLabel
 @onready var signature: Label = $CanvasLayer/AssinaturaDigital/signature
+@onready var instruction_1 = $Instruction1
+@onready var instruction_2 = $Instruction2
 
 var good_phrases = [
 	"Boa",
@@ -124,6 +126,18 @@ func update_ui() -> void:
 		if i < _current_letter_index:
 			box.set_state(box.State.CORRECT)
 		elif i == _current_letter_index:
+			var letter = _current_name[_current_letter_index]
+			var is_upper_letter = letter == letter.to_upper()
+			
+			$PlusLabel.visible = is_upper_letter
+			
+			if is_upper_letter:
+				instruction_1.setup_instruction("shift") 
+				instruction_2.setup_instruction(letter) 
+			else:
+				instruction_1.setup_instruction(letter) 
+				instruction_2.deactivate_instruction()
+				
 			box.set_state(box.State.ACTIVE)
 		else:
 			box.set_state(box.State.PENDING)

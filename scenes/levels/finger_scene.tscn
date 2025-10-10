@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cuyp6bxmyijvn"]
+[gd_scene load_steps=11 format=3 uid="uid://cuyp6bxmyijvn"]
 
 [ext_resource type="Script" uid="uid://bth8stp3ey7b" path="res://scripts/finger_level.gd" id="1_5skfb"]
 [ext_resource type="Texture2D" uid="uid://clyle04neisfe" path="res://assets/sprites/pov_leitor_digital.png" id="2_k7tmn"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://by8f7fiyh44vk" path="res://assets/sprites/leitor.png" id="3_k7tmn"]
 [ext_resource type="Texture2D" uid="uid://b4vqe0lqs3w36" path="res://assets/sprites/mao.png" id="4_kaagg"]
 [ext_resource type="Texture2D" uid="uid://b3p13pu0g6ohv" path="res://assets/sprites/leitor_ativo.png" id="4_vpvu3"]
+[ext_resource type="PackedScene" uid="uid://ch0ti8rxx77mt" path="res://scenes/components/instruction.tscn" id="7_vpvu3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k7tmn"]
 animations = [{
@@ -80,6 +81,9 @@ offset_bottom = 6.0
 
 [node name="FeedbackMarker" type="Marker2D" parent="."]
 position = Vector2(220, 75)
+
+[node name="Instruction" parent="." instance=ExtResource("7_vpvu3")]
+position = Vector2(310, 181)
 
 [connection signal="body_entered" from="digital_reader" to="Finger" method="_on_digital_reader_body_entered"]
 [connection signal="body_exited" from="digital_reader" to="Finger" method="_on_digital_reader_body_exited"]
