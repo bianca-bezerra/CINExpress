@@ -32,8 +32,8 @@
 [ext_resource type="Texture2D" uid="uid://byo5s364ta2v" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass27.png" id="30_mbdak"]
 [ext_resource type="Texture2D" uid="uid://dkj45j6gkdlw6" path="res://assets/sprites/Star.png" id="31_32nla"]
 [ext_resource type="Texture2D" uid="uid://bydbgey83ieav" path="res://assets/sprites/cin_com_face.png" id="32_h8a34"]
-[ext_resource type="Shader" path="res://assets/sprites/outline.gdshader" id="32_wbo4m"]
-[ext_resource type="PackedScene" uid="uid://dpn374bxbv210" path="res://scenes/atendant_sprite.tscn" id="34_nlan2"]
+[ext_resource type="Shader" uid="uid://ch56waninvx74" path="res://assets/sprites/outline.gdshader" id="32_wbo4m"]
+[ext_resource type="PackedScene" uid="uid://c8nbef86tdjaf" path="res://scenes/attendant_group.tscn" id="34_nlan2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u001w"]
 animations = [{
@@ -240,10 +240,10 @@ script = ExtResource("1_jn2l2")
 [node name="TimerLabel" type="Label" parent="."]
 z_index = 10
 z_as_relative = false
-offset_left = 47.99814
-offset_top = 8.011185
-offset_right = 99.99813
-offset_bottom = 33.01119
+offset_left = 38.998848
+offset_top = 5.0090876
+offset_right = 90.99885
+offset_bottom = 30.009087
 pivot_offset = Vector2(35, 13.5)
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_u2dgd")
@@ -255,11 +255,12 @@ vertical_alignment = 1
 [node name="ScoreLabel" type="RichTextLabel" parent="."]
 z_index = 10
 z_as_relative = false
-offset_left = 202.99857
-offset_top = 6.0472965
-offset_right = 382.24268
-offset_bottom = 32.740982
-pivot_offset = Vector2(30, 11)
+clip_contents = false
+offset_left = 182.99857
+offset_top = 6.042636
+offset_right = 292.64462
+offset_bottom = 32.73632
+pivot_offset = Vector2(54, 13)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 theme_override_fonts/normal_font = ExtResource("3_u2dgd")
@@ -267,28 +268,16 @@ theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "[shake rate=10] Pontos"
 scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="WalletLabel" type="Label" parent="."]
-z_index = 10
-z_as_relative = false
-offset_left = 407.99774
-offset_top = 10.095062
-offset_right = 469.99774
-offset_bottom = 35.095062
-pivot_offset = Vector2(30, 11)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("3_u2dgd")
-theme_override_font_sizes/font_size = 24
-text = "x8"
 
 [node name="ComboGauge" parent="." instance=ExtResource("2_rns2u")]
 z_index = 10
-offset_left = 381.96112
-offset_top = 167.08902
-offset_right = 437.96112
-offset_bottom = 203.08902
+offset_left = 401.32306
+offset_top = 136.09013
+offset_right = 438.1835
+offset_bottom = 172.09012
 scale = Vector2(1.5, 1.5)
 
 [node name="Marker2D" type="Marker2D" parent="."]
@@ -296,8 +285,8 @@ position = Vector2(251.99347, 28.058714)
 
 [node name="TimerAnim" type="AnimatedSprite2D" parent="."]
 process_mode = 3
-position = Vector2(30.994873, 22.007221)
-scale = Vector2(0.7178579, 0.7178579)
+position = Vector2(27.995817, 18.006514)
+scale = Vector2(0.5138689, 0.5545886)
 sprite_frames = SubResource("SpriteFrames_u001w")
 frame_progress = 0.8879474
 flip_v = true
@@ -311,9 +300,23 @@ frame_progress = 0.38215315
 
 [node name="WalletSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_nlan2")
-position = Vector2(382.99478, 22.089233)
-scale = Vector2(0.4, 0.4)
+position = Vector2(407.99533, 20.095055)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("32_h8a34")
 
-[node name="AtendantSprite" parent="." instance=ExtResource("34_nlan2")]
-position = Vector2(180.99648, 15.042182)
+[node name="WalletLabel" type="Label" parent="."]
+z_index = 10
+z_as_relative = false
+offset_left = 432.99835
+offset_top = 8.100887
+offset_right = 494.99835
+offset_bottom = 33.100887
+pivot_offset = Vector2(30, 11)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_u2dgd")
+theme_override_font_sizes/font_size = 24
+text = "x8"
+
+[node name="AttendantGroup" parent="." instance=ExtResource("34_nlan2")]
+position = Vector2(414.9527, 212.11295)

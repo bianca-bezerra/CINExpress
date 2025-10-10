@@ -5,6 +5,7 @@ extends Node2D
 @onready var balao_fala = $BalaoFala 
 @onready var balao_fala_atendente = $BalaoFalaAtendente
 @onready var texto_instrucao = $TextoInstrucao
+@onready var atendente = $AttendantGroup
 
 var posicao_inicial_x = 59
 var posicao_final_x = 288
@@ -94,6 +95,9 @@ func mostrar_fala_atendente(texto: String):
 	balao_fala_atendente.modulate.a = 0
 	var tween = create_tween()
 	tween.tween_property(balao_fala_atendente, "modulate:a", 1.0, 0.3)
+	tween.set_trans(Tween.TRANS_ELASTIC)
+	await tween.finished
+	
 
 func animar_piscar_texto():
 	if not texto_instrucao:
@@ -102,6 +106,17 @@ func animar_piscar_texto():
 	tween.set_loops()
 	tween.tween_property(texto_instrucao, "modulate:a", 0.3, 0.5)
 	tween.tween_property(texto_instrucao, "modulate:a", 1.0, 0.5)
+	await tween.finished
+	
+func atentente_surgindo_esquerda():
+	var tween_movimento = create_tween()
+	atendente.in_idle = false
+	atendente.sprite.animation = "default"
+	atendente.sprite.frame = 1
+	tween_movimento.tween_property(atendente, "position:x", 55, 1.0)\
+		.set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT)
+	await tween_movimento.finished
+
 
 func _input(event):
 	if pode_iniciar and not jogo_iniciado:
@@ -114,7 +129,8 @@ func iniciar_jogo():
 	
 	if texto_instrucao:
 		texto_instrucao.visible = false
-	
+
+	await atentente_surgindo_esquerda()
 	mostrar_fala_atendente("Pois bora fazer!")
 	await get_tree().create_timer(1.5).timeout
 	
