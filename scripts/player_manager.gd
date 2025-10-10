@@ -12,7 +12,8 @@ signal combo_stopped()
 var _current_player_data = {
 	"name": "",
 	"score": 0.0,
-	"cin_count": 0.0
+	"cin_count": 0.0,
+	"best_combo": 0.0,
 }
 
 ## Multiplicador levado em conta durante o combo
@@ -34,7 +35,10 @@ func reset_current_player_data():
 	_current_player_data = {
 		"name": "",
 		"score": 0.0,
-		"cin_count": 0.0
+		"cin_count": 0.0,
+		"best_combo": 0.0,
+		"started_at": "",
+		"ended_at": "",
 	}
 
 func register_new_player(player_name: String):
@@ -46,6 +50,8 @@ func _handle_combo():
 		var timer_duration = 5 / (multiplier/5.0)
 		multiplier += 1
 		combo_timer.start(timer_duration)
+		if multiplier > _current_player_data["best_combo"]:
+			_current_player_data["best_combo"] = multiplier
 		
 func add_score(score: float):
 	var _pitch_scale = clamp(pow(1.05, multiplier), 1.0, 2.0)
@@ -70,6 +76,12 @@ func increment_cin_count():
 func save_current_player():
 	SaveManager.game_data["dashboard"].append(_current_player_data)
 	SaveManager.save_game()
+
+func register_start_time(start_time_timestamp: String):
+	_current_player_data["started_at"] = start_time_timestamp
+
+func register_end_time(end_time_timestamp: String):
+	_current_player_data["ended_at"] = end_time_timestamp
 
 func get_score():
 	return _current_player_data["score"]
