@@ -78,10 +78,7 @@ func _process(_delta: float) -> void:
 	$GameUI.visible = _can_show_game_ui
 	
 
-func start_game():
-#	PlayerManager.reset_score()
-	PlayerManager.reset_current_player_data()
-	
+func start_game():	
 	_can_show_game_ui = false
 	primeira_rodada = true
 	game_timer.stop()

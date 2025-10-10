@@ -1,7 +1,8 @@
 extends Node2D
 
-@onready var score_label: Label = $ScorePointsLabel
+@onready var score_label: Label = $VBoxContainer/ScorePointsLabel
 @onready var cins_label: Label = $CinsPointsLabel
+@onready var title_label: RichTextLabel = $TitleLabel
 @onready var retry_game_button: Button = $HBoxContainer/RetryGameButton
 
 const DELAY_BETWEEN_CATEGORIES: float = 0.3
@@ -10,8 +11,12 @@ const ZOOM_SCALE: float = 2.0  # quanto o texto aumenta no "bang"
 const ZOOM_DURATION: float = 0.25
 
 func _ready() -> void:
+	GameManager.set_ui_visible(false)
 	score_label.text = "0"
-	cins_label.text = "0"
+	cins_label.text = "x0"
+	var _player_name: String = PlayerManager._current_player_data["name"]
+	title_label.text = "Atendente [wave] %s [/wave]" % _player_name.left(10)
+	
 	start_score_animation()
 	retry_game_button.grab_focus.call_deferred()
 
@@ -20,13 +25,13 @@ func start_score_animation() -> void:
 	await _animate_score_label(score_label, PlayerManager.get_score())
 	await get_tree().create_timer(DELAY_BETWEEN_CATEGORIES).timeout
 
-	await _animate_score_label(cins_label, PlayerManager.get_cin_count())
+	await _animate_score_label(cins_label, PlayerManager.get_cin_count(), "x")
 	await get_tree().create_timer(DELAY_BETWEEN_CATEGORIES).timeout
 
 
-func _animate_score_label(label_to_animate: Label, target_score: int) -> void:
+func _animate_score_label(label_to_animate: Label, target_score: int, prefix:String="") -> void:
 	if target_score <= 0:
-		label_to_animate.text = "0"
+		label_to_animate.text = "%s0" % prefix
 		return
 		
 	var duration = clamp(target_score / 150.0, 0.6, 1.5)
@@ -44,7 +49,7 @@ func _animate_score_label(label_to_animate: Label, target_score: int) -> void:
 	# 🔹 Tween da contagem
 	var tween := create_tween().set_parallel()
 	tween.tween_method(
-		_update_label_text.bind(label_to_animate),
+		_update_label_text.bind(label_to_animate, prefix),
 		0.0,
 		float(target_score),
 		duration
@@ -53,7 +58,7 @@ func _animate_score_label(label_to_animate: Label, target_score: int) -> void:
 	await tween.finished
 
 	# 🔹 Garante o valor final e para o som
-	label_to_animate.text = str(target_score)
+	label_to_animate.text = "%s%s" % [prefix, str(target_score)]
 	AudioManager.stop_sfx()	
 
 	# 🔹 Efeito de zoom final + som de "bang"
@@ -65,8 +70,8 @@ func _animate_score_label(label_to_animate: Label, target_score: int) -> void:
 	await fade_out_tween.finished
 
 
-func _update_label_text(value: float, label: Label) -> void:
-	label.text = str(roundi(value))
+func _update_label_text(value: float, label: Label, prefix: String) -> void:
+	label.text = "%s%s" % [prefix, str(roundi(value))]
 
 
 func _play_zoom_bang(label: Label) -> void:
@@ -79,6 +84,7 @@ func _play_zoom_bang(label: Label) -> void:
 	AudioManager.play_sfx("bang_sound")
 
 func _reset_data():
+	GameManager.set_ui_visible(false)
 	PlayerManager.reset_current_player_data()	
 
 

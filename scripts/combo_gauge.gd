@@ -13,8 +13,8 @@ func _process(_delta: float) -> void:
 	var combo_total = PlayerManager.get_combo_timer_total_time()
 	_progress_bar.value = move_toward(_progress_bar.value, combo_value, 0.3)
 	_progress_bar.max_value = combo_total
-	_label.text = "[shake amount=%f] x%d [/shake]" % [multiplier_value * 0.1, multiplier_value]
-	
+	if multiplier_value > 1:
+		_label.text = "[shake amount=%f] x%d [/shake]" % [multiplier_value * 0.1, multiplier_value]
 	var progress_ratio = 1.0 - (combo_value / combo_total)
 	var intensity = clamp(multiplier_value / 10.0, 0.0, 1.0)
 	

@@ -1,61 +1,94 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0i20cpneku7k"]
+[gd_scene load_steps=6 format=3 uid="uid://d0i20cpneku7k"]
 
 [ext_resource type="Script" uid="uid://bhrioocci4c3" path="res://scripts/results_screen.gd" id="1_fqf1x"]
+[ext_resource type="Texture2D" uid="uid://dus5ifflexswi" path="res://assets/sprites/monitor_vazio.png" id="2_d57yd"]
 [ext_resource type="PackedScene" uid="uid://duma53j5l7fqo" path="res://scenes/levels/game_button.tscn" id="2_j5vbe"]
+[ext_resource type="FontFile" uid="uid://dolnaadbveks2" path="res://assets/fonts/nokiafc22.ttf" id="3_cij7f"]
+[ext_resource type="Texture2D" uid="uid://bydbgey83ieav" path="res://assets/sprites/cin_com_face.png" id="5_r40o8"]
 
 [node name="ResultsScreen" type="Node2D"]
 script = ExtResource("1_fqf1x")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-offset_left = 145.0
-offset_top = 47.0
-offset_right = 344.0
-offset_bottom = 158.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
+[node name="Monitor" type="Sprite2D" parent="."]
+position = Vector2(240, 135)
+texture = ExtResource("2_d57yd")
 
-[node name="ScoreLabel" type="Label" parent="."]
-offset_left = 164.0
-offset_top = 68.0
-offset_right = 251.0
-offset_bottom = 91.0
-text = "Pontuação:"
-
-[node name="ScorePointsLabel" type="Label" parent="."]
-offset_left = 260.0
-offset_top = 69.0
-offset_right = 300.0
-offset_bottom = 92.0
-text = "0"
+[node name="CinsLabel2" type="TextureRect" parent="."]
+offset_left = 252.00002
+offset_top = 63.0
+offset_right = 358.0
+offset_bottom = 127.0
+scale = Vector2(0.7, 0.7)
+pivot_offset = Vector2(53, 32)
+texture = ExtResource("5_r40o8")
 
 [node name="CinsPointsLabel" type="Label" parent="."]
-offset_left = 212.0
-offset_top = 110.0
-offset_right = 222.0
+modulate = Color(0, 0, 0, 1)
+offset_left = 268.0
+offset_top = 123.0
+offset_right = 374.0
 offset_bottom = 133.0
-text = "0"
+pivot_offset = Vector2(53, 5)
+theme_override_fonts/font = ExtResource("3_cij7f")
+theme_override_font_sizes/font_size = 8
+text = "x100"
 
-[node name="CinsLabel" type="Label" parent="."]
-offset_left = 165.0
-offset_top = 109.0
-offset_right = 205.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 159.0
+offset_top = 92.0
+offset_right = 223.0
 offset_bottom = 132.0
-text = "CINs:"
+pivot_offset = Vector2(32, 20)
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cij7f")
+theme_override_font_sizes/font_size = 8
+text = "Pontuação:"
+
+[node name="ScorePointsLabel" type="Label" parent="VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cij7f")
+theme_override_font_sizes/font_size = 8
+text = "0"
+horizontal_alignment = 2
+
+[node name="TitleLabel" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 145.0
+offset_top = 57.0
+offset_right = 335.0
+offset_bottom = 80.0
+theme_override_fonts/normal_font = ExtResource("3_cij7f")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "Resultados: 
+Atentendente "
+scroll_active = false
+vertical_alignment = 1
 
 [node name="HBoxContainer" type="HSplitContainer" parent="."]
-offset_left = 152.0
-offset_top = 173.0
-offset_right = 336.0
-offset_bottom = 193.0
+offset_left = 146.0
+offset_top = 146.0
+offset_right = 330.0
+offset_bottom = 166.0
 
 [node name="RetryGameButton" parent="HBoxContainer" instance=ExtResource("2_j5vbe")]
+modulate = Color(1, 1, 0, 1)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cij7f")
 text = "JOGAR NOVAMENTE"
+flat = true
 
 [node name="MenuButton" parent="HBoxContainer" instance=ExtResource("2_j5vbe")]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cij7f")
 text = "MENU
 "
+flat = true
 
 [connection signal="pressed" from="HBoxContainer/RetryGameButton" to="." method="_on_retry_game_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
