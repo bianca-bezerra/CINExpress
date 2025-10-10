@@ -53,6 +53,8 @@ var names := [
 var current_level := 0
 
 @export var total_game_duration := 60
+var can_show_assistent := true
+
 @onready var game_timer: Timer = $GameTimer
 @onready var scene_transintion_animation = $SceneTransitionAnimation/AnimationPlayer
 
@@ -68,6 +70,7 @@ var current_game_level = 0
 var current_run = ["type", "finger", "cam"]
 
 var primeira_rodada := true
+
 
 
 func _ready() -> void:
@@ -172,3 +175,5 @@ func set_ui_visible(visible:bool):
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_text_delete"):
 		get_tree().reload_current_scene()
+	if event.is_action_pressed("ui_end"):
+		get_tree().change_scene_to_file("res://scenes/secret_scene.tscn")
