@@ -36,6 +36,8 @@ func _ready() -> void:
 	while _current_slider.value == point:
 		_current_slider.value = randi_range(point - slider_len/2, point + slider_len/2)
 	
+	$AnimationPlayer.play("camera_in")
+	
 func handle_win():
 
 	if personagem_sprite:
