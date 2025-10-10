@@ -129,7 +129,7 @@ func update_ui() -> void:
 			var letter = _current_name[_current_letter_index]
 			var is_upper_letter = letter == letter.to_upper()
 			
-			$PlusLabel.visible = is_upper_letter
+			$PlusLabel.visible = is_upper_letter and GameManager.current_level == 0
 			
 			if is_upper_letter:
 				instruction_1.setup_instruction("shift") 

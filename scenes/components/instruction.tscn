@@ -140,6 +140,7 @@ region = Rect2(17, 195, 13, 11)
 script = ExtResource("1_stmaa")
 
 [node name="Enter" type="TextureRect" parent="."]
+visible = false
 offset_right = 28.0
 offset_bottom = 11.0
 texture = SubResource("AtlasTexture_w8wlg")
@@ -182,7 +183,6 @@ offset_bottom = 11.0
 texture = SubResource("AtlasTexture_y3nmj")
 
 [node name="A" type="TextureRect" parent="."]
-visible = false
 offset_right = 13.0
 offset_bottom = 11.0
 texture = SubResource("AtlasTexture_nbyv3")

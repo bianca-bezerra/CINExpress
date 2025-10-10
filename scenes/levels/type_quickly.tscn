@@ -107,16 +107,16 @@ text = "Boa"
 horizontal_alignment = 1
 
 [node name="Instruction1" parent="." instance=ExtResource("8_otq57")]
-position = Vector2(356, 172)
+position = Vector2(344, 103)
 
 [node name="Instruction2" parent="." instance=ExtResource("8_otq57")]
-position = Vector2(410, 172)
+position = Vector2(398, 103)
 
 [node name="PlusLabel" type="Label" parent="."]
-offset_left = 393.0
-offset_top = 168.0
-offset_right = 408.0
-offset_bottom = 191.0
+offset_left = 381.0
+offset_top = 99.0
+offset_right = 396.0
+offset_bottom = 122.0
 theme_override_fonts/font = ExtResource("3_kwiqn")
 text = "+"
 
