@@ -38,6 +38,7 @@ position = Vector2(240, 135)
 texture = ExtResource("2_1djc6")
 
 [node name="PreviousButton" type="Button" parent="."]
+z_index = 41
 offset_left = 137.0
 offset_top = 157.0
 offset_right = 176.505
@@ -60,6 +61,8 @@ offset_bottom = 112.0
 theme_override_colors/font_color = Color(0.33028352, 0.33028352, 0.33028352, 1)
 theme_override_fonts/font = ExtResource("4_37a74")
 theme_override_font_sizes/font_size = 8
+max_length = 20
+keep_editing_on_text_submit = true
 flat = true
 
 [node name="WarningLabel" type="RichTextLabel" parent="."]
@@ -73,5 +76,5 @@ theme_override_font_sizes/normal_font_size = 8
 text = "Esse nome ja existe"
 
 [connection signal="pressed" from="PreviousButton" to="." method="_on_previous_button_pressed"]
-[connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_text_submitted"]
 [connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_2_text_submitted"]
+[connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_text_submitted"]

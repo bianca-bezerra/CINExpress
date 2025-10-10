@@ -52,6 +52,7 @@ size_flags_vertical = 8
 alignment = 1
 
 [node name="InputLineEdit" parent="CanvasLayer" instance=ExtResource("3_ufyvn")]
+keep_editing_on_text_submit = true
 
 [node name="AssinaturaDigital" type="TextureRect" parent="CanvasLayer"]
 offset_left = 160.0

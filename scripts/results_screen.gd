@@ -15,7 +15,7 @@ func _ready() -> void:
 	score_label.text = "0"
 	cins_label.text = "x0"
 	var _player_name: String = PlayerManager._current_player_data["name"]
-	title_label.text = "Atendente [wave] %s [/wave]" % _player_name.left(10)
+	title_label.text = "Atendente\n[wave]%s[/wave]" % _player_name
 	
 	start_score_animation()
 	retry_game_button.grab_focus.call_deferred()
