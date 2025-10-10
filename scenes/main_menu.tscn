@@ -88,6 +88,7 @@ texture = ExtResource("5_rtw2f")
 [node name="StartButton" type="Button" parent="GUIControl/ButtonGroup"]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
+theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("6_oa1go")
 theme_override_font_sizes/font_size = 12
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ln24")
@@ -99,6 +100,7 @@ metadata/_custom_type_script = "uid://blyqdi7p7gtnv"
 [node name="RankButton" type="Button" parent="GUIControl/ButtonGroup"]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
+theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("6_oa1go")
 theme_override_font_sizes/font_size = 12
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ln24")
@@ -106,9 +108,10 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_bqqt6")
 text = "PLACAR"
 script = ExtResource("6_tbmy8")
 
-[node name="AboutButton" type="Button" parent="GUIControl/ButtonGroup"]
+[node name="CreditButton" type="Button" parent="GUIControl/ButtonGroup"]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
+theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("6_oa1go")
 theme_override_font_sizes/font_size = 12
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ln24")
@@ -119,6 +122,8 @@ script = ExtResource("6_tbmy8")
 [node name="ExitButton" type="Button" parent="GUIControl/ButtonGroup"]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
+theme_override_colors/font_outline_color = Color(0.8163365, 0.08628107, 0, 1)
+theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("6_oa1go")
 theme_override_font_sizes/font_size = 12
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ln24")

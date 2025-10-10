@@ -86,6 +86,12 @@ func start_game():
 	scene_transintion_animation.play("fade_in")
 	get_tree().change_scene_to_file("res://scenes/intro_scene.tscn")
 	scene_transintion_animation.play("fade_out")
+	
+func change_to_ranking():
+	get_tree().change_scene_to_file("res://scenes/ranking_scene.tscn")
+	
+func change_to_credits():
+	get_tree().change_scene_to_file("res://scenes/credits_scene.tscn")
 
 func change_to_next_level():
 	_can_show_game_ui = true
@@ -164,7 +170,5 @@ func set_ui_visible(visible:bool):
 	
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_page_down"):
-		SaveManager.reset_save()
 	if event.is_action_pressed("ui_text_delete"):
 		get_tree().reload_current_scene()

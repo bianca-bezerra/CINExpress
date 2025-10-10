@@ -1,19 +1,187 @@
-[gd_scene load_steps=2 format=3 uid="uid://cf4h7ycgcceh3"]
+[gd_scene load_steps=22 format=3 uid="uid://cf4h7ycgcceh3"]
 
 [ext_resource type="Script" uid="uid://bkemriv2lo53o" path="res://scripts/ranking_scene.gd" id="1_rmg74"]
+[ext_resource type="Texture2D" uid="uid://co5ab58xpqqx0" path="res://assets/UI/bg.png" id="2_lxse8"]
+[ext_resource type="Texture2D" uid="uid://cbeqlqh2sritp" path="res://assets/sprites/trofeu-primeiro.png" id="2_o1e0t"]
+[ext_resource type="Texture2D" uid="uid://ds0w5xuy65tt3" path="res://assets/sprites/trofeu-segundo.png" id="3_lxse8"]
+[ext_resource type="Texture2D" uid="uid://cgr6nomoomgre" path="res://assets/sprites/trofeu-terceiro.png" id="4_y8q7m"]
+[ext_resource type="FontFile" uid="uid://dolnaadbveks2" path="res://assets/fonts/nokiafc22.ttf" id="6_y8q7m"]
+[ext_resource type="Texture2D" uid="uid://dkj45j6gkdlw6" path="res://assets/sprites/Star.png" id="7_xi1kg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_diky7"]
+atlas = ExtResource("7_xi1kg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcrg3"]
+atlas = ExtResource("7_xi1kg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8npu"]
+atlas = ExtResource("7_xi1kg")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dh2ki"]
+atlas = ExtResource("7_xi1kg")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr4vl"]
+atlas = ExtResource("7_xi1kg")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rm31"]
+atlas = ExtResource("7_xi1kg")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xe0u"]
+atlas = ExtResource("7_xi1kg")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4v02o"]
+atlas = ExtResource("7_xi1kg")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fpt3"]
+atlas = ExtResource("7_xi1kg")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtse3"]
+atlas = ExtResource("7_xi1kg")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnu5h"]
+atlas = ExtResource("7_xi1kg")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukvby"]
+atlas = ExtResource("7_xi1kg")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2te7"]
+atlas = ExtResource("7_xi1kg")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_shjps"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_diky7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcrg3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8npu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dh2ki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qr4vl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rm31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xe0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4v02o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fpt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtse3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnu5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukvby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2te7")
+}],
+"loop": true,
+"name": &"brilhar",
+"speed": 5.0
+}]
 
 [node name="RankingScene" type="Node2D"]
 script = ExtResource("1_rmg74")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Dashboard" type="HBoxContainer" parent="CanvasLayer"]
-anchors_preset = -1
-anchor_top = 0.5
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer"]
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.66700006
-offset_bottom = -0.0900116
+anchor_bottom = 1.0
+offset_left = 83.0
+offset_top = 64.0
+offset_right = -58.0
+offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 10
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
 alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.45840472, 0.45840514, 0.45840502, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -36.25
+offset_right = 485.0
+offset_bottom = 322.25
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_lxse8")
+expand_mode = 5
+
+[node name="TrofeuOuro" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(168, 58)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_o1e0t")
+
+[node name="TrofeuPrata" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(167, 107)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_lxse8")
+
+[node name="TrofeuBronze" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(241, 165)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_y8q7m")
+offset = Vector2(-156.92308, -20.769234)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 197.0
+offset_top = 14.0
+offset_right = 288.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(0.9204884, 0.91471463, 0, 1)
+theme_override_colors/font_outline_color = Color(0.53796226, 0.33417144, 9.62615e-08, 1)
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("6_y8q7m")
+theme_override_font_sizes/font_size = 20
+text = "PLACAR"
+
+[node name="Estrela1" type="AnimatedSprite2D" parent="."]
+position = Vector2(180, 26)
+sprite_frames = SubResource("SpriteFrames_shjps")
+animation = &"brilhar"
+frame_progress = 0.5322167
+
+[node name="Estrela2" type="AnimatedSprite2D" parent="."]
+position = Vector2(298, 26)
+sprite_frames = SubResource("SpriteFrames_shjps")
+animation = &"brilhar"

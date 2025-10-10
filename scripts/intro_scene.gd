@@ -3,7 +3,7 @@ extends Node2D
 @onready var personagem_sprite = $Personagem
 @onready var cenario = $Cenario
 @onready var balao_fala = $BalaoFala 
-@onready var balao_fala_atendente = $BalaoFalaAtendente
+@onready var balao_imagem = $BalaoImagem 
 @onready var texto_instrucao = $TextoInstrucao
 @onready var atendente = $AttendantGroup
 
@@ -22,10 +22,10 @@ func _ready():
 	personagem_sprite.texture = CharacterManager.get_sprite_cinza()
 	personagem_sprite.position = Vector2(posicao_inicial_x, posicao_y)
 	
+	balao_imagem.visible = false
+	
 	if balao_fala:
 		balao_fala.visible = false
-	if balao_fala_atendente:
-		balao_fala_atendente.visible = false
 	if texto_instrucao:
 		texto_instrucao.visible = false
 	
@@ -52,7 +52,7 @@ func animar_entrada_com_falas():
 func _on_animacao_completa_com_falas():
 	await get_tree().create_timer(0.3).timeout
 	
-	mostrar_fala_personagem("Quero minha CIN!")
+	mostrar_fala_personagem()
 	await get_tree().create_timer(2.0).timeout
 	
 	if texto_instrucao:
@@ -63,7 +63,7 @@ func _on_animacao_completa_com_falas():
 
 func animar_entrada_sem_falas():
 	var tween_movimento = create_tween()
-	tween_movimento.tween_property(personagem_sprite, "position:x", posicao_final_x, 1.0)\
+	tween_movimento.tween_property(personagem_sprite, "position:x", posicao_final_x, 0.7)\
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	
 	var tween_bounce = create_tween()
@@ -78,26 +78,16 @@ func _on_animacao_completa_sem_falas():
 	await get_tree().create_timer(0.5).timeout
 	iniciar_jogo_sem_intro()
 
-func mostrar_fala_personagem(texto: String):
+func mostrar_fala_personagem():
 	if not balao_fala:
 		return
-	balao_fala.text = texto
+		
+	balao_imagem.visible = true	
 	balao_fala.visible = true
 	balao_fala.modulate.a = 0
 	var tween = create_tween()
 	tween.tween_property(balao_fala, "modulate:a", 1.0, 0.3)
 
-func mostrar_fala_atendente(texto: String):
-	if not balao_fala_atendente:
-		return
-	balao_fala_atendente.text = texto
-	balao_fala_atendente.visible = true
-	balao_fala_atendente.modulate.a = 0
-	var tween = create_tween()
-	tween.tween_property(balao_fala_atendente, "modulate:a", 1.0, 0.3)
-	tween.set_trans(Tween.TRANS_ELASTIC)
-	await tween.finished
-	
 
 func animar_piscar_texto():
 	if not texto_instrucao:
@@ -131,13 +121,10 @@ func iniciar_jogo():
 		texto_instrucao.visible = false
 
 	await atentente_surgindo_esquerda()
-	mostrar_fala_atendente("Pois bora fazer!")
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(1.0).timeout
 	
 	if balao_fala:
 		balao_fala.visible = false
-	if balao_fala_atendente:
-		balao_fala_atendente.visible = false
 	
 	GameManager.game_timer.start(GameManager.total_game_duration)
 	
