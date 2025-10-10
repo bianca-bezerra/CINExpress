@@ -19,7 +19,6 @@ func _on_name_input_text_submitted(new_text: String) -> void:
 	var allowed_pattern := RegEx.new()
 	allowed_pattern.compile("^[A-Za-zÀ-ÿ0-9_ ]+$")  
 	
-
 	if player_name == "":
 		_show_warning("Insira um nome válido")
 		return
