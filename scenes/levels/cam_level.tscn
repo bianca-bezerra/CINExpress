@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://1r3pfb0em8ow"]
+[gd_scene load_steps=11 format=3 uid="uid://1r3pfb0em8ow"]
 
 [ext_resource type="Shader" uid="uid://36vk6bexpyhj" path="res://scenes/levels/pixelate_filter.gdshader" id="1_0v84v"]
 [ext_resource type="Script" uid="uid://dos4sq85agvu2" path="res://scenes/levels/cam_level.gd" id="1_r3o5b"]
+[ext_resource type="Texture2D" uid="uid://by82q4ftiity4" path="res://assets/sprites/fundo (1).png" id="2_l4ifs"]
+[ext_resource type="Texture2D" uid="uid://bihkwjs58e840" path="res://assets/sprites/camera_ia.png" id="2_muaox"]
 [ext_resource type="Texture2D" uid="uid://c4bdeh4vffm5b" path="res://assets/sprites/camera_point_of_view.png" id="2_oh5ai"]
 [ext_resource type="Texture2D" uid="uid://derrqbcyjmlrw" path="res://assets/sprites/ninguem.png" id="2_r3o5b"]
 
@@ -41,23 +43,47 @@ _data = {
 shader = ExtResource("1_0v84v")
 shader_parameter/offset = 0.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_su7k0"]
+
 [node name="CamLevel" type="Node2D"]
 position = Vector2(0, 1)
 script = ExtResource("1_r3o5b")
 MAX_POINTS = 10
+metadata/_edit_horizontal_guides_ = [148.0]
+metadata/_edit_vertical_guides_ = [228.0]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -2
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_top = 1.0
+offset_right = 480.0
+offset_bottom = 271.0
+texture = ExtResource("2_l4ifs")
+
 [node name="bg" type="TextureRect" parent="CanvasLayer"]
-z_index = -10
 z_as_relative = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -11.0
+offset_right = -11.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_oh5ai")
+
+[node name="Icon" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(228, 191)
+scale = Vector2(4, 4)
+texture = ExtResource("2_r3o5b")
+
+[node name="camera" type="TextureRect" parent="CanvasLayer"]
+offset_left = -273.0
+offset_top = -271.0
+offset_right = -145.0
+offset_bottom = -143.0
+scale = Vector2(8, 8)
+texture = ExtResource("2_muaox")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../ColorRect")
@@ -65,41 +91,28 @@ libraries = {
 &"": SubResource("AnimationLibrary_l4ifs")
 }
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(240, 190)
-scale = Vector2(4, 4)
-texture = ExtResource("2_r3o5b")
-
 [node name="RectBlur" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_r3o5b")
-offset_left = 47.0
-offset_top = 4.0
-offset_right = 431.0
-offset_bottom = 258.0
+offset_left = 87.0
+offset_top = 25.0
+offset_right = 375.0
+offset_bottom = 233.0
 color = Color(1, 0.42352942, 1, 0.03529412)
 
 [node name="VSlider" type="VSlider" parent="."]
-offset_left = 430.0
-offset_top = 18.0
-offset_right = 446.0
-offset_bottom = 216.0
+offset_left = 399.0
+offset_top = 28.0
+offset_right = 415.0
+offset_bottom = 226.0
 max_value = 10.0
 
 [node name="HSlider" type="HSlider" parent="."]
 custom_minimum_size = Vector2(198, 16)
-offset_left = 147.0
-offset_top = 143.0
-offset_right = 345.0
-offset_bottom = 341.0
+offset_left = 138.0
+offset_top = 141.0
+offset_right = 336.0
+offset_bottom = 339.0
 max_value = 10.0
-
-[node name="ColorRect" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(280, 0)
-offset_left = 46.0
-offset_top = 2.0
-offset_right = 433.0
-offset_bottom = 264.0
-color = Color(1, 1, 0.8862745, 0)
 
 [node name="DebugLabel" type="Label" parent="."]
 offset_left = 45.0
@@ -109,5 +122,22 @@ offset_bottom = 59.0
 
 [node name="FeedbackMarker" type="Marker2D" parent="."]
 position = Vector2(353, 31)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(280, 0)
+offset_left = 87.58074
+offset_top = 22.884165
+offset_right = 374.37625
+offset_bottom = 232.33244
+rotation = -0.0004662088
+color = Color(1, 1, 1, 0)
+
+[node name="feedbackRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_su7k0")
+offset_left = 390.0
+offset_top = 13.0
+offset_right = 430.0
+offset_bottom = 53.0
+scale = Vector2(0.5, 0.5)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

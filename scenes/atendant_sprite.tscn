@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpn374bxbv210"]
+
+[ext_resource type="Texture2D" uid="uid://bgcg3bgbefgns" path="res://assets/sprites/characters/atendente.png" id="1_fetmb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okg68"]
+atlas = ExtResource("1_fetmb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lamrv"]
+atlas = ExtResource("1_fetmb")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fw2o2"]
+atlas = ExtResource("1_fetmb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27kvd"]
+atlas = ExtResource("1_fetmb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wbo4m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okg68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lamrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okg68")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fw2o2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27kvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fw2o2")
+}],
+"loop": false,
+"name": &"sad",
+"speed": 5.0
+}]
+
+[node name="AtendantSprite" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_wbo4m")

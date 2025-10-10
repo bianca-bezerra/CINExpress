@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bik28xfrv6w6x"]
+[gd_scene load_steps=11 format=3 uid="uid://bik28xfrv6w6x"]
 
-[ext_resource type="Texture2D" uid="uid://bfkj5rxbap7q1" path="res://assets/UI/Title.svg" id="1_bqqt6"]
+[ext_resource type="Script" uid="uid://bkbgwdxb6caah" path="res://scripts/cin_menu.gd" id="1_tbmy8"]
 [ext_resource type="Texture2D" uid="uid://co5ab58xpqqx0" path="res://assets/UI/bg.png" id="1_wu84c"]
+[ext_resource type="Texture2D" uid="uid://ky8twegxb73k" path="res://assets/sprites/LOGO CIN EXPRESS - 1440x1024.png" id="2_oa1go"]
 [ext_resource type="Script" uid="uid://dnfrdjqd0eghm" path="res://scripts/GUI/menu_button_group.gd" id="4_8ln24"]
 [ext_resource type="Texture2D" uid="uid://b8fqr7idkmn1t" path="res://assets/UI/mao.png" id="5_rtw2f"]
 [ext_resource type="FontFile" uid="uid://dolnaadbveks2" path="res://assets/fonts/nokiafc22.ttf" id="6_oa1go"]
@@ -22,6 +23,7 @@ corner_radius_bottom_right = 10
 corner_detail = 1
 
 [node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_tbmy8")
 
 [node name="GUIControl" type="Control" parent="."]
 layout_mode = 3
@@ -44,14 +46,20 @@ grow_vertical = 2
 texture = ExtResource("1_wu84c")
 expand_mode = 5
 
-[node name="Title2" type="TextureRect" parent="GUIControl"]
+[node name="Logo" type="TextureRect" parent="GUIControl"]
 layout_mode = 1
-offset_left = 139.79616
-offset_top = 3.0
-offset_right = 351.32495
-offset_bottom = 138.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -410.0
+offset_top = 11.0
+offset_right = -71.592285
+offset_bottom = 146.0
+grow_horizontal = 0
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(169, 67)
 size_flags_horizontal = 4
-texture = ExtResource("1_bqqt6")
+texture = ExtResource("2_oa1go")
 expand_mode = 1
 
 [node name="ButtonGroup" type="VBoxContainer" parent="GUIControl"]
@@ -73,8 +81,7 @@ alignment = 1
 script = ExtResource("4_8ln24")
 
 [node name="Mao" type="Sprite2D" parent="GUIControl/ButtonGroup"]
-visible = false
-position = Vector2(-10, 12.000002)
+position = Vector2(-7, 12)
 scale = Vector2(0.25000012, 0.2500001)
 texture = ExtResource("5_rtw2f")
 

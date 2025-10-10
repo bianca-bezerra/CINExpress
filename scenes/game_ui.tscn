@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bdp5hy2owkfhu"]
+[gd_scene load_steps=51 format=3 uid="uid://bdp5hy2owkfhu"]
 
 [ext_resource type="Script" uid="uid://crfcpslsb0bo8" path="res://scripts/game_ui.gd" id="1_jn2l2"]
 [ext_resource type="PackedScene" uid="uid://ctkoma8d2bmey" path="res://scenes/components/combo_gauge.tscn" id="2_rns2u"]
@@ -32,7 +32,8 @@
 [ext_resource type="Texture2D" uid="uid://byo5s364ta2v" path="res://assets/sprites/Inverted Hourglass/Inverted hourglass27.png" id="30_mbdak"]
 [ext_resource type="Texture2D" uid="uid://dkj45j6gkdlw6" path="res://assets/sprites/Star.png" id="31_32nla"]
 [ext_resource type="Texture2D" uid="uid://bydbgey83ieav" path="res://assets/sprites/cin_com_face.png" id="32_h8a34"]
-[ext_resource type="Shader" uid="uid://ch56waninvx74" path="res://assets/sprites/outline.gdshader" id="32_wbo4m"]
+[ext_resource type="Shader" path="res://assets/sprites/outline.gdshader" id="32_wbo4m"]
+[ext_resource type="PackedScene" uid="uid://dpn374bxbv210" path="res://scenes/atendant_sprite.tscn" id="34_nlan2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u001w"]
 animations = [{
@@ -239,10 +240,10 @@ script = ExtResource("1_jn2l2")
 [node name="TimerLabel" type="Label" parent="."]
 z_index = 10
 z_as_relative = false
-offset_left = 45.996975
-offset_top = 13.010717
-offset_right = 97.99697
-offset_bottom = 38.01072
+offset_left = 47.99814
+offset_top = 8.011185
+offset_right = 99.99813
+offset_bottom = 33.01119
 pivot_offset = Vector2(35, 13.5)
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_u2dgd")
@@ -254,10 +255,10 @@ vertical_alignment = 1
 [node name="ScoreLabel" type="RichTextLabel" parent="."]
 z_index = 10
 z_as_relative = false
-offset_left = 177.99812
-offset_top = 8.041473
-offset_right = 357.24225
-offset_bottom = 34.73516
+offset_left = 202.99857
+offset_top = 6.0472965
+offset_right = 382.24268
+offset_bottom = 32.740982
 pivot_offset = Vector2(30, 11)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
@@ -271,32 +272,31 @@ vertical_alignment = 1
 [node name="WalletLabel" type="Label" parent="."]
 z_index = 10
 z_as_relative = false
-offset_left = 371.99695
-offset_top = 13.086676
-offset_right = 433.99695
-offset_bottom = 38.086678
+offset_left = 407.99774
+offset_top = 10.095062
+offset_right = 469.99774
+offset_bottom = 35.095062
 pivot_offset = Vector2(30, 11)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_u2dgd")
 theme_override_font_sizes/font_size = 24
-text = "CINs: "
+text = "x8"
 
 [node name="ComboGauge" parent="." instance=ExtResource("2_rns2u")]
 z_index = 10
-offset_left = 354.97617
-offset_top = 102.08271
-offset_right = 410.97617
-offset_bottom = 138.0827
-rotation = 0.41887903
-scale = Vector2(2, 2)
+offset_left = 381.96112
+offset_top = 167.08902
+offset_right = 437.96112
+offset_bottom = 203.08902
+scale = Vector2(1.5, 1.5)
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(251.99347, 28.058714)
 
 [node name="TimerAnim" type="AnimatedSprite2D" parent="."]
 process_mode = 3
-position = Vector2(28.994175, 25.006756)
+position = Vector2(30.994873, 22.007221)
 scale = Vector2(0.7178579, 0.7178579)
 sprite_frames = SubResource("SpriteFrames_u001w")
 frame_progress = 0.8879474
@@ -304,12 +304,16 @@ flip_v = true
 
 [node name="StarAnim" type="AnimatedSprite2D" parent="."]
 process_mode = 3
-position = Vector2(166.9958, 18.03891)
+visible = false
+position = Vector2(174.9958, 18.040762)
 sprite_frames = SubResource("SpriteFrames_okg68")
 frame_progress = 0.38215315
 
 [node name="WalletSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_nlan2")
-position = Vector2(350.99393, 26.08178)
-scale = Vector2(0.26766846, 0.26766846)
+position = Vector2(382.99478, 22.089233)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("32_h8a34")
+
+[node name="AtendantSprite" parent="." instance=ExtResource("34_nlan2")]
+position = Vector2(180.99648, 15.042182)

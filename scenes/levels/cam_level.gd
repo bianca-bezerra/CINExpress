@@ -7,7 +7,7 @@ extends GameLevel
 @onready var v_slider_default_modulate = $VSlider.modulate
 @onready var floating_text_scene = preload("res://scenes/components/floating_text.tscn")
 @onready var reset_timer = $ResetTimer
-@onready var personagem_sprite = $Icon
+@onready var personagem_sprite = $CanvasLayer/Icon
 
 var slider_len = clamp(10 + SLIDER_GROW_FACTOR * GameManager.current_level, 0, MAX_POINTS)
 var point = randi_range(1, slider_len/2)
@@ -20,7 +20,6 @@ var _phrases = ["Diga Xiss!", "Uau!", "Massa!"]
 var player_winned = false
 
 func _ready() -> void:
-
 	if personagem_sprite and CharacterManager.personagem_atual:
 		personagem_sprite.texture = CharacterManager.get_sprite_cinza()
 		print("📸 Personagem no minigame da câmera: ", CharacterManager.personagem_atual)
@@ -66,12 +65,10 @@ func _process(_delta: float) -> void:
 		AudioManager.play_sfx("wrong_hit")
 		PlayerManager.stop_combo()
 	if actual_point == point:
-		_current_slider.modulate = Color.GREEN
-	elif abs(actual_point - point) < 3:
-		_current_slider.modulate = Color.YELLOW
+		$feedbackRect.modulate = Color.GREEN
 	else:
-		$VSlider.modulate = v_slider_default_modulate
-	
+		$feedbackRect.modulate = Color.RED
+		
 	shaderRect.material.set("shader_parameter/offset", 2 * (point  - actual_point))
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

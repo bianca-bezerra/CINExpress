@@ -18,14 +18,6 @@ var perfect_phrases = [
 	"Arrasou!!"
 ]
 
-var good_phrases = [
-	"Boa",
-	"Legal",
-	"Bacana",
-	"Nice",
-	"Massa"
-]
-
 var bad_phrases = [
 	"Err..",
 	"Ops..",
@@ -40,18 +32,19 @@ var bad_phrases = [
 func spawn_motivation_text():
 	var score = finger.score_percentage
 	var text = ""
+	var color = Color.WHITE
 	
-	if score >= 0.5:
+	if score >= 0.1 or can_win:
 		text = perfect_phrases[randi() % perfect_phrases.size()]
 		text = "[shake][rainbow]%s[/rainbow][/shake]" % text
-	elif score >= 0.1 or can_win:
-		text = good_phrases[randi() % good_phrases.size()]
 	else:
 		text = bad_phrases[randi() % bad_phrases.size()]
 		text = "[shake rate=10.0 level=2]%s[/shake]" % text
+		color = Color("ff3700")
 	
 	var floating_text = floating_text_scene.instantiate()
 	floating_text.text = text
+	floating_text.modulate = color
 	floating_text.scale = Vector2(2, 2)
 	floating_text.global_position = $FeedbackMarker.global_position
 	add_child(floating_text)

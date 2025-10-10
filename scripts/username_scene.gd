@@ -46,6 +46,7 @@ func _on_name_input_text_submitted(new_text: String) -> void:
 			return 
 	
 	_hide_warning()
+	print("bora")
 	PlayerManager.register_new_player(player_name)
 	GameManager.start_game()
 
@@ -53,14 +54,12 @@ func _on_name_input_text_submitted(new_text: String) -> void:
 func _show_warning(msg: String) -> void:
 	warning_label.visible = true
 	warning_label.text = msg
+	input.grab_click_focus()
+	
 
 func _hide_warning() -> void:
 	warning_label.visible = false
-	
-## workaround para todos os casos de não pegar input
-func _unhandled_input(_event: InputEvent) -> void:
-	if not input.has_focus():
-		input.grab_focus()
+
 
 func _on_previous_button_pressed():
 	GameManager.change_to_menu_scene()
