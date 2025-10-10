@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://1r3pfb0em8ow"]
+[gd_scene load_steps=22 format=3 uid="uid://1r3pfb0em8ow"]
 
 [ext_resource type="Shader" uid="uid://36vk6bexpyhj" path="res://scenes/levels/pixelate_filter.gdshader" id="1_0v84v"]
 [ext_resource type="Script" uid="uid://dos4sq85agvu2" path="res://scenes/levels/cam_level.gd" id="1_r3o5b"]
@@ -6,30 +6,143 @@
 [ext_resource type="Texture2D" uid="uid://bihkwjs58e840" path="res://assets/sprites/camera_ia.png" id="2_muaox"]
 [ext_resource type="Texture2D" uid="uid://c4bdeh4vffm5b" path="res://assets/sprites/camera_point_of_view.png" id="2_oh5ai"]
 [ext_resource type="Texture2D" uid="uid://derrqbcyjmlrw" path="res://assets/sprites/ninguem.png" id="2_r3o5b"]
+[ext_resource type="Texture2D" uid="uid://cengme4nf601a" path="res://assets/UI/slide/grabber_vertical.png" id="7_6pmmh"]
+[ext_resource type="Texture2D" uid="uid://ua3kc12kfhgi" path="res://assets/UI/slide/grabber.png" id="7_su7k0"]
+[ext_resource type="Texture2D" uid="uid://evip8hwf3d1x" path="res://assets/UI/slide/tick.png" id="7_vb830"]
+[ext_resource type="Texture2D" uid="uid://c8uawopoaeypv" path="res://assets/UI/slide/tick_vertical.png" id="8_bygdi"]
+[ext_resource type="FontFile" uid="uid://dolnaadbveks2" path="res://assets/fonts/nokiafc22.ttf" id="8_su7k0"]
+[ext_resource type="PackedScene" uid="uid://ch0ti8rxx77mt" path="res://scenes/components/instruction.tscn" id="12_lljfb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_su7k0"]
+
+[sub_resource type="Animation" id="Animation_8kiks"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-36.000004, -101.00001)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../VSlider:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(39, -0.2025, 0, 0.2025, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../VSlider:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(36, -0.2025, 0, 0.2025, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../HSlider:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(96, -0.2025, 0, 0.2025, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../HSlider:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(241, -0.2025, 0, 0.2025, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_bygdi"]
+resource_name = "camera_in"
+length = 0.405
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-24.000004, -98), Vector2(-36.000004, -101.00001)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../VSlider:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(47, 0, 0, 0.0675, -1.3333334, 39, -0.2025, 0, 0.2025, 0),
+"times": PackedFloat32Array(0, 0.405)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../VSlider:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(43, 0, 0, 0.0675, -1.1666667, 36, -0.2025, 0, 0.2025, 0),
+"times": PackedFloat32Array(0, 0.405)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../HSlider:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(105, 0, 0, 0.0675, -1.5, 96, -0.2025, 0, 0.2025, 0),
+"times": PackedFloat32Array(0, 0.405)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../HSlider:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(248, 0, 0, 0.0675, -1.1666667, 241, -0.2025, 0, 0.2025, 0),
+"times": PackedFloat32Array(0, 0.405)
+}
 
 [sub_resource type="Animation" id="Animation_oh5ai"]
 resource_name = "flash"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.36666667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
@@ -38,12 +151,30 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l4ifs"]
 _data = {
+&"RESET": SubResource("Animation_8kiks"),
+&"camera_in": SubResource("Animation_bygdi"),
 &"flash": SubResource("Animation_oh5ai")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r3o5b"]
 shader = ExtResource("1_0v84v")
 shader_parameter/offset = 0.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6pmmh"]
+texture = ExtResource("8_bygdi")
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_su7k0"]
+texture = ExtResource("7_vb830")
+expand_margin_left = 4.0
+expand_margin_top = 8.0
+expand_margin_right = 4.0
+expand_margin_bottom = 8.0
+axis_stretch_horizontal = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_muaox"]
 shader = ExtResource("1_0v84v")
@@ -79,7 +210,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -11.0
+offset_top = 15.0
 offset_right = -11.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_oh5ai")
@@ -123,21 +256,34 @@ offset_bottom = 213.0
 color = Color(1, 0.42352942, 1, 0.03529412)
 
 [node name="VSlider" type="VSlider" parent="."]
-offset_left = 93.0
-offset_top = 39.0
-offset_right = 109.0
-offset_bottom = 209.0
+offset_left = 39.0
+offset_top = 36.0
+offset_right = 55.0
+offset_bottom = 234.0
+theme_override_constants/center_grabber = 0
+theme_override_constants/grabber_offset = -5
+theme_override_icons/grabber = ExtResource("7_6pmmh")
+theme_override_icons/grabber_highlight = ExtResource("7_6pmmh")
+theme_override_icons/grabber_disabled = ExtResource("7_6pmmh")
+theme_override_styles/slider = SubResource("StyleBoxTexture_6pmmh")
 max_value = 10.0
 
 [node name="HSlider" type="HSlider" parent="."]
 custom_minimum_size = Vector2(198, 16)
-offset_left = 138.0
-offset_top = 141.0
-offset_right = 336.0
-offset_bottom = 339.0
+offset_left = 96.0
+offset_top = 241.0
+offset_right = 380.0
+offset_bottom = 257.00128
+theme_override_constants/center_grabber = 0
+theme_override_constants/grabber_offset = 4
+theme_override_icons/grabber = ExtResource("7_su7k0")
+theme_override_icons/grabber_highlight = ExtResource("7_su7k0")
+theme_override_icons/grabber_disabled = ExtResource("7_su7k0")
+theme_override_styles/slider = SubResource("StyleBoxTexture_su7k0")
 max_value = 10.0
 
 [node name="DebugLabel" type="Label" parent="."]
+visible = false
 offset_left = 45.0
 offset_top = 36.0
 offset_right = 155.0
@@ -154,5 +300,37 @@ offset_top = 67.0
 offset_right = 405.0
 offset_bottom = 119.0
 scale = Vector2(0.5, 0.5)
+
+[node name="InstructionGroup" type="Node2D" parent="."]
+position = Vector2(103, 94)
+
+[node name="PlusLabel" type="Label" parent="InstructionGroup"]
+offset_left = -15.0
+offset_top = 11.0
+offset_right = 17.0
+offset_bottom = 34.0
+text = "+"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="OrLabel" type="Label" parent="InstructionGroup"]
+offset_left = -16.0
+offset_top = 3.0
+offset_right = 19.0
+offset_bottom = 17.0
+theme_override_fonts/font = ExtResource("8_su7k0")
+theme_override_font_sizes/font_size = 11
+text = "Ou"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="InstructionSlider1" parent="InstructionGroup" instance=ExtResource("12_lljfb")]
+position = Vector2(-27, 4)
+
+[node name="InstructionSlider2" parent="InstructionGroup" instance=ExtResource("12_lljfb")]
+position = Vector2(13, 4)
+
+[node name="InstructionCamera" parent="InstructionGroup" instance=ExtResource("12_lljfb")]
+position = Vector2(-17, 29)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

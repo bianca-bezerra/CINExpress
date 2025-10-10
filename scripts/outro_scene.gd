@@ -34,7 +34,7 @@ func _ready():
 
 func animar_saida():
 	var tween_movimento = create_tween()
-	tween_movimento.tween_property(personagem_sprite, "position:x", posicao_final_x, 1.0)\
+	tween_movimento.tween_property(personagem_sprite, "position:x", posicao_final_x, 0.7)\
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	
 	var tween_bounce = create_tween()

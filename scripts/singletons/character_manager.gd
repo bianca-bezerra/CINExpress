@@ -59,7 +59,7 @@ func resetar_lista_nomes():
 	nomes_disponiveis.shuffle()
 
 func sortear_personagem() -> String:
-	if nomes_disponiveis.is_empty():
+	if nomes_disponiveis.is_empty():	
 		resetar_lista_nomes()
 	
 	personagem_atual = nomes_disponiveis.pop_front()
