@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://1r3pfb0em8ow"]
+[gd_scene load_steps=20 format=3 uid="uid://1r3pfb0em8ow"]
 
 [ext_resource type="Shader" uid="uid://36vk6bexpyhj" path="res://scenes/levels/pixelate_filter.gdshader" id="1_0v84v"]
 [ext_resource type="Script" uid="uid://dos4sq85agvu2" path="res://scenes/levels/cam_level.gd" id="1_r3o5b"]
@@ -18,30 +18,139 @@ resource_name = "flash"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.36666667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 0.8862745, 1), Color(1, 1, 0.8862745, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_bygdi"]
+resource_name = "camera_in"
+length = 0.405
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-24.000004, -98), Vector2(-36.000004, -101.00001)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../VSlider:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(47, 0, 0, 0.0675, -1.3333334, 39, -0.2025, 0, 0.2025, 0),
+"times": PackedFloat32Array(0, 0.405)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../VSlider:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(43, 0, 0, 0.0675, -1.1666667, 36, -0.2025, 0, 0.2025, 0),
+"times": PackedFloat32Array(0, 0.405)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../HSlider:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(105, 0, 0, 0.0675, -1.5, 96, -0.2025, 0, 0.2025, 0),
+"times": PackedFloat32Array(0, 0.405)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../HSlider:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(248, 0, 0, 0.0675, -1.1666667, 241, -0.2025, 0, 0.2025, 0),
+"times": PackedFloat32Array(0, 0.405)
+}
+
+[sub_resource type="Animation" id="Animation_8kiks"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-36.000004, -101.00001)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../VSlider:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(39, -0.2025, 0, 0.2025, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../VSlider:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(36, -0.2025, 0, 0.2025, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../HSlider:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(96, -0.2025, 0, 0.2025, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../HSlider:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(241, -0.2025, 0, 0.2025, 0),
+"times": PackedFloat32Array(0)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l4ifs"]
 _data = {
+&"RESET": SubResource("Animation_8kiks"),
+&"camera_in": SubResource("Animation_bygdi"),
 &"flash": SubResource("Animation_oh5ai")
 }
 
@@ -162,7 +271,7 @@ custom_minimum_size = Vector2(198, 16)
 offset_left = 96.0
 offset_top = 241.0
 offset_right = 380.0
-offset_bottom = 257.0
+offset_bottom = 257.00128
 theme_override_constants/center_grabber = 0
 theme_override_constants/grabber_offset = 4
 theme_override_icons/grabber = ExtResource("7_su7k0")
