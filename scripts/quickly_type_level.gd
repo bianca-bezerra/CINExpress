@@ -3,7 +3,7 @@ class_name QuicklyType
 
 # Preload da cena para a letra
 const type_feedback_write = preload("res://scenes/components/type_feeadback_write.tscn")
-
+var names = preload("res://scripts/names.gd").new()
 
 @onready var hflow_container: HFlowContainer = $CanvasLayer/HFlowContainer
 @onready var feedback_label: RichTextLabel = $CanvasLayer/FeedbackLabel
@@ -28,17 +28,6 @@ var _current_letter_index: int = 0
 var _round_start_time: float = 0.0
 var _caps_lock_enabled := false
 
-
-func unnanbrazile(letter: String) -> String:
-	if letter == 'á' or letter == 'ã': return 'a'
-	if letter == 'é' or letter == 'ẽ': return 'e'
-	if letter == 'í': return 'i'
-	if letter == 'ó' or letter == 'õ': return 'o'
-	if letter == 'ú': return 'u'
-	if letter == 'ç': return 'c'
-	return letter
-
-
 func _ready() -> void:
 	warning_label.visible = false
 	input_line_edit.text_changed.connect(_on_text_changed)
@@ -50,9 +39,18 @@ func start_game() -> void:
 	_current_letter_index = 0
 	feedback_label.text = ""
 
-	var dificult_index = clamp(GameManager.current_level, 0, len(GameManager.names) - 1)
-	_current_name = GameManager.names[dificult_index].pick_random()
+	var fase_atual: int = GameManager.current_level
+	var fase_par: bool = (fase_atual % 2) == 0
+	
+	# O nome começa com tamanho de 3, e aumenta em 1 a cada 2 fases
+	var tamanho_nome: int = (fase_atual - 1) + 3 if fase_par else fase_atual - 1 + 2
 
+	tamanho_nome = clamp(tamanho_nome, 3, 20)
+	print("Tamanho do nome no jogo de teclado: ", tamanho_nome)
+	var genero_atual: int = CharacterManager.get_genero_personagem_atual()
+	
+	_current_name = names.gerar_nome(genero_atual, tamanho_nome)
+	
 	setup_word_display()
 	update_ui()
 
