@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8nbef86tdjaf"]
+
+[ext_resource type="Script" uid="uid://dkhisvaialj43" path="res://scripts/attendant_group.gd" id="1_pe8il"]
+[ext_resource type="PackedScene" uid="uid://dpn374bxbv210" path="res://scenes/atendant_sprite.tscn" id="1_x44gt"]
+[ext_resource type="Texture2D" uid="uid://bv8djlwxxrn7r" path="res://assets/sprites/quadro.png" id="2_pe8il"]
+
+[node name="AttendantGroup" type="Node2D"]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_pe8il")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -34.99324
+offset_top = -29.008156
+offset_right = 37.338608
+offset_bottom = 34.755188
+color = Color(0.77, 0.77, 0.77, 1)
+
+[node name="AtendantSprite" parent="." instance=ExtResource("1_x44gt")]
+position = Vector2(0, -2.910383e-11)
+scale = Vector2(2, 2)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -41.989513
+offset_top = -45.009792
+offset_right = -2.5791588
+offset_bottom = -4.0228233
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("2_pe8il")
+stretch_mode = 4
+
+[node name="Blink" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="timeout" from="Blink" to="." method="_on_blink_timeout"]

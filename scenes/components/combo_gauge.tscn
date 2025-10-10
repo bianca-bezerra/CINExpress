@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctkoma8d2bmey"]
+[gd_scene load_steps=10 format=3 uid="uid://ctkoma8d2bmey"]
 
-[ext_resource type="Script" path="res://scripts/combo_gauge.gd" id="1_4hpbh"]
+[ext_resource type="Script" uid="uid://m0mpun3kg73v" path="res://scripts/combo_gauge.gd" id="1_4hpbh"]
 [ext_resource type="FontFile" uid="uid://dvv4r3rtfie8o" path="res://assets/fonts/Jersey25-Regular.ttf" id="2_t7ecw"]
+[ext_resource type="FontFile" uid="uid://dolnaadbveks2" path="res://assets/fonts/nokiafc22.ttf" id="3_i2jtn"]
 
 [sub_resource type="Animation" id="Animation_t7ecw"]
 length = 0.001
@@ -39,6 +40,18 @@ _data = {
 &"appearing": SubResource("Animation_4hpbh")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ox0lj"]
+bg_color = Color(0.5686275, 0.5686275, 0.5686275, 0.09411765)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pu52v"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_x1qfp"]
+ProgressBar/fonts/font = ExtResource("3_i2jtn")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_ox0lj")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_pu52v")
+
 [node name="ComboGauge" type="VBoxContainer"]
 offset_left = 5.0
 offset_top = 6.0
@@ -65,7 +78,8 @@ vertical_alignment = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 2
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 10
-max_value = 0.0
+theme = SubResource("Theme_x1qfp")
+max_value = 1.0
+step = 0.1
+value = 1.0
 show_percentage = false

@@ -123,10 +123,10 @@ offset_bottom = 213.0
 color = Color(1, 0.42352942, 1, 0.03529412)
 
 [node name="VSlider" type="VSlider" parent="."]
-offset_left = 399.0
-offset_top = 28.0
-offset_right = 415.0
-offset_bottom = 226.0
+offset_left = 93.0
+offset_top = 39.0
+offset_right = 109.0
+offset_bottom = 209.0
 max_value = 10.0
 
 [node name="HSlider" type="HSlider" parent="."]
