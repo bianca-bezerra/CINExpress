@@ -13,6 +13,10 @@ var posicao_y = 140
 var pode_iniciar = false
 var jogo_iniciado = false
 
+func _enter_tree() -> void:
+	GameManager.set_ui_visible(false)
+
+
 func _ready():
 	CharacterManager.sortear_personagem()
 	personagem_sprite.texture = CharacterManager.get_sprite_cinza()

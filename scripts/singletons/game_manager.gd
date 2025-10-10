@@ -53,8 +53,7 @@ var names := [
 var current_level := 0
 
 @export var total_game_duration := 60
-
-@onready var game_timer = $GameTimer
+@onready var game_timer: Timer = $GameTimer
 @onready var scene_transintion_animation = $SceneTransitionAnimation/AnimationPlayer
 
 var _can_show_game_ui = false
@@ -83,29 +82,21 @@ func start_game():
 #	PlayerManager.reset_score()
 	PlayerManager.reset_current_player_data()
 	
-	_can_show_game_ui = true
-	
+	_can_show_game_ui = false
 	primeira_rodada = true
-
 	game_timer.stop()
 	game_timer.paused = false
-	
 	scene_transintion_animation.play("fade_in")
 	get_tree().change_scene_to_file("res://scenes/intro_scene.tscn")
 	scene_transintion_animation.play("fade_out")
 
-
 func change_to_next_level():
-
+	_can_show_game_ui = true
 	if current_game_level >= len(current_run):
 		finalizar_rodada()
 		return
 	
 	var scene_name = current_run[current_game_level]
-	
-	if scene_name == "cam":
-		PlayerManager.increment_cin_count()
-		current_level += 1
 	
 	var scene = game_levels[scene_name]
 	current_game_level += 1
@@ -116,11 +107,12 @@ func change_to_next_level():
 
 
 func finalizar_rodada():
+	_can_show_game_ui = false
 	current_game_level = 0
-	
-	scene_transintion_animation.play("fade_in")
+	PlayerManager.increment_cin_count()
+	current_level += 1
 	get_tree().change_scene_to_file("res://scenes/outro_scene.tscn")
-	scene_transintion_animation.play("fade_out")
+	_can_show_game_ui = true
 
 
 func change_to_username_scene():
@@ -166,6 +158,13 @@ func _enter_tree() -> void:
 func _exit_tree() -> void:
 	SaveManager.save_game()
 
+
+func toggle_ui():
+	_can_show_game_ui = !_can_show_game_ui
+
+func set_ui_visible(visible:bool):
+	_can_show_game_ui = visible
+	
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_page_down"):

@@ -26,6 +26,10 @@ var _scores_in_a_row := 0
 
 @onready var combo_timer = $ComboTimer
 
+
+func _process(_delta: float) -> void:
+	combo_timer.paused = GameManager.game_timer.paused
+
 func reset_current_player_data():
 	_current_player_data = {
 		"name": "",
