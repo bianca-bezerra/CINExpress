@@ -1,12 +1,9 @@
 extends Node
 
-## Emitido quando há mudança de score (chamado em @add_score)
 signal score_chaged(new_score: float)
 
-## Emitido quando há incremento de cin_count (chamado em @add_score)
 signal cin_increased(new_num: float)
 
-## Emitido quando há a interrupção do combo
 signal combo_stopped()
 
 var _current_player_data = {
@@ -17,13 +14,10 @@ var _current_player_data = {
 	"best_combo": 0.0,
 }
 
-## Multiplicador levado em conta durante o combo
 var multiplier := 1
 
-## Quantas vezes o jogador acertou seguidas
 var _scores_in_a_row := 0
 
-## Controla quantas vezes seguidas o jogador deve acertar para iniciar os combos
 @export var COMBO_INIT_SCORES_IN_A_ROW = 4
 
 @onready var combo_timer = $ComboTimer
@@ -115,48 +109,47 @@ func get_player_by_id(player_id: int) -> Dictionary:
 		return {}
 
 func delete_player(player_id: int) -> bool:
-	# Pega a referência para a lista de jogadores que está salva.
 	var dashboard = SaveManager.game_data["dashboard"]
 	var original_size = dashboard.size()
 	var new_dashboard = dashboard.filter(func(player): return player.get("id") != player_id)
-	
+
 	if new_dashboard.size() < original_size:
 		SaveManager.game_data["dashboard"] = new_dashboard
 		SaveManager.save_game()
-		
 		print("Jogador com ID %d foi deletado com sucesso." % player_id)
-		return true 
+		return true
 	else:
 		print("Jogador com ID %d não encontrado." % player_id)
 		return false
-		
+
 
 func edit_player(player_id: int, new_data: Dictionary) -> bool:
 	var dashboard = SaveManager.game_data["dashboard"]
 	var player_index = -1
 
-	# 1. Encontra o índice do jogador que queremos editar.
 	for i in range(dashboard.size()):
 		if dashboard[i].get("id") == player_id:
 			player_index = i
-			break 
+			break
 
-	# 2. Verifica se o jogador foi encontrado.
 	if player_index != -1:
 		var player_to_edit = dashboard[player_index]
-		
+
 		for key in new_data:
 			if player_to_edit.has(key):
 				player_to_edit[key] = new_data[key]
 			else:
 				print("Aviso: Tentando editar um campo inexistente ('%s') para o jogador ID %d" % [key, player_id])
 
+		SaveManager.game_data["dashboard"][player_index] = player_to_edit
 		SaveManager.save_game()
+
 		print("Jogador com ID %d foi editado com sucesso." % player_id)
-		return true 
+		return true
 	else:
 		print("Jogador com ID %d não encontrado para editar." % player_id)
 		return false
-		
+
+
 func _on_combo_timer_timeout() -> void:
 	stop_combo()
