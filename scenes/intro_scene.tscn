@@ -61,15 +61,15 @@ text = "Olá, quero fazer
 
 [node name="BalaoAtendenteFala" type="Label" parent="."]
 z_index = 6
-offset_left = 35.0
+offset_left = 34.0
 offset_top = 126.0
-offset_right = 112.0
+offset_right = 111.0
 offset_bottom = 155.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -1
 theme_override_fonts/font = ExtResource("7_f164h")
 theme_override_font_sizes/font_size = 12
-text = "Vamos fazer agora!"
+text = "Bora fazer agora!"
 horizontal_alignment = 1
 autowrap_mode = 2
 clip_text = true
