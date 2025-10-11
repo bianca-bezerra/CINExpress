@@ -1,0 +1,136 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhi1tb0lob5ul"]
+
+[ext_resource type="Script" uid="uid://u1lkyypd0qkb" path="res://scripts/moderator_scene.gd" id="1_3r5e8"]
+
+[node name="ModeratorScene" type="CanvasLayer"]
+follow_viewport_enabled = true
+script = ExtResource("1_3r5e8")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -137.5
+offset_right = 296.0
+offset_bottom = 159.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+alignment = 1
+
+[node name="Label" type="RichTextLabel" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Painel de [wave]Moderação[/wave]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="HboxContainer_Search" type="HBoxContainer" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/Panel/VBoxContainer/HboxContainer_Search"]
+layout_mode = 2
+text = "Buscar Jogador: "
+
+[node name="LineEdit" type="LineEdit" parent="Control/Panel/VBoxContainer/HboxContainer_Search"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Control/Panel/VBoxContainer/HboxContainer_Search"]
+layout_mode = 2
+text = "Pesquisar"
+
+[node name="HBoxContainer_PlayerInfo" type="HBoxContainer" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 23
+alignment = 1
+
+[node name="SelectedPlayerLabel" type="Label" parent="Control/Panel/VBoxContainer/HBoxContainer_PlayerInfo"]
+layout_mode = 2
+text = "Selecionado: "
+
+[node name="LabelPlayerSelected" type="Label" parent="Control/Panel/VBoxContainer/HBoxContainer_PlayerInfo"]
+layout_mode = 2
+text = "Jon Snow"
+
+[node name="Actions" type="HBoxContainer" parent="Control/Panel/VBoxContainer/HBoxContainer_PlayerInfo"]
+layout_mode = 2
+
+[node name="EditAction" type="Button" parent="Control/Panel/VBoxContainer/HBoxContainer_PlayerInfo/Actions"]
+layout_mode = 2
+text = "Editar"
+
+[node name="DeleteAction" type="Button" parent="Control/Panel/VBoxContainer/HBoxContainer_PlayerInfo/Actions"]
+layout_mode = 2
+text = "Deletar"
+
+[node name="HBoxContainer_NewPlayerData" type="VBoxContainer" parent="Control/Panel/VBoxContainer"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/Panel/VBoxContainer/HBoxContainer_NewPlayerData"]
+layout_mode = 2
+text = "Novas Informações:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Control/Panel/VBoxContainer/HBoxContainer_NewPlayerData"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/Panel/VBoxContainer/HBoxContainer_NewPlayerData/VBoxContainer"]
+layout_mode = 2
+text = "Nome:"
+
+[node name="name" type="LineEdit" parent="Control/Panel/VBoxContainer/HBoxContainer_NewPlayerData/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Control/Panel/VBoxContainer/HBoxContainer_NewPlayerData/VBoxContainer"]
+layout_mode = 2
+text = "Confirmar"
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+split_offset = 10
+
+[node name="VScrollBar" type="ScrollContainer" parent="Control/Panel/VBoxContainer/VSplitContainer"]
+custom_minimum_size = Vector2(480, 100)
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+draw_focus_border = true
+horizontal_scroll_mode = 0
+
+[node name="ItemList" type="ItemList" parent="Control/Panel/VBoxContainer/VSplitContainer/VScrollBar"]
+clip_contents = false
+layout_mode = 2
+auto_width = true
+auto_height = true
+wraparound_items = false
+same_column_width = true

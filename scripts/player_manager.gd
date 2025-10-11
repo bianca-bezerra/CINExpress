@@ -10,6 +10,7 @@ signal cin_increased(new_num: float)
 signal combo_stopped()
 
 var _current_player_data = {
+	"id": 0,
 	"name": "",
 	"score": 0.0,
 	"cin_count": 0.0,
@@ -27,12 +28,12 @@ var _scores_in_a_row := 0
 
 @onready var combo_timer = $ComboTimer
 
-
 func _process(_delta: float) -> void:
 	combo_timer.paused = GameManager.game_timer.paused
 
 func reset_current_player_data():
 	_current_player_data = {
+		"id" : 0,
 		"name": "",
 		"score": 0.0,
 		"cin_count": 0.0,
@@ -43,6 +44,7 @@ func reset_current_player_data():
 
 func register_new_player(player_name: String):
 	_current_player_data["name"] = player_name
+	_current_player_data["id"] = Time.get_ticks_msec()
 	
 func _handle_combo():
 	_scores_in_a_row += 1
@@ -95,5 +97,66 @@ func get_combo_timer_value():
 func get_combo_timer_total_time():
 	return combo_timer.wait_time
 
+func get_player_by_name(player_name: String) -> Dictionary:
+	var players = GameManager.get_dashboard()
+	var player_found = players.filter(func(player): return player["name"].to_lower() == player_name.to_lower())
+	
+	if not player_found.is_empty():
+		return player_found[0]
+	else:
+		return {}
+
+func get_player_by_id(player_id: int) -> Dictionary:
+	var players = GameManager.get_dashboard()
+	var player_found = players.filter(func(player): return player.get("id") == player_id)
+	if not player_found.is_empty():
+		return player_found[0]
+	else:
+		return {}
+
+func delete_player(player_id: int) -> bool:
+	# Pega a referência para a lista de jogadores que está salva.
+	var dashboard = SaveManager.game_data["dashboard"]
+	var original_size = dashboard.size()
+	var new_dashboard = dashboard.filter(func(player): return player.get("id") != player_id)
+	
+	if new_dashboard.size() < original_size:
+		SaveManager.game_data["dashboard"] = new_dashboard
+		SaveManager.save_game()
+		
+		print("Jogador com ID %d foi deletado com sucesso." % player_id)
+		return true 
+	else:
+		print("Jogador com ID %d não encontrado." % player_id)
+		return false
+		
+
+func edit_player(player_id: int, new_data: Dictionary) -> bool:
+	var dashboard = SaveManager.game_data["dashboard"]
+	var player_index = -1
+
+	# 1. Encontra o índice do jogador que queremos editar.
+	for i in range(dashboard.size()):
+		if dashboard[i].get("id") == player_id:
+			player_index = i
+			break 
+
+	# 2. Verifica se o jogador foi encontrado.
+	if player_index != -1:
+		var player_to_edit = dashboard[player_index]
+		
+		for key in new_data:
+			if player_to_edit.has(key):
+				player_to_edit[key] = new_data[key]
+			else:
+				print("Aviso: Tentando editar um campo inexistente ('%s') para o jogador ID %d" % [key, player_id])
+
+		SaveManager.save_game()
+		print("Jogador com ID %d foi editado com sucesso." % player_id)
+		return true 
+	else:
+		print("Jogador com ID %d não encontrado para editar." % player_id)
+		return false
+		
 func _on_combo_timer_timeout() -> void:
 	stop_combo()

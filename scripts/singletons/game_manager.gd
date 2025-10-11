@@ -125,5 +125,3 @@ func set_ui_visible(visible:bool):
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_text_delete"):
 		get_tree().reload_current_scene()
-	if event.is_action_pressed("ui_end"):
-		get_tree().change_scene_to_file("res://scenes/secret_scene.tscn")
