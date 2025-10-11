@@ -37,8 +37,13 @@ func _ready() -> void:
 	star_anim.play()
 	combo_gauge.modulate.a = 0
 	
-func _handle_animated_attendant():
-	pass
+
+func _handle_fullscren():
+	if Input.is_action_just_pressed("fullscreen"):
+		if DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	
 var _ac = 0
 func _process(delta: float) -> void:
@@ -49,6 +54,7 @@ func _process(delta: float) -> void:
 	wallet.text = "x%d" % PlayerManager.get_cin_count()
 	_check_time_warning(timer.time_left)
 	attendant_group.position.x = attendant_group_default_pos.x + 1 * sin(_ac * 3) * 5
+	_handle_fullscren()	
 
 func _check_time_warning(remaining_time: float):
 	# Quando o tempo estiver abaixo de 10 segundos, dispara a animação

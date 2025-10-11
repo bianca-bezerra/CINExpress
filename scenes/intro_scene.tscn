@@ -35,6 +35,12 @@ position = Vector2(356.5, 48.999992)
 scale = Vector2(1.6428572, 1.4)
 texture = ExtResource("2_01j2m")
 
+[node name="BalaoAtendenteImagem" type="Sprite2D" parent="."]
+z_index = 6
+position = Vector2(76.99997, 147.00002)
+scale = Vector2(1.6428572, 1.4)
+texture = ExtResource("2_01j2m")
+
 [node name="Mesa" type="Sprite2D" parent="."]
 position = Vector2(247, 141)
 scale = Vector2(2, 2)
@@ -52,6 +58,21 @@ theme_override_fonts/font = ExtResource("7_f164h")
 theme_override_font_sizes/font_size = 12
 text = "Olá, quero fazer
     minha CIN!"
+
+[node name="BalaoAtendenteFala" type="Label" parent="."]
+z_index = 6
+offset_left = 35.0
+offset_top = 126.0
+offset_right = 112.0
+offset_bottom = 155.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -1
+theme_override_fonts/font = ExtResource("7_f164h")
+theme_override_font_sizes/font_size = 12
+text = "Vamos fazer agora!"
+horizontal_alignment = 1
+autowrap_mode = 2
+clip_text = true
 
 [node name="TextoInstrucao" type="Label" parent="."]
 offset_left = 61.000004
