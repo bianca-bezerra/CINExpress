@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0i20cpneku7k"]
+[gd_scene load_steps=7 format=3 uid="uid://d0i20cpneku7k"]
 
 [ext_resource type="Script" uid="uid://bhrioocci4c3" path="res://scripts/results_screen.gd" id="1_fqf1x"]
 [ext_resource type="Texture2D" uid="uid://dus5ifflexswi" path="res://assets/sprites/monitor_vazio.png" id="2_d57yd"]
 [ext_resource type="PackedScene" uid="uid://duma53j5l7fqo" path="res://scenes/levels/game_button.tscn" id="2_j5vbe"]
 [ext_resource type="FontFile" uid="uid://dolnaadbveks2" path="res://assets/fonts/nokiafc22.ttf" id="3_cij7f"]
 [ext_resource type="Texture2D" uid="uid://bydbgey83ieav" path="res://assets/sprites/cin_com_face.png" id="5_r40o8"]
+[ext_resource type="Texture2D" uid="uid://dlega0gci8g7h" path="res://assets/qrcode.svg" id="6_msw0o"]
 
 [node name="ResultsScreen" type="Node2D"]
 script = ExtResource("1_fqf1x")
@@ -89,6 +90,30 @@ theme_override_fonts/font = ExtResource("3_cij7f")
 text = "MENU
 "
 flat = true
+
+[node name="qrcode" type="TextureRect" parent="."]
+clip_contents = true
+offset_left = 391.99997
+offset_top = 31.0
+offset_right = 2350.3223
+offset_bottom = 1989.3223
+scale = Vector2(0.04034067, 0.04034067)
+texture = ExtResource("6_msw0o")
+
+[node name="qrcodeLabel" type="RichTextLabel" parent="."]
+clip_contents = false
+offset_left = 385.99997
+offset_top = 115.999985
+offset_right = 590.0
+offset_bottom = 136.0
+scale = Vector2(0.43964818, 0.43964818)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/normal_font = ExtResource("3_cij7f")
+bbcode_enabled = true
+text = "Acomplanhe o placar"
+scroll_active = false
 
 [connection signal="pressed" from="HBoxContainer/RetryGameButton" to="." method="_on_retry_game_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

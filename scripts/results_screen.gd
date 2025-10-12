@@ -28,6 +28,8 @@ func _ready() -> void:
 	_set_buttons_enabled(true)
 	
 	retry_game_button.grab_focus.call_deferred()
+	
+	$qrcodeLabel.text = "[wave]Acomplanhe o placar[/wave]"
 
 
 func _set_buttons_enabled(state: bool) -> void:
