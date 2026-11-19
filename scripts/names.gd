@@ -161,5 +161,24 @@ func gerar_nome(genero: int, tamanho_nome: int) -> String:
 		nome_completo += (" " + candidato)
 		i -= 1
 	
-	return nome_completo	
+	return normalizar_nome(nome_completo)
 	
+
+
+func normalizar_nome(nome: String) -> String:
+	var normalized := nome.to_upper()
+	var accent_groups := {
+		"A": "ÀÁÂÃÄÅĀĂĄ", "E": "ÈÉÊËĒĖĘĚ", "I": "ÌÍÎÏĪĮİ",
+		"O": "ÒÓÔÕÖØŌŐ", "U": "ÙÚÛÜŪŮŰŲ", "C": "ÇĆČ",
+		"N": "ÑŃŇ", "S": "ŚŠŞ", "Z": "ŹŻŽ", "Y": "ÝŸ", "L": "Ł",
+	}
+	for letter in accent_groups:
+		for accented in accent_groups[letter]:
+			normalized = normalized.replace(accented, letter)
+	var result := ""
+	for character in normalized:
+		var code := character.unicode_at(0)
+		# Remove combining accents from decomposed Unicode names as well.
+		if code < 0x0300 or code > 0x036F:
+			result += character
+	return result

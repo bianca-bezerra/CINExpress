@@ -2,7 +2,6 @@ extends Node2D
 
 @onready var input = $NameInput
 @onready var warning_label: RichTextLabel = $WarningLabel
-@onready var profile_search: LineEdit = $ProfileSearch
 @onready var profile_list: ItemList = $ProfileList
 @onready var no_profiles_label: Label = $NoProfilesLabel
 @onready var use_profile_button: Button = $UseProfileButton
@@ -13,7 +12,6 @@ var _visible_profile_ids: Array[int] = []
 func _ready() -> void:
 	warning_label.visible = false
 	input.text_changed.connect(_on_name_input_text_changed)
-	profile_search.text_changed.connect(_on_profile_search_text_changed)
 	profile_list.item_selected.connect(_on_profile_selected)
 	profile_list.item_activated.connect(_on_profile_activated)
 	use_profile_button.pressed.connect(_on_use_profile_button_pressed)
@@ -25,7 +23,7 @@ func _input(event: InputEvent):
 		GameManager.change_to_menu_scene()
 
 func _on_name_input_text_submitted(new_text: String) -> void:
-	var player_name := new_text.strip_edges()
+	var player_name := new_text.strip_edges().to_upper()
 	var min_length := 3
 	var max_length := 20
 	var allowed_pattern := RegEx.new()
@@ -63,11 +61,11 @@ func _on_name_input_text_submitted(new_text: String) -> void:
 	GameManager.start_game()
 
 
-func _on_name_input_text_changed(_new_text: String) -> void:
-	_hide_warning()
-
-
-func _on_profile_search_text_changed(query: String) -> void:
+func _on_name_input_text_changed(query: String) -> void:
+	var caret_position: int = input.caret_column
+	if query != query.to_upper():
+		input.text = query.to_upper()
+		input.caret_column = caret_position
 	_hide_warning()
 	_refresh_profile_list(query)
 
@@ -77,28 +75,29 @@ func _refresh_profile_list(query: String) -> void:
 	_visible_profile_ids.clear()
 	use_profile_button.disabled = true
 
+	profile_list.visible = false
+	no_profiles_label.visible = false
+	use_profile_button.visible = false
+	var normalized_query := query.strip_edges().to_lower()
+	if normalized_query.is_empty():
+		return
+
 	var saved_profiles: Array[Dictionary] = []
 	for profile in SaveManager.game_data.get("dashboard", []):
 		if profile is Dictionary and not str(profile.get("name", "")).strip_edges().is_empty():
 			saved_profiles.append(profile)
 
 	if saved_profiles.is_empty():
-		profile_search.visible = false
-		profile_list.visible = false
-		no_profiles_label.visible = false
-		use_profile_button.visible = false
 		return
 
-	profile_search.visible = true
 	profile_list.visible = true
 	use_profile_button.visible = true
-	var normalized_query := query.strip_edges().to_lower()
 	saved_profiles.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
 		return str(a.get("name", "")).nocasecmp_to(str(b.get("name", ""))) < 0
 	)
 
 	for profile in saved_profiles:
-		var profile_name := str(profile.get("name", "")).strip_edges()
+		var profile_name := str(profile.get("name", "")).strip_edges().to_upper()
 		if not normalized_query.is_empty() and not profile_name.to_lower().contains(normalized_query):
 			continue
 		var profile_id := int(profile.get("id", -1))

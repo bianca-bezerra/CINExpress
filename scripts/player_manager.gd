@@ -56,7 +56,7 @@ func reset_current_player_data():
 	}
 
 func register_new_player(player_name: String):
-	_current_player_data["name"] = player_name
+	_current_player_data["name"] = player_name.strip_edges().to_upper()
 	var profile_id := Time.get_ticks_msec()
 	while not get_player_by_id(profile_id).is_empty():
 		profile_id += 1
@@ -69,7 +69,7 @@ func register_existing_player(player_id: int) -> bool:
 		return false
 	reset_current_player_data()
 	_current_player_data["id"] = profile.get("id", player_id)
-	_current_player_data["name"] = str(profile.get("name", ""))
+	_current_player_data["name"] = str(profile.get("name", "")).strip_edges().to_upper()
 	return true
 	
 func _handle_combo():
@@ -193,7 +193,7 @@ func edit_player(player_id: int, new_data: Dictionary) -> bool:
 
 		for key in new_data:
 			if player_to_edit.has(key):
-				player_to_edit[key] = new_data[key]
+				player_to_edit[key] = str(new_data[key]).strip_edges().to_upper() if key == "name" else new_data[key]
 			else:
 				print("Aviso: Tentando editar um campo inexistente ('%s') para o jogador ID %d" % [key, player_id])
 

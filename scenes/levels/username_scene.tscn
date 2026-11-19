@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cx7cu3vfvagu6"]
+[gd_scene load_steps=16 format=3 uid="uid://cx7cu3vfvagu6"]
 
 [ext_resource type="Script" uid="uid://b4kvlqnohlgll" path="res://scripts/username_scene.gd" id="1_0tmcr"]
 [ext_resource type="Texture2D" uid="uid://dt6ud0nlgsg12" path="res://assets/sprites/monitor.png" id="2_1djc6"]
@@ -30,6 +30,84 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 anti_aliasing = false
 
+[sub_resource type="StyleBoxFlat" id="Field"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.75, 0.75, 0.75, 1)
+content_margin_left = 3.0
+content_margin_top = 1.0
+content_margin_right = 3.0
+content_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="Selection"]
+bg_color = Color(0.88, 0.78, 0.78, 1)
+
+[sub_resource type="StyleBoxFlat" id="Focus"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.64, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="Disabled"]
+bg_color = Color(0.92, 0.90, 0.92, 1)
+content_margin_left = 3.0
+content_margin_top = 1.0
+content_margin_right = 3.0
+content_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="ScrollTrack"]
+bg_color = Color(0.93, 0.91, 0.94, 1)
+content_margin_left = 1.0
+content_margin_right = 2.0
+
+[sub_resource type="StyleBoxFlat" id="ScrollGrabber"]
+bg_color = Color(0.64, 0, 0, 1)
+content_margin_left = 1.0
+content_margin_right = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="Empty"]
+
+[sub_resource type="Theme" id="ProfileTheme"]
+default_font = ExtResource("4_37a74")
+default_font_size = 7
+Button/colors/font_color = Color(0.83, 0.04, 0.04, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(0.5, 0.45, 0.5, 1)
+Button/styles/normal = SubResource("StyleBoxFlat_st0jp")
+Button/styles/hover = SubResource("StyleBoxFlat_37a74")
+Button/styles/pressed = SubResource("StyleBoxFlat_gykg1")
+Button/styles/disabled = SubResource("Disabled")
+Button/styles/focus = SubResource("Focus")
+LineEdit/colors/font_color = Color(0.33, 0.33, 0.33, 1)
+LineEdit/colors/font_placeholder_color = Color(0.48, 0.48, 0.48, 1)
+LineEdit/styles/normal = SubResource("Field")
+LineEdit/styles/focus = SubResource("Focus")
+ItemList/colors/font_color = Color(0.33, 0.33, 0.33, 1)
+ItemList/colors/font_hovered_color = Color(0.33, 0.33, 0.33, 1)
+ItemList/colors/font_hovered_selected_color = Color(0.5, 0, 0, 1)
+ItemList/styles/hovered = SubResource("Selection")
+ItemList/styles/hovered_selected = SubResource("Selection")
+ItemList/colors/font_selected_color = Color(0.5, 0, 0, 1)
+ItemList/constants/v_separation = 2
+ItemList/styles/panel = SubResource("Field")
+ItemList/styles/focus = SubResource("Focus")
+ItemList/styles/selected = SubResource("Selection")
+ItemList/styles/selected_focus = SubResource("Selection")
+VScrollBar/icons/increment = null
+VScrollBar/icons/decrement = null
+VScrollBar/styles/scroll = SubResource("ScrollTrack")
+VScrollBar/styles/grabber = SubResource("ScrollGrabber")
+VScrollBar/styles/grabber_highlight = SubResource("ScrollGrabber")
+VScrollBar/styles/grabber_pressed = SubResource("ScrollGrabber")
+VScrollBar/styles/increment = SubResource("Empty")
+VScrollBar/styles/decrement = SubResource("Empty")
+
 [node name="UsernameScene" type="Node2D"]
 script = ExtResource("1_0tmcr")
 
@@ -40,64 +118,59 @@ texture = ExtResource("2_1djc6")
 [node name="PreviousButton" type="Button" parent="."]
 z_index = 41
 offset_left = 137.0
-offset_top = 172.0
-offset_right = 176.505
-offset_bottom = 188.71364
-scale = Vector2(0.6581444, 0.6581444)
+offset_top = 155.0
+offset_right = 180.0
+offset_bottom = 168.0
 theme_override_colors/font_color = Color(0.8258557, 0.04360277, 0.04360277, 1)
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 7
 theme_override_styles/normal = SubResource("StyleBoxFlat_st0jp")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_gykg1")
 theme_override_styles/hover = SubResource("StyleBoxFlat_37a74")
 text = "Voltar"
+theme = SubResource("ProfileTheme")
 
 [node name="NameInput" parent="." instance=ExtResource("2_e03c0")]
 modulate = Color(1, 1, 1, 1)
 self_modulate = Color(1, 1, 1, 1)
-offset_left = 138.0
-offset_top = 96.0
+offset_left = 137.0
+offset_top = 93.0
 offset_right = 351.0
-offset_bottom = 112.0
+offset_bottom = 111.0
 theme_override_colors/font_color = Color(0.33028352, 0.33028352, 0.33028352, 1)
 theme_override_fonts/font = ExtResource("4_37a74")
 theme_override_font_sizes/font_size = 8
 max_length = 20
 keep_editing_on_text_submit = true
-flat = true
+flat = false
+theme = SubResource("ProfileTheme")
+retain_input_focus = false
 
 [node name="WarningLabel" type="RichTextLabel" parent="."]
 offset_left = 137.0
-offset_top = 112.0
-offset_right = 350.0
-offset_bottom = 124.0
+offset_top = 111.0
+offset_right = 351.0
+offset_bottom = 120.0
 theme_override_colors/default_color = Color(0.8156863, 0.20392157, 0.17254902, 1)
 theme_override_fonts/normal_font = ExtResource("4_37a74")
 theme_override_font_sizes/normal_font_size = 7
 text = "Esse nome já existe"
+mouse_filter = 2
 
-[node name="ProfileSearch" type="LineEdit" parent="."]
+[node name="ProfileList" type="ItemList" parent="."]
+visible = false
 offset_left = 137.0
 offset_top = 124.0
 offset_right = 351.0
-offset_bottom = 137.0
-theme_override_fonts/font = ExtResource("4_37a74")
-theme_override_font_sizes/font_size = 8
-placeholder_text = "Buscar perfil salvo..."
-flat = true
-
-[node name="ProfileList" type="ItemList" parent="."]
-offset_left = 137.0
-offset_top = 137.0
-offset_right = 351.0
-offset_bottom = 158.0
+offset_bottom = 153.0
 theme_override_colors/font_color = Color(0.33028352, 0.33028352, 0.33052, 1)
 theme_override_fonts/font = ExtResource("4_37a74")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 7
 allow_reselect = true
+theme = SubResource("ProfileTheme")
 
 [node name="NoProfilesLabel" type="Label" parent="."]
 offset_left = 139.0
-offset_top = 140.0
+offset_top = 124.0
 offset_right = 349.0
 offset_bottom = 153.0
 theme_override_colors/font_color = Color(0.38, 0.38, 0.38, 1)
@@ -110,18 +183,20 @@ mouse_filter = 2
 visible = false
 
 [node name="UseProfileButton" type="Button" parent="."]
-offset_left = 137.0
-offset_top = 158.0
-offset_right = 213.0
-offset_bottom = 171.0
+offset_left = 275.0
+offset_top = 155.0
+offset_right = 351.0
+offset_bottom = 168.0
 theme_override_colors/font_color = Color(0.8258557, 0.04360277, 0.04360277, 1)
 theme_override_font_sizes/font_size = 7
 theme_override_styles/normal = SubResource("StyleBoxFlat_st0jp")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_gykg1")
 theme_override_styles/hover = SubResource("StyleBoxFlat_37a74")
+visible = false
 text = "Usar perfil"
 disabled = true
-focus_mode = 0
+focus_mode = 2
+theme = SubResource("ProfileTheme")
 
 [connection signal="pressed" from="PreviousButton" to="." method="_on_previous_button_pressed"]
 [connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_text_submitted"]
