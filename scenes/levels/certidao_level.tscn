@@ -1,0 +1,98 @@
+[gd_scene load_steps=12 format=3 uid="uid://x0td8whjp0qu"]
+
+[ext_resource type="Script" uid="uid://cc8t84snqknpq" path="res://scripts/certidao_level.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dd33voat1ct30" path="res://assets/sprites/pov_certidao.png" id="2_fundo"]
+[ext_resource type="Texture2D" uid="uid://cxvb4ntjme16b" path="res://assets/sprites/certidao/silhueta.png" id="4_silhueta"]
+[ext_resource type="Texture2D" uid="uid://do865776yag5k" path="res://assets/sprites/certidao/certidao_antiga.png" id="5_antiga"]
+[ext_resource type="Shader" uid="uid://bi004stel463u" path="res://shaders/certidao_brilho.gdshader" id="6_shader"]
+[ext_resource type="Texture2D" uid="uid://dkj45j6gkdlw6" path="res://assets/sprites/Star.png" id="7_star"]
+[ext_resource type="AudioStream" uid="uid://br5lfxm7rhgc0" path="res://assets/audio/encaixe.wav" id="12_encaixe"]
+[ext_resource type="PackedScene" uid="uid://ch0ti8rxx77mt" path="res://scenes/components/instruction.tscn" id="13_instrucao"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_brilho"]
+shader = ExtResource("6_shader")
+shader_parameter/flash = 0.0
+shader_parameter/brilho_pos = -1.0
+shader_parameter/brilho_largura = 0.12
+shader_parameter/brilho_cor = Color(1, 1, 1, 0.7)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_estrela"]
+particles_animation = true
+particles_anim_h_frames = 13
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_fade"]
+offsets = PackedFloat32Array(0, 0.7, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="CertidaoLevel" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Fundo" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_fundo")
+centered = false
+
+[node name="Alvo" type="Marker2D" parent="."]
+position = Vector2(240, 147)
+
+[node name="Silhueta" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.6)
+position = Vector2(160, 35)
+scale = Vector2(2, 2)
+texture = ExtResource("4_silhueta")
+centered = false
+
+[node name="SombrasEncaixadas" type="Node2D" parent="."]
+
+[node name="Grupos" type="Node2D" parent="."]
+
+[node name="CertidaoFinal" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_brilho")
+position = Vector2(240, 147)
+scale = Vector2(2, 2)
+texture = ExtResource("5_antiga")
+
+[node name="Sombra" type="Sprite2D" parent="CertidaoFinal"]
+modulate = Color(0, 0, 0, 0.22)
+show_behind_parent = true
+position = Vector2(1, 1)
+texture = ExtResource("5_antiga")
+
+[node name="Particulas" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_estrela")
+position = Vector2(240, 147)
+emitting = false
+amount = 20
+texture = ExtResource("7_star")
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(80, 112)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 90.0
+radial_accel_min = 150.0
+radial_accel_max = 250.0
+damping_min = 10.0
+damping_max = 30.0
+scale_amount_min = 0.4
+scale_amount_max = 0.6
+color_ramp = SubResource("Gradient_fade")
+anim_speed_min = 1.0
+anim_speed_max = 2.0
+anim_offset_max = 1.0
+
+[node name="FeedbackMarker" type="Marker2D" parent="."]
+position = Vector2(240, 40)
+
+[node name="SomEncaixe" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_encaixe")
+volume_db = -0.5
+
+[node name="Instruction" parent="." instance=ExtResource("13_instrucao")]
+position = Vector2(330, 135)
