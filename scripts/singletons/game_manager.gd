@@ -13,11 +13,12 @@ var _can_show_game_ui = false
 var game_levels  = {
 	"type": preload("res://scenes/levels/type_quickly.tscn"),
 	"finger": preload("res://scenes/levels/finger_scene.tscn"),
-	"cam": preload("res://scenes/levels/cam_level.tscn") 
+	"cam": preload("res://scenes/levels/cam_level.tscn"),
+	"certidao": preload("res://scenes/levels/certidao_level.tscn"),
 }
 
 var current_game_level = 0
-var current_run = ["type", "finger", "cam"]
+var current_run = ["certidao", "type", "finger", "cam"]
 
 var primeira_rodada := true
 
