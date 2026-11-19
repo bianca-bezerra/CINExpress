@@ -17,13 +17,32 @@ var _current_player_data = {
 var multiplier := 1
 
 var _scores_in_a_row := 0
+var _combo_paused_for_transition := false
+var _combo_paused_for_cutscene := false
 
 @export var COMBO_INIT_SCORES_IN_A_ROW = 4
 
 @onready var combo_timer = $ComboTimer
 
 func _process(_delta: float) -> void:
-	combo_timer.paused = GameManager.game_timer.paused
+	_sync_combo_timer_pause()
+
+
+func set_combo_timer_paused_for_transition(paused: bool) -> void:
+	_combo_paused_for_transition = paused
+	_sync_combo_timer_pause()
+
+
+func set_combo_timer_paused_for_cutscene(paused: bool) -> void:
+	_combo_paused_for_cutscene = paused
+	_sync_combo_timer_pause()
+
+
+func _sync_combo_timer_pause() -> void:
+	if combo_timer == null:
+		return
+	var game_timer_paused := GameManager.game_timer != null and GameManager.game_timer.paused
+	combo_timer.paused = game_timer_paused or _combo_paused_for_transition or _combo_paused_for_cutscene
 
 func reset_current_player_data():
 	_current_player_data = {
@@ -38,7 +57,20 @@ func reset_current_player_data():
 
 func register_new_player(player_name: String):
 	_current_player_data["name"] = player_name
-	_current_player_data["id"] = Time.get_ticks_msec()
+	var profile_id := Time.get_ticks_msec()
+	while not get_player_by_id(profile_id).is_empty():
+		profile_id += 1
+	_current_player_data["id"] = profile_id
+
+
+func register_existing_player(player_id: int) -> bool:
+	var profile := get_player_by_id(player_id)
+	if profile.is_empty():
+		return false
+	reset_current_player_data()
+	_current_player_data["id"] = profile.get("id", player_id)
+	_current_player_data["name"] = str(profile.get("name", ""))
+	return true
 	
 func _handle_combo():
 	_scores_in_a_row += 1
@@ -70,7 +102,31 @@ func increment_cin_count():
 	cin_increased.emit()
 
 func save_current_player():
-	SaveManager.game_data["dashboard"].append(_current_player_data)
+	var dashboard: Array = SaveManager.game_data.get("dashboard", [])
+	var player_data: Dictionary = _current_player_data.duplicate(true)
+	for index in range(dashboard.size()):
+		var saved_profile: Dictionary = dashboard[index]
+		if str(saved_profile.get("id", "")) != str(player_data.get("id", "")):
+			continue
+		## Reusing a profile updates its existing leaderboard row instead of
+		## adding another copy of the same player after every run.
+		player_data["score"] = maxf(
+			float(saved_profile.get("score", 0.0)),
+			float(player_data.get("score", 0.0))
+		)
+		player_data["cin_count"] = (
+			int(saved_profile.get("cin_count", 0)) + int(player_data.get("cin_count", 0))
+		)
+		player_data["best_combo"] = maxf(
+			float(saved_profile.get("best_combo", 0.0)),
+			float(player_data.get("best_combo", 0.0))
+		)
+		dashboard[index] = player_data
+		SaveManager.game_data["dashboard"] = dashboard
+		SaveManager.save_game()
+		return
+	dashboard.append(player_data)
+	SaveManager.game_data["dashboard"] = dashboard
 	SaveManager.save_game()
 
 func register_start_time(start_time_timestamp: String):

@@ -28,11 +28,11 @@ func _on_game_timer_changed(value: float) -> void:
 	
 
 func _on_moderation_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/moderator_scene.tscn")
+	GameManager.transition_to_scene("res://scenes/moderator_scene.tscn")
 
 func _on_ok_pressed() -> void:
 	GameManager.can_show_assistent = show_assistant_checkbox.button_pressed
 	print("Configurações salvas:")
 	print("→ Tempo de jogo:", game_time)
 	print("→ Mostrar assistente:", show_assistant)
-	get_tree().change_scene_to_file("res://scenes/levels/menu_scene.tscn")
+	GameManager.transition_to_scene("res://scenes/levels/menu_scene.tscn")

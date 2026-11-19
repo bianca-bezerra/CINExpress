@@ -155,10 +155,11 @@ func iniciar_jogo():
 		balao_fala.visible = false
 	
 	GameManager.game_timer.start(GameManager.total_game_duration)
-	
+	PlayerManager.set_combo_timer_paused_for_cutscene(false)
 	GameManager.primeira_rodada = false
 	
 	GameManager.change_to_next_level()
 
 func iniciar_jogo_sem_intro():
+	PlayerManager.set_combo_timer_paused_for_cutscene(false)
 	GameManager.change_to_next_level()

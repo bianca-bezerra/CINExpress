@@ -35,4 +35,4 @@ func _input(event: InputEvent):
 	if event.is_action_pressed("ui_cancel"):
 		GameManager.change_to_menu_scene()
 	if event.is_action_pressed("ui_end"):
-		get_tree().change_scene_to_file("res://scenes/secret_scene.tscn")
+		GameManager.transition_to_scene("res://scenes/secret_scene.tscn")
