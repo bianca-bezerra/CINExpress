@@ -9,23 +9,32 @@ func _ready():
 	tween.tween_property(self, "modulate:a", 1.0, 0.5)
 
 	creditos_label.bbcode_enabled = true
-	creditos_label.text = "[wave amp=10 freq=3]
-Ryan Faustino   @ryofac
+	creditos_label.text = "\n\n".join([
+		_categoria("#f0b429", "CONCEPÇÃO", [
+			"Celeste Ribeiro   @celesteribi",
+			"Natasha Meireles   @natashalmeireles",
+		]),
+		_categoria("#d83441", "DESENVOLVIMENTO", [
+			"Antonio Meireles   @meidesu",
+			"Bianca Bezerra   @bianca-bezerra",
+			"Halyson Pimentel   @HalysonItallo",
+			"Ruan Macedo   @msruan",
+			"Ryan Faustino   @ryofac",
+			"Xamã Cardoso   @Xamacardoso",
+		]),
+		_categoria("#009bba", "ARTE", [
+			"Antonio Meireles   @meidesu",
+			"Bianca Bezerra   @bianca-bezerra",
+		]),
+		_categoria("#23b773", "DESIGN", [
+			"Janielly Vieira   @janielly-vieira",
+		]),
+	])
 
-Halyson Pimentel   @HalysonItallo
 
-Ruan Macedo   @msruan
- 
-
-
-Antonio Meireles   @meidesu
-
-Bianca Bezerra   @bianca-bezerra
-
-
-
-Janielly Vieira   @janielly-vieira
-[/wave]"
+## Título colorido (parado) + nomes com o efeito de onda, um por linha
+func _categoria(cor: String, titulo: String, nomes: Array) -> String:
+	return "[font_size=11][color=%s]%s[/color][/font_size]\n[wave amp=10 freq=3]%s[/wave]" % [cor, titulo, "\n".join(nomes)]
 
 func _process(delta):
 	tempo += delta
