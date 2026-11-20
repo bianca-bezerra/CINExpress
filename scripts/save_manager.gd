@@ -13,6 +13,7 @@ var _global_data: Array[Dictionary] = []
 
 ## Salva os dados presentes em "game_data"
 func save_game():
+	_normalize_profile_names()
 	var file = FileAccess.open(_save_path, FileAccess.WRITE)
 	if file:
 		file.store_string(JSON.stringify(game_data))
@@ -57,6 +58,7 @@ func load_game():
 			var parsed_data = JSON.parse_string(json_string)
 			if parsed_data is Dictionary:
 				game_data = parsed_data
+				_normalize_profile_names()
 				print("Game loaded successfully.")
 			else:
 				print("Error parsing save data.")
@@ -84,3 +86,9 @@ func reset_save():
 	}
 	save_game()
 	
+
+
+func _normalize_profile_names() -> void:
+	for profile in game_data.get("dashboard", []):
+		if profile is Dictionary and profile.has("name"):
+			profile["name"] = str(profile["name"]).strip_edges().to_upper()
