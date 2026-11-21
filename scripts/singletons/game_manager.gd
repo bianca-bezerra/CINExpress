@@ -39,8 +39,9 @@ func start_game():
 	game_timer.stop()
 	game_timer.paused = false
 	PlayerManager.set_combo_timer_paused_for_cutscene(false)
-	transition_to_scene("res://scenes/intro_scene.tscn")
-	
+	## Antes da intro, a tela "Você sabia?" mostra uma curiosidade e espera confirmar
+	transition_to_scene("res://scenes/curiosidade_scene.tscn")
+
 func change_to_ranking():
 	transition_to_scene("res://scenes/ranking_scene.tscn")
 	
@@ -91,6 +92,11 @@ func end_game():
 	
 	PlayerManager.save_current_player()
 	transition_to_scene("res://scenes/results_screen.tscn")
+
+
+## true enquanto um fade de troca de cena está rodando (novas trocas são ignoradas)
+func is_in_transition() -> bool:
+	return _scene_transition_in_progress
 
 
 func transition_to_scene(target: Variant, resume_game_timer_after_transition := false) -> void:

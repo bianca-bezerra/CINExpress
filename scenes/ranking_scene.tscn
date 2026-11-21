@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://cf4h7ycgcceh3"]
 
 [ext_resource type="Script" uid="uid://bkemriv2lo53o" path="res://scripts/ranking_scene.gd" id="1_rmg74"]
-[ext_resource type="Texture2D" uid="uid://co5ab58xpqqx0" path="res://assets/UI/bg.png" id="2_lxse8"]
+[ext_resource type="Script" path="res://scripts/menu/fundo_xadrez.gd" id="2_fundo"]
 [ext_resource type="Texture2D" uid="uid://cbeqlqh2sritp" path="res://assets/sprites/trofeu-primeiro.png" id="2_o1e0t"]
 [ext_resource type="Texture2D" uid="uid://ds0w5xuy65tt3" path="res://assets/sprites/trofeu-segundo.png" id="3_lxse8"]
 [ext_resource type="Texture2D" uid="uid://cgr6nomoomgre" path="res://assets/sprites/trofeu-terceiro.png" id="4_y8q7m"]
@@ -129,19 +129,13 @@ layout_mode = 2
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.45840472, 0.45840514, 0.45840502, 1)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -3.0
-offset_top = -36.25
-offset_right = 485.0
-offset_bottom = 322.25
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_lxse8")
-expand_mode = 5
+[node name="Fundo" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 270.0
+mouse_filter = 2
+script = ExtResource("2_fundo")
 
 [node name="TrofeuOuro" type="Sprite2D" parent="."]
 visible = false
@@ -167,10 +161,10 @@ offset_left = 197.0
 offset_top = 14.0
 offset_right = 288.0
 offset_bottom = 39.0
-theme_override_colors/font_color = Color(0.9204884, 0.91471463, 0, 1)
-theme_override_colors/font_outline_color = Color(0.53796226, 0.33417144, 9.62615e-08, 1)
+theme_override_colors/font_color = Color(0.0627451, 0.14117648, 0.36078432, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/shadow_offset_y = 0
-theme_override_constants/outline_size = 3
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("6_y8q7m")
 theme_override_font_sizes/font_size = 20
 text = "PLACAR"

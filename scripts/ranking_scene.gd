@@ -8,6 +8,11 @@ var vbox
 
 var fonte_ranking = preload("res://assets/fonts/Jersey25-Regular.ttf")
 
+## Mesma paleta do menu
+const COR_MARINHO := Color("10245c")
+const COR_AZUL := Color("2f6fe0")
+const COR_AMARELO := Color("f7b518")
+
 func _input(event: InputEvent):
 	if event.is_action_pressed("ui_cancel"):
 		GameManager.change_to_menu_scene()
@@ -46,7 +51,7 @@ func _ready():
 		var label = Label.new()
 		label.text = "Ainda não temos vencedores!"
 		label.add_theme_font_override("font", fonte_ranking)
-		label.add_theme_color_override("font_color", Color.WHITE)
+		label.add_theme_color_override("font_color", COR_MARINHO)
 		label.add_theme_font_size_override("font_size", 20)
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		vbox.add_child(label)
@@ -84,17 +89,15 @@ func _ready():
 		label.add_theme_font_override("font", fonte_ranking)
 		
 		if i == 0:
-			label.add_theme_color_override("font_color", Color.GOLD)
+			label.add_theme_color_override("font_color", COR_AMARELO)
 			label.add_theme_font_size_override("font_size", 20)
-			label.add_theme_color_override("font_outline_color", Color(0.8, 0.5, 0))
+			label.add_theme_color_override("font_outline_color", COR_MARINHO)
 			label.add_theme_constant_override("outline_size", 3)
 			
 			animar_primeiro_lugar(label)
 		else:
-			label.add_theme_color_override("font_color", Color.WHITE)
+			label.add_theme_color_override("font_color", COR_AZUL if i <= 2 else COR_MARINHO)
 			label.add_theme_font_size_override("font_size", 18)
-			label.add_theme_color_override("font_outline_color", Color.BLACK)
-			label.add_theme_constant_override("outline_size", 2)
 		
 		hbox.add_child(label)
 		vbox.add_child(hbox)
