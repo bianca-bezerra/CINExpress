@@ -1,0 +1,201 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/curiosidade_scene.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/UI/lampada.png" id="2_lampada"]
+[ext_resource type="FontFile" uid="uid://dolnaadbveks2" path="res://assets/fonts/nokiafc22.ttf" id="3_fonte"]
+[ext_resource type="Texture2D" uid="uid://daghbdhe61pat" path="res://assets/sprites/cin.png" id="4_cin"]
+[ext_resource type="Script" path="res://scripts/menu/fundo_xadrez.gd" id="6_fundo"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cin_loading.png" id="5_cin_face"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialogo"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 3
+border_color = Color(0.0627451, 0.14117648, 0.36078432, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etiqueta"]
+bg_color = Color(0.18431373, 0.43529412, 0.8784314, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0627451, 0.14117648, 0.36078432, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 1
+anti_aliasing = false
+
+[node name="CuriosidadeScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Fundo" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_fundo")
+
+[node name="Cartao" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 192.0
+offset_top = 48.0
+offset_right = 288.0
+offset_bottom = 112.0
+pivot_offset = Vector2(48, 32)
+
+[node name="Sombra" type="ColorRect" parent="Cartao"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 98.0
+offset_bottom = 66.0
+color = Color(0.0627451, 0.14117648, 0.36078432, 0.18)
+
+[node name="Fantasma" type="TextureRect" parent="Cartao"]
+modulate = Color(0.0627451, 0.14117648, 0.36078432, 0.15)
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 64.0
+texture = ExtResource("4_cin")
+
+[node name="CinImpressa" type="Control" parent="Cartao"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 64.0
+
+[node name="Cin" type="TextureRect" parent="Cartao/CinImpressa"]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 64.0
+texture = ExtResource("5_cin_face")
+
+[node name="NomeCin" type="Label" parent="Cartao/CinImpressa"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 31.0
+offset_top = 26.5
+offset_right = 94.0
+offset_bottom = 36.5
+theme_override_colors/font_color = Color(0.0627451, 0.07450981, 0.14117648, 1)
+theme_override_fonts/font = ExtResource("3_fonte")
+theme_override_font_sizes/font_size = 8
+text = "CIDADÃO"
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="Scanner" type="ColorRect" parent="Cartao"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -4.0
+offset_right = 100.0
+offset_bottom = 2.0
+color = Color(0.3019608, 0.6, 1, 1)
+
+[node name="Brilho" type="ColorRect" parent="Cartao"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 64.0
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="Status" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 198.0
+offset_top = 120.0
+offset_right = 300.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(0.0627451, 0.14117648, 0.36078432, 1)
+theme_override_fonts/font = ExtResource("3_fonte")
+theme_override_font_sizes/font_size = 12
+text = "EMITINDO"
+
+[node name="Aviso" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 120.0
+offset_right = 480.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(0.0627451, 0.14117648, 0.36078432, 1)
+theme_override_fonts/font = ExtResource("3_fonte")
+theme_override_font_sizes/font_size = 12
+text = "PRESSIONE ENTER PARA COMEÇAR"
+horizontal_alignment = 1
+
+[node name="Dialogo" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 194.0
+offset_right = 440.0
+offset_bottom = 252.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dialogo")
+
+[node name="Texto" type="Label" parent="Dialogo"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 13.0
+offset_right = 388.0
+offset_bottom = 47.0
+theme_override_colors/font_color = Color(0.0627451, 0.14117648, 0.36078432, 1)
+theme_override_fonts/font = ExtResource("3_fonte")
+theme_override_font_sizes/font_size = 8
+autowrap_mode = 3
+visible_characters_behavior = 1
+
+[node name="Seta" type="Polygon2D" parent="Dialogo"]
+unique_name_in_owner = true
+position = Vector2(386, 48)
+color = Color(0.0627451, 0.14117648, 0.36078432, 1)
+polygon = PackedVector2Array(0, 0, 7, 0, 3.5, 4)
+
+[node name="Etiqueta" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 186.0
+offset_right = 140.0
+offset_bottom = 202.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_etiqueta")
+
+[node name="Lampada" type="TextureRect" parent="Etiqueta"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 1.0
+offset_right = 15.0
+offset_bottom = 14.0
+texture = ExtResource("2_lampada")
+
+[node name="Titulo" type="Label" parent="Etiqueta"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 2.0
+offset_right = 86.0
+offset_bottom = 14.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_fonte")
+theme_override_font_sizes/font_size = 8
+text = "VOCÊ SABIA?"

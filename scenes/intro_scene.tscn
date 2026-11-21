@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://da41xmrnkmogj"]
+[gd_scene load_steps=9 format=3 uid="uid://da41xmrnkmogj"]
 
 [ext_resource type="Script" uid="uid://dv3lw4gjitsir" path="res://scripts/intro_scene.gd" id="1_0y5sa"]
 [ext_resource type="Texture2D" uid="uid://b6tvo0sks0e6t" path="res://assets/sprites/balao-fala.png" id="2_01j2m"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://ctfykn6rocyg1" path="res://assets/sprites/characters/lule_feliz.png" id="3_jkhwn"]
 [ext_resource type="Texture2D" uid="uid://b6l4aa6vplmsf" path="res://assets/sprites/cenario_icd_sem_biomio.png" id="4_tij55"]
 [ext_resource type="PackedScene" uid="uid://c8nbef86tdjaf" path="res://scenes/attendant_group.tscn" id="7_0f06d"]
-[ext_resource type="FontFile" uid="uid://dolnaadbveks2" path="res://assets/fonts/nokiafc22.ttf" id="7_01j2m"]
 [ext_resource type="FontFile" uid="uid://dvv4r3rtfie8o" path="res://assets/fonts/Jersey25-Regular.ttf" id="7_f164h"]
 
 [node name="IntroScene" type="Node2D"]
@@ -73,18 +72,6 @@ text = "Bora fazer agora!"
 horizontal_alignment = 1
 autowrap_mode = 2
 clip_text = true
-
-[node name="TextoInstrucao" type="Label" parent="."]
-offset_left = 61.000004
-offset_top = 98.00001
-offset_right = 286.0
-offset_bottom = 116.00001
-scale = Vector2(0.8, 0.8)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("7_01j2m")
-theme_override_font_sizes/font_size = 11
-text = "Pressione ESPAÇO para iniciar!"
 
 [node name="AttendantGroup" parent="." instance=ExtResource("7_0f06d")]
 position = Vector2(-52, 204)
