@@ -1,0 +1,436 @@
+[gd_scene load_steps=28 format=3 uid="uid://b0p1o1ec848wg"]
+
+[ext_resource type="Script" uid="uid://dqr1dlnpluy5q" path="res://scripts/delivery/cin_delivery.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bxnycp6n8hxn5" path="res://assets/sprites/delivery/drawer/mesa.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bvo0xmy5i1nv" path="res://assets/sprites/delivery/drawer/caixa.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://5l441oyoc4ty" path="res://assets/sprites/delivery/drawer/tampo.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://bgrdy2cldv5ns" path="res://assets/sprites/delivery/drawer/compartimentos-separados1.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://coujlkyswugid" path="res://assets/sprites/delivery/drawer/compartimentos-separados2.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://cgdsddbbkjmnh" path="res://assets/sprites/delivery/drawer/compartimentos-separados3.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://dv50d05w7ip7w" path="res://assets/sprites/delivery/drawer/compartimentos-separados4.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://b1m6ifr6t0n8d" path="res://assets/sprites/delivery/drawer/compartimentos-separados5.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://b6tvo0sks0e6t" path="res://assets/sprites/balao-fala.png" id="10"]
+[ext_resource type="FontFile" uid="uid://dvv4r3rtfie8o" path="res://assets/fonts/Jersey25-Regular.ttf" id="11"]
+[ext_resource type="PackedScene" uid="uid://c8nbef86tdjaf" path="res://scenes/attendant_group.tscn" id="12"]
+[ext_resource type="Texture2D" uid="uid://by82q4ftiity4" path="res://assets/sprites/fundo (1).png" id="13"]
+[ext_resource type="Texture2D" uid="uid://dpl87mrmqms8c" path="res://assets/sprites/cenario_icd.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://b6l4aa6vplmsf" path="res://assets/sprites/cenario_icd_sem_biomio.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://damnfliyq4kg4" path="res://assets/sprites/characters/jessica_triste.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://bv8djlwxxrn7r" path="res://assets/sprites/quadro.png" id="17"]
+[ext_resource type="FontFile" uid="uid://dolnaadbveks2" path="res://assets/fonts/nokiafc22.ttf" id="18"]
+[ext_resource type="Texture2D" uid="uid://d32i0bx0g3ght" path="res://assets/sprites/delivery/chao.png" id="19"]
+[ext_resource type="Texture2D" uid="uid://b66b6asp5invc" path="res://assets/sprites/delivery/marmore.png" id="20"]
+[ext_resource type="Texture2D" uid="uid://dkj45j6gkdlw6" path="res://assets/sprites/Star.png" id="21"]
+
+[sub_resource type="AtlasTexture" id="SpeechBubbleTexture"]
+atlas = ExtResource("10")
+region = Rect2(4, 24, 57, 36)
+filter_clip = true
+
+[sub_resource type="Theme" id="Theme"]
+default_font = ExtResource("11")
+default_font_size = 12
+
+[sub_resource type="StyleBoxTexture" id="TargetStyle"]
+texture = ExtResource("17")
+texture_margin_left = 6.0
+texture_margin_top = 7.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="TargetBackground"]
+bg_color = Color(0.12, 0.13, 0.17, 1)
+
+[sub_resource type="Gradient" id="TargetGradient"]
+colors = PackedColorArray(0.2, 0.24, 0.25, 1, 0.09, 0.1, 0.14, 1)
+
+[sub_resource type="GradientTexture2D" id="TargetGradientTexture"]
+gradient = SubResource("TargetGradient")
+width = 128
+height = 80
+fill_to = Vector2(1, 1)
+
+[node name="CINDelivery" type="Node2D"]
+script = ExtResource("1")
+
+[node name="Arrival" type="Node2D" parent="."]
+visible = false
+
+[node name="Background" type="Sprite2D" parent="Arrival"]
+modulate = Color(0.76, 0.76, 0.76, 1)
+position = Vector2(240, 135)
+scale = Vector2(1.035, 1)
+texture = ExtResource("13")
+
+[node name="Counter" type="Sprite2D" parent="Arrival"]
+z_index = -2
+position = Vector2(247, 141)
+scale = Vector2(2, 2)
+texture = ExtResource("14")
+
+[node name="Character" type="Sprite2D" parent="Arrival"]
+z_index = 5
+texture_filter = 1
+position = Vector2(-36, 146)
+scale = Vector2(2.5, 2.42)
+texture = ExtResource("16")
+
+[node name="Desk" type="Sprite2D" parent="Arrival"]
+z_index = -1
+position = Vector2(247, 141)
+scale = Vector2(2, 2)
+texture = ExtResource("15")
+
+[node name="Marble" type="Sprite2D" parent="Arrival"]
+z_index = 6
+texture_filter = 1
+position = Vector2(0, 192)
+texture = ExtResource("20")
+centered = false
+
+[node name="Bubble" type="NinePatchRect" parent="Arrival"]
+z_index = 6
+offset_left = 270.0
+offset_top = 35.0
+offset_right = 468.0
+offset_bottom = 85.0
+texture = SubResource("SpeechBubbleTexture")
+patch_margin_left = 8
+patch_margin_top = 7
+patch_margin_right = 8
+patch_margin_bottom = 12
+
+[node name="BubbleText" type="Label" parent="Arrival"]
+z_index = 7
+offset_left = 272.0
+offset_top = 30.0
+offset_right = 376.0
+offset_bottom = 74.0
+theme = SubResource("Theme")
+theme_override_colors/font_color = Color(0.1, 0.1, 0.12, 1)
+theme_override_font_sizes/font_size = 12
+text = "Olá, quero retirar minha CIN."
+autowrap_mode = 3
+clip_text = true
+
+[node name="Name" type="Label" parent="Arrival"]
+z_index = 7
+offset_left = 165.0
+offset_top = 78.0
+offset_right = 315.0
+offset_bottom = 134.0
+theme = SubResource("Theme")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.12, 0.16, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ContinueHint" type="Label" parent="Arrival"]
+z_index = 10
+offset_left = 113.0
+offset_top = 220.0
+offset_right = 367.0
+offset_bottom = 241.0
+theme = SubResource("Theme")
+theme_override_colors/font_outline_color = Color(0.1, 0.1, 0.12, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 11
+text = "Pressione ESPAÇO para procurar a CIN"
+horizontal_alignment = 1
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("19")
+centered = false
+
+[node name="Desk" type="Sprite2D" parent="."]
+texture = ExtResource("2")
+centered = false
+
+[node name="Drawer" type="Sprite2D" parent="."]
+position = Vector2(117, 78)
+texture = ExtResource("3")
+centered = false
+
+[node name="Dividers" type="Node2D" parent="."]
+
+[node name="Back" type="Sprite2D" parent="Dividers"]
+position = Vector2(117, 71)
+texture = ExtResource("9")
+centered = false
+
+[node name="Second" type="Sprite2D" parent="Dividers"]
+z_index = 2
+position = Vector2(117, 103)
+texture = ExtResource("8")
+centered = false
+
+[node name="Third" type="Sprite2D" parent="Dividers"]
+z_index = 4
+position = Vector2(117, 135)
+texture = ExtResource("7")
+centered = false
+
+[node name="Fourth" type="Sprite2D" parent="Dividers"]
+z_index = 6
+position = Vector2(117, 170)
+texture = ExtResource("6")
+centered = false
+
+[node name="Front" type="Sprite2D" parent="Dividers"]
+z_index = 25
+position = Vector2(117, 205)
+texture = ExtResource("5")
+centered = false
+
+[node name="Folders" type="Node2D" parent="."]
+z_index = 10
+
+[node name="Lid" type="Sprite2D" parent="."]
+z_index = 26
+position = Vector2(83, 225)
+scale = Vector2(1, 1.0222226)
+texture = ExtResource("4")
+centered = false
+
+[node name="Title" type="Label" parent="."]
+offset_left = 18.0
+offset_top = 27.0
+offset_right = 318.0
+offset_bottom = 45.0
+theme = SubResource("Theme")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("18")
+theme_override_font_sizes/font_size = 9
+text = "Hora da entrega!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Target" type="Panel" parent="."]
+offset_left = 335.0
+offset_top = 3.0
+offset_right = 476.0
+offset_bottom = 98.0
+mouse_filter = 2
+theme = SubResource("Theme")
+theme_override_styles/panel = SubResource("TargetStyle")
+
+[node name="Background" type="Panel" parent="Target"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 11.0
+offset_right = 137.0
+offset_bottom = 90.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("TargetBackground")
+
+[node name="Gradient" type="TextureRect" parent="Target/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("TargetGradientTexture")
+expand_mode = 1
+
+[node name="HeaderAccent" type="ColorRect" parent="Target/Background"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 15.0
+offset_right = 129.0
+offset_bottom = 16.0
+mouse_filter = 2
+color = Color(0.31, 0.52, 0.2, 0.75)
+
+[node name="Title" type="Label" parent="Target"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 14.0
+offset_right = 132.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18")
+theme_override_font_sizes/font_size = 7
+text = "RETIRADA DA CIN"
+
+[node name="Portrait" type="TextureRect" parent="Target"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 25.0
+offset_right = 49.0
+offset_bottom = 75.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Target"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 22.0
+offset_right = 135.0
+offset_bottom = 90.0
+theme_override_constants/line_spacing = 0
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Speech" type="Control" parent="."]
+z_index = 40
+layout_mode = 3
+anchors_preset = 0
+offset_left = 322.0
+offset_top = 196.0
+offset_right = 475.0
+offset_bottom = 250.0
+mouse_filter = 2
+theme = SubResource("Theme")
+
+[node name="Bubble" type="NinePatchRect" parent="Speech"]
+layout_mode = 0
+offset_right = 153.0
+offset_bottom = 54.0
+texture = SubResource("SpeechBubbleTexture")
+patch_margin_left = 8
+patch_margin_top = 7
+patch_margin_right = 8
+patch_margin_bottom = 12
+
+[node name="Name" type="Label" parent="Speech"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 10.0
+offset_right = 137.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+
+[node name="FolderLabel" type="Label" parent="."]
+z_index = 30
+offset_left = 162.0
+offset_top = 204.0
+offset_right = 293.0
+offset_bottom = 220.0
+theme = SubResource("Theme")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("18")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+
+[node name="Feedback" type="Label" parent="."]
+z_index = 20
+offset_left = 90.0
+offset_top = 76.0
+offset_right = 355.0
+offset_bottom = 91.0
+theme = SubResource("Theme")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("18")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+
+[node name="SuccessFX" type="Node2D" parent="."]
+visible = false
+z_index = 60
+
+[node name="Stamp" type="Node2D" parent="SuccessFX"]
+
+[node name="Border" type="Polygon2D" parent="SuccessFX/Stamp"]
+color = Color(0.08, 0.12, 0.08, 1)
+polygon = PackedVector2Array(-10, -8, -8, -10, 8, -10, 10, -8, 10, 8, 8, 10, -8, 10, -10, 8)
+
+[node name="Fill" type="Polygon2D" parent="SuccessFX/Stamp"]
+color = Color(0.2, 0.65, 0.25, 1)
+polygon = PackedVector2Array(-8, -7, -7, -8, 7, -8, 8, -7, 8, 7, 7, 8, -7, 8, -8, 7)
+
+[node name="Check" type="Polygon2D" parent="SuccessFX/Stamp"]
+polygon = PackedVector2Array(-6, 0, -4, -2, -1, 1, 5, -5, 7, -3, -1, 5, -3, 5, -6, 2)
+
+[node name="StarLeft" type="Sprite2D" parent="SuccessFX"]
+texture_filter = 1
+texture = ExtResource("21")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="StarRight" type="Sprite2D" parent="SuccessFX"]
+texture_filter = 1
+texture = ExtResource("21")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="Instructions" type="Label" parent="."]
+visible = false
+z_index = 20
+offset_left = 8.0
+offset_top = 249.0
+offset_right = 472.0
+offset_bottom = 267.0
+theme = SubResource("Theme")
+text = "Pastas: setas horizontais    CIN: setas verticais    Entregar: espaço/enter"
+horizontal_alignment = 1
+
+[node name="Practice" type="Label" parent="."]
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 180.0
+offset_bottom = 20.0
+theme = SubResource("Theme")
+theme_override_fonts/font = ExtResource("18")
+theme_override_font_sizes/font_size = 8
+text = "PRÉVIA - sem pontuação"
+
+[node name="DeliveredCount" type="Label" parent="."]
+z_index = 30
+offset_left = 12.0
+offset_top = 48.0
+offset_right = 150.0
+offset_bottom = 64.0
+theme = SubResource("Theme")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("18")
+theme_override_font_sizes/font_size = 8
+text = "Entregues: 0"
+
+[node name="DeliveryPop" type="Label" parent="."]
+visible = false
+z_index = 50
+offset_right = 30.0
+offset_bottom = 16.0
+theme = SubResource("Theme")
+theme_override_colors/font_color = Color(1, 0.88, 0.34, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("18")
+theme_override_font_sizes/font_size = 8
+text = "+1"
+
+[node name="Tutorials" type="Node2D" parent="."]
+visible = false
+z_index = 30
+
+[node name="TimeLabel" type="Label" parent="."]
+z_index = 30
+theme = SubResource("Theme")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.08, 0.12, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 14
+
+[node name="AttendantGroup" parent="." instance=ExtResource("12")]
+z_index = 10
+position = Vector2(451, 225)

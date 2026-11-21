@@ -11,6 +11,7 @@ var _current_player_data = {
 	"name": "",
 	"score": 0.0,
 	"cin_count": 0.0,
+	"delivery_count": 0,
 	"best_combo": 0.0,
 }
 
@@ -50,6 +51,7 @@ func reset_current_player_data():
 		"name": "",
 		"score": 0.0,
 		"cin_count": 0.0,
+		"delivery_count": 0,
 		"best_combo": 0.0,
 		"started_at": "",
 		"ended_at": "",
@@ -100,6 +102,18 @@ func increment_cin_count():
 	_current_player_data["cin_count"] +=1
 	AudioManager.play_sfx("cin_increase")
 	cin_increased.emit()
+
+
+func reset_delivery_count() -> void:
+	_current_player_data["delivery_count"] = 0
+
+
+func increment_delivery_count() -> void:
+	_current_player_data["delivery_count"] = get_delivery_count() + 1
+
+
+func get_delivery_count() -> int:
+	return int(_current_player_data.get("delivery_count", 0))
 
 func save_current_player():
 	var dashboard: Array = SaveManager.game_data.get("dashboard", [])

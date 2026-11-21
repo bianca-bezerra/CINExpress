@@ -16,6 +16,7 @@ func _ready() -> void:
 	GameManager.set_ui_visible(false)
 	score_label.text = "0"
 	cins_label.text = "x0"
+	$DeliveryCountLabel.text = "Entregues: %d" % PlayerManager.get_delivery_count()
 	
 	var _player_name: String = PlayerManager._current_player_data["name"]
 	title_label.text = "Atendente\n[wave]%s[/wave]" % _player_name

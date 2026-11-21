@@ -57,4 +57,4 @@ func _on_saida_completa():
 		GameManager.primeira_rodada = false
 		GameManager.transition_to_scene("res://scenes/intro_scene.tscn", true)
 	else:
-		GameManager.end_game()
+		GameManager.start_delivery_bonus()

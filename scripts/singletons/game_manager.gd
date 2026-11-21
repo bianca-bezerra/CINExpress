@@ -3,7 +3,10 @@ extends Node
 var current_level := 0
 
 @export var total_game_duration := 60
+@export var delivery_bonus_duration := 30.0
 var can_show_assistent := true
+var delivery_bonus_active := false
+var _ending_game := false
 
 @onready var game_timer: Timer = $GameTimer
 @onready var scene_transintion_animation = $SceneTransitionAnimation/AnimationPlayer
@@ -13,6 +16,7 @@ var _scene_transition_in_progress := false
 
 var game_levels  = {
 	"type": preload("res://scenes/levels/type_quickly.tscn"),
+	"delivery": preload("res://scenes/levels/cin_delivery.tscn"),
 	"finger": preload("res://scenes/levels/finger_scene.tscn"),
 	"cam": preload("res://scenes/levels/cam_level.tscn"),
 	"certidao": preload("res://scenes/levels/certidao_level.tscn"),
@@ -36,6 +40,10 @@ func _process(_delta: float) -> void:
 func start_game():	
 	_can_show_game_ui = false
 	primeira_rodada = true
+	delivery_bonus_active = false
+	_ending_game = false
+	CharacterManager.limpar_cins_para_entrega()
+	PlayerManager.reset_delivery_count()
 	game_timer.stop()
 	game_timer.paused = false
 	PlayerManager.set_combo_timer_paused_for_cutscene(false)
@@ -49,6 +57,8 @@ func change_to_credits():
 	transition_to_scene("res://scenes/credits_scene.tscn")
 
 func change_to_next_level():
+	if delivery_bonus_active or _ending_game:
+		return
 	_can_show_game_ui = true
 	if current_game_level >= len(current_run):
 		finalizar_rodada()
@@ -64,6 +74,7 @@ func change_to_next_level():
 func finalizar_rodada():
 	_can_show_game_ui = false
 	current_game_level = 0
+	CharacterManager.registrar_cin_concluida()
 	PlayerManager.increment_cin_count()
 	current_level += 1
 	PlayerManager.set_combo_timer_paused_for_cutscene(true)
@@ -78,12 +89,46 @@ func change_to_menu_scene():
 	transition_to_scene("res://scenes/levels/menu_scene.tscn")
 
 
+func start_delivery_bonus() -> void:
+	if delivery_bonus_active or _ending_game:
+		return
+	delivery_bonus_active = true
+	current_game_level = 0
+	game_timer.stop()
+	# Congela também o tempo do combo enquanto o aviso é exibido.
+	game_timer.paused = true
+	_can_show_game_ui = false
+	var previous_scene := get_tree().current_scene
+	if is_instance_valid(previous_scene):
+		previous_scene.process_mode = Node.PROCESS_MODE_DISABLED
+	scene_transintion_animation.play("fade_in")
+	await scene_transintion_animation.animation_finished
+	if not delivery_bonus_active or _ending_game:
+		return
+	get_tree().change_scene_to_file("res://scenes/levels/delivery_bonus_intro.tscn")
+	scene_transintion_animation.play("fade_out")
+
+
+func begin_delivery_bonus() -> void:
+	if not delivery_bonus_active or _ending_game or not game_timer.is_stopped():
+		return
+	game_timer.paused = false
+	game_timer.start(delivery_bonus_duration)
+	_can_show_game_ui = true
+	get_tree().change_scene_to_packed(game_levels["delivery"])
+	scene_transintion_animation.play("fade_out")
+
+
 func end_game():
+	if _ending_game:
+		return
+	_ending_game = true
 	game_timer.stop()
 	game_timer.paused = false
+	delivery_bonus_active = false
 	PlayerManager.set_combo_timer_paused_for_cutscene(false)
 	PlayerManager.stop_combo()
-	
+
 	_can_show_game_ui = false
 	current_level = 0
 	current_game_level = 0
@@ -146,7 +191,10 @@ func get_dashboard():
 
 
 func _on_game_timer_timeout() -> void:
-	end_game()
+	if delivery_bonus_active:
+		end_game()
+	else:
+		start_delivery_bonus()
 
 
 func _enter_tree() -> void:
