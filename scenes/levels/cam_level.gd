@@ -6,7 +6,6 @@ extends GameLevel
 @onready var shaderRect = $RectBlur
 @onready var v_slider_default_modulate = $VSlider.modulate
 @onready var floating_text_scene = preload("res://scenes/components/floating_text.tscn")
-@onready var reset_timer = $ResetTimer
 @onready var personagem_sprite = $CanvasLayer/Icon
 
 var slider_len = clamp(10 + SLIDER_GROW_FACTOR * GameManager.current_level, 0, MAX_POINTS)

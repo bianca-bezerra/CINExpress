@@ -70,6 +70,16 @@ Atentendente "
 scroll_active = false
 vertical_alignment = 1
 
+[node name="DeliveryCountLabel" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 145.0
+offset_top = 125.0
+offset_right = 250.0
+offset_bottom = 138.0
+theme_override_fonts/font = ExtResource("3_cij7f")
+theme_override_font_sizes/font_size = 7
+text = "Entregues: 0"
+
 [node name="HBoxContainer" type="HSplitContainer" parent="."]
 offset_left = 146.0
 offset_top = 146.0

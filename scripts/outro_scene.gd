@@ -59,4 +59,4 @@ func _on_saida_completa():
 		get_tree().change_scene_to_file("res://scenes/intro_scene.tscn")
 		GameManager.scene_transintion_animation.play("fade_out")
 	else:
-		GameManager.end_game()
+		GameManager.start_delivery_bonus()

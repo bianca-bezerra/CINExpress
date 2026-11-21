@@ -50,6 +50,7 @@ func start_game() -> void:
 	var genero_atual: int = CharacterManager.get_genero_personagem_atual()
 	
 	_current_name = names.gerar_nome(genero_atual, tamanho_nome)
+	CharacterManager.registrar_nome_atual(_current_name)
 	
 	setup_word_display()
 	update_ui()

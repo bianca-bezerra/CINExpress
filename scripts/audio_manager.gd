@@ -29,6 +29,7 @@ func play_sfx(sound_name: String, pitch_scale: float = 1.0):
 	_sfx_stream.pitch_scale = pitch_scale
 	if not _sfx_stream.playing:
 		_sfx_stream.play()
+	return _sfx_stream
 
 func stop_sfx():
 	_sfx_stream.stop()

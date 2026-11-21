@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/delivery/cin_card.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/delivery/cin.png" id="2"]
+[ext_resource type="FontFile" path="res://assets/fonts/Jersey25-Regular.ttf" id="3"]
+
+[sub_resource type="StyleBoxFlat" id="HighlightStyle"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.88, 0.38, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_left = 3
+corner_radius_bottom_right = 3
+
+[node name="CINCard" type="Node2D"]
+script = ExtResource("1")
+
+[node name="Highlight" type="Panel" parent="."]
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 85.0
+offset_bottom = 61.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("HighlightStyle")
+
+[node name="Card" type="Sprite2D" parent="."]
+position = Vector2(4, 4)
+texture = ExtResource("2")
+centered = false
+
+[node name="Photo" type="ColorRect" parent="."]
+offset_left = 12.0
+offset_top = 26.0
+offset_right = 27.0
+offset_bottom = 46.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Portrait" type="TextureRect" parent="Photo"]
+layout_mode = 0
+offset_right = 15.0
+offset_bottom = 20.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="."]
+offset_left = 29.0
+offset_top = 24.0
+offset_right = 117.0
+offset_bottom = 56.0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.09, 0.18, 0.19, 1)
+theme_override_constants/line_spacing = -2
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 10
+autowrap_mode = 3
+clip_text = true

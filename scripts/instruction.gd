@@ -2,6 +2,7 @@ extends Node2D
 
 
 var _current_key
+var _instruction_tween: Tween
 
 func unbrazile(text: String) -> String:
 	var s := text.strip_edges()
@@ -29,14 +30,17 @@ func disable_not_activity_key():
 			continue
 		child.visible = false
 
-func setup_instruction(key: String):
+func setup_instruction(key: String, show_key_outside_first_level: bool = false):
+	if _instruction_tween:
+		_instruction_tween.kill()
 	_current_key = unbrazile(key).to_pascal_case()
 	
 	disable_not_activity_key()
 	var keyboard_sprite = find_child(_current_key)
 	
 	if GameManager.current_level == 0:
-		var tween = get_tree().create_tween()
+		var tween = create_tween()
+		_instruction_tween = tween
 		tween.set_loops()
 		tween.set_trans(Tween.TRANS_SINE)
 		tween.set_ease(Tween.EASE_IN_OUT)
@@ -45,8 +49,12 @@ func setup_instruction(key: String):
 		
 		keyboard_sprite.visible = true
 	else:
-		keyboard_sprite.visible = false
+		keyboard_sprite.visible = show_key_outside_first_level
 		
 func deactivate_instruction():
+	if _instruction_tween:
+		_instruction_tween.kill()
+	if _current_key == null or _current_key.is_empty():
+		return
 	var keyboard_sprite = find_child(_current_key)
 	keyboard_sprite.visible = false

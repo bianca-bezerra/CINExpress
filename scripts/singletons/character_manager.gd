@@ -3,6 +3,8 @@ extends Node
 var personagens = {}
 var nomes_disponiveis = []
 var personagem_atual = ""
+var nome_atual: String = ""
+var cins_para_entrega: Array[Dictionary] = []
 
 enum { HOMEM, MULHER }
 
@@ -73,6 +75,7 @@ func resetar_lista_nomes():
 
 
 func sortear_personagem() -> String:
+	nome_atual = ""
 	if nomes_disponiveis.is_empty():
 		resetar_lista_nomes()
 	
@@ -80,6 +83,36 @@ func sortear_personagem() -> String:
 	nomes_disponiveis.erase(personagem_atual)
 	
 	return personagem_atual
+
+
+func registrar_nome_atual(nome: String) -> void:
+	nome_atual = nome
+
+
+func limpar_cins_para_entrega() -> void:
+	cins_para_entrega.clear()
+
+
+func registrar_cin_concluida() -> void:
+	if personagem_atual.is_empty() or nome_atual.is_empty():
+		return
+	cins_para_entrega.append({"name": nome_atual, "character": personagem_atual})
+
+
+func selecionar_cin_para_entrega(personagem_anterior: String = "") -> bool:
+	if cins_para_entrega.is_empty():
+		return false
+	var indice := -1
+	for i in cins_para_entrega.size():
+		if cins_para_entrega[i]["character"] != personagem_anterior:
+			indice = i
+			break
+	if indice < 0:
+		return false
+	var cin: Dictionary = cins_para_entrega.pop_at(indice)
+	personagem_atual = cin["character"]
+	registrar_nome_atual(cin["name"])
+	return true
 
 
 func get_genero_personagem_atual() -> int:
