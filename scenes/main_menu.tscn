@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://bik28xfrv6w6x"]
 
 [ext_resource type="Script" uid="uid://bkbgwdxb6caah" path="res://scripts/cin_menu.gd" id="1_tbmy8"]
-[ext_resource type="Texture2D" uid="uid://co5ab58xpqqx0" path="res://assets/UI/bg.png" id="1_wu84c"]
 [ext_resource type="Texture2D" uid="uid://ky8twegxb73k" path="res://assets/sprites/LOGO CIN EXPRESS - 1440x1024.png" id="2_oa1go"]
 [ext_resource type="Script" uid="uid://dnfrdjqd0eghm" path="res://scripts/GUI/menu_button_group.gd" id="4_8ln24"]
 [ext_resource type="Texture2D" uid="uid://b8fqr7idkmn1t" path="res://assets/UI/mao.png" id="5_rtw2f"]
 [ext_resource type="FontFile" uid="uid://dolnaadbveks2" path="res://assets/fonts/nokiafc22.ttf" id="6_oa1go"]
-[ext_resource type="Texture2D" uid="uid://c0uit0frx47kv" path="res://assets/UI/logo_inst_pixel.png" id="6_rtw2f"]
 [ext_resource type="Script" uid="uid://blyqdi7p7gtnv" path="res://scripts/game_button.gd" id="6_tbmy8"]
+[ext_resource type="Script" path="res://scripts/menu/fundo_xadrez.gd" id="8_fundo"]
+[ext_resource type="Texture2D" path="res://assets/UI/logo_inst_pixel_azul.png" id="9_logo_inst"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ln24"]
 
@@ -15,7 +15,7 @@
 bg_color = Color(1, 1, 1, 0.75)
 draw_center = false
 border_width_bottom = 3
-border_color = Color(1, 1, 1, 1)
+border_color = Color(0.0627451, 0.14117648, 0.36078432, 1)
 border_blend = true
 corner_radius_top_left = 3
 corner_radius_top_right = 3
@@ -33,29 +33,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="GUIControl"]
-modulate = Color(0.66245234, 0.66245234, 0.6624523, 1)
+[node name="Fundo" type="Control" parent="GUIControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -68.0
-offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_wu84c")
-expand_mode = 5
+mouse_filter = 2
+script = ExtResource("8_fundo")
 
 [node name="Logo" type="TextureRect" parent="GUIControl"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -410.0
-offset_top = 11.0
-offset_right = -71.592285
-offset_bottom = 146.0
-grow_horizontal = 0
+layout_mode = 0
+offset_left = 71.0
+offset_top = 12.0
+offset_right = 409.4
+offset_bottom = 147.0
 scale = Vector2(0.6, 0.6)
 pivot_offset = Vector2(169, 67)
 size_flags_horizontal = 4
@@ -63,18 +56,11 @@ texture = ExtResource("2_oa1go")
 expand_mode = 1
 
 [node name="ButtonGroup" type="VBoxContainer" parent="GUIControl"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -36.0
-offset_top = 9.0
-offset_right = 36.0
-offset_bottom = 84.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_left = 204.0
+offset_top = 134.0
+offset_right = 276.0
+offset_bottom = 231.0
 size_flags_horizontal = 4
 theme_override_constants/separation = 3
 alignment = 1
@@ -88,6 +74,12 @@ texture = ExtResource("5_rtw2f")
 [node name="StartButton" type="Button" parent="GUIControl/ButtonGroup"]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(0.0627451, 0.14117648, 0.36078432, 1)
+theme_override_colors/font_hover_color = Color(0.18431373, 0.43529412, 0.8784314, 1)
+theme_override_colors/font_focus_color = Color(0.18431373, 0.43529412, 0.8784314, 1)
+theme_override_colors/font_pressed_color = Color(0.18431373, 0.43529412, 0.8784314, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.18431373, 0.43529412, 0.8784314, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("6_oa1go")
 theme_override_font_sizes/font_size = 12
@@ -100,6 +92,12 @@ metadata/_custom_type_script = "uid://blyqdi7p7gtnv"
 [node name="RankButton" type="Button" parent="GUIControl/ButtonGroup"]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(0.0627451, 0.14117648, 0.36078432, 1)
+theme_override_colors/font_hover_color = Color(0.18431373, 0.43529412, 0.8784314, 1)
+theme_override_colors/font_focus_color = Color(0.18431373, 0.43529412, 0.8784314, 1)
+theme_override_colors/font_pressed_color = Color(0.18431373, 0.43529412, 0.8784314, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.18431373, 0.43529412, 0.8784314, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("6_oa1go")
 theme_override_font_sizes/font_size = 12
@@ -111,6 +109,12 @@ script = ExtResource("6_tbmy8")
 [node name="CreditButton" type="Button" parent="GUIControl/ButtonGroup"]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(0.0627451, 0.14117648, 0.36078432, 1)
+theme_override_colors/font_hover_color = Color(0.18431373, 0.43529412, 0.8784314, 1)
+theme_override_colors/font_focus_color = Color(0.18431373, 0.43529412, 0.8784314, 1)
+theme_override_colors/font_pressed_color = Color(0.18431373, 0.43529412, 0.8784314, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.18431373, 0.43529412, 0.8784314, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("6_oa1go")
 theme_override_font_sizes/font_size = 12
@@ -122,7 +126,12 @@ script = ExtResource("6_tbmy8")
 [node name="ExitButton" type="Button" parent="GUIControl/ButtonGroup"]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
-theme_override_colors/font_outline_color = Color(0.8163365, 0.08628107, 0, 1)
+theme_override_colors/font_color = Color(0.8156863, 0.12941177, 0.15294118, 1)
+theme_override_colors/font_hover_color = Color(0.92156863, 0.24705882, 0.20392157, 1)
+theme_override_colors/font_focus_color = Color(0.92156863, 0.24705882, 0.20392157, 1)
+theme_override_colors/font_pressed_color = Color(0.92156863, 0.24705882, 0.20392157, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.92156863, 0.24705882, 0.20392157, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("6_oa1go")
 theme_override_font_sizes/font_size = 12
@@ -131,18 +140,15 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_bqqt6")
 text = "SAIR"
 script = ExtResource("6_tbmy8")
 
-[node name="LogoGovs" type="TextureRect" parent="GUIControl"]
+[node name="LogoInstituto" type="TextureRect" parent="GUIControl"]
 layout_mode = 1
-anchors_preset = 3
+anchors_preset = 1
 anchor_left = 1.0
-anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
 offset_left = -136.0
-offset_top = -258.0
+offset_top = 12.0
 offset_right = -13.0
-offset_bottom = -224.0
+offset_bottom = 49.0
 grow_horizontal = 0
-grow_vertical = 0
-texture = ExtResource("6_rtw2f")
-expand_mode = 1
+mouse_filter = 2
+texture = ExtResource("9_logo_inst")
