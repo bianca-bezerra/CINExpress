@@ -32,7 +32,7 @@ func _ready():
 	
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().change_scene_to_file("res://scenes/secret_scene.tscn")
+		GameManager.transition_to_scene("res://scenes/secret_scene.tscn")
 	if Input.is_action_just_pressed("space"):
 		player_list.add_item("aa")
 

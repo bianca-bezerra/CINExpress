@@ -25,6 +25,7 @@ func _ready():
 	if GameManager.game_timer.time_left > 0:
 		tempo_salvo = GameManager.game_timer.time_left
 		GameManager.game_timer.paused = true
+	PlayerManager.set_combo_timer_paused_for_cutscene(true)
 	
 	personagem_sprite.texture = CharacterManager.get_sprite_feliz()
 	personagem_sprite.position = Vector2(posicao_inicial_x, posicao_y)
@@ -54,9 +55,6 @@ func _on_saida_completa():
 		GameManager.game_timer.paused = false
 		
 		GameManager.primeira_rodada = false
-		
-		GameManager.scene_transintion_animation.play("fade_in")
-		get_tree().change_scene_to_file("res://scenes/intro_scene.tscn")
-		GameManager.scene_transintion_animation.play("fade_out")
+		GameManager.transition_to_scene("res://scenes/intro_scene.tscn", true)
 	else:
 		GameManager.start_delivery_bonus()

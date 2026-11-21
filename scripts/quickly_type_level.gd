@@ -26,7 +26,6 @@ const SCORE_FACTOR = 10
 var _current_name: String = ""
 var _current_letter_index: int = 0
 var _round_start_time: float = 0.0
-var _caps_lock_enabled := false
 
 func _ready() -> void:
 	warning_label.visible = false
@@ -84,7 +83,7 @@ func setup_word_display() -> void:
 		_character_boxes.append(char_box)
 
 func _on_text_changed(new_text: String) -> void:
-	var typed_so_far = new_text
+	var typed_so_far: String = names.normalizar_nome(new_text)
 	var correct_prefix = _current_name.left(typed_so_far.length())
 
 	if typed_so_far != correct_prefix:
@@ -93,6 +92,10 @@ func _on_text_changed(new_text: String) -> void:
 		input_line_edit.caret_column = last_correct_text.length()
 		return
 		
+	if input_line_edit.text != typed_so_far:
+		input_line_edit.text = typed_so_far
+		input_line_edit.caret_column = typed_so_far.length()
+
 	_current_letter_index = typed_so_far.length()
 
 
@@ -110,13 +113,15 @@ func _on_text_changed(new_text: String) -> void:
 	
 	update_ui()
 	
-	signature.text = new_text
+	signature.text = input_line_edit.text
 
 	if _current_letter_index >= _current_name.length():
 		input_line_edit.release_focus()
 		finish_game()
 
 func update_ui() -> void:
+	$PlusLabel.hide()
+	instruction_2.hide()
 	if _character_boxes.is_empty():
 		return
 
@@ -126,32 +131,8 @@ func update_ui() -> void:
 			box.set_state(box.State.CORRECT)
 		elif i == _current_letter_index:
 			var letter = _current_name[_current_letter_index]
-			var is_upper_letter = letter == letter.to_upper()
-			
-			$PlusLabel.visible = is_upper_letter and GameManager.current_level == 0
-			
-			if is_upper_letter:
-				instruction_1.setup_instruction("shift") 
-				instruction_2.setup_instruction(letter) 
-			else:
-				instruction_1.setup_instruction(letter) 
-				instruction_2.deactivate_instruction()
-				
+			instruction_1.setup_instruction(letter)
+
 			box.set_state(box.State.ACTIVE)
 		else:
 			box.set_state(box.State.PENDING)
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_CAPSLOCK:
-			_caps_lock_enabled = not _caps_lock_enabled
-			warning_label.visible = _caps_lock_enabled
-
-		elif event.unicode >= 65 and event.unicode <= 90:
-			if not event.shift_pressed:
-				_caps_lock_enabled = true
-				warning_label.visible = true
-		elif event.unicode >= 97 and event.unicode <= 122: 
-			if event.shift_pressed:
-				_caps_lock_enabled = true
-				warning_label.visible = true

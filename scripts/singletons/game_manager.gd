@@ -12,16 +12,18 @@ var _ending_game := false
 @onready var scene_transintion_animation = $SceneTransitionAnimation/AnimationPlayer
 
 var _can_show_game_ui = false
+var _scene_transition_in_progress := false
 
 var game_levels  = {
 	"type": preload("res://scenes/levels/type_quickly.tscn"),
 	"delivery": preload("res://scenes/levels/cin_delivery.tscn"),
 	"finger": preload("res://scenes/levels/finger_scene.tscn"),
-	"cam": preload("res://scenes/levels/cam_level.tscn") 
+	"cam": preload("res://scenes/levels/cam_level.tscn"),
+	"certidao": preload("res://scenes/levels/certidao_level.tscn"),
 }
 
 var current_game_level = 0
-var current_run = ["type", "finger", "cam"]
+var current_run = ["certidao", "type", "finger", "cam"]
 
 var primeira_rodada := true
 
@@ -44,15 +46,15 @@ func start_game():
 	PlayerManager.reset_delivery_count()
 	game_timer.stop()
 	game_timer.paused = false
-	scene_transintion_animation.play("fade_in")
-	get_tree().change_scene_to_file("res://scenes/intro_scene.tscn")
-	scene_transintion_animation.play("fade_out")
-	
+	PlayerManager.set_combo_timer_paused_for_cutscene(false)
+	## Antes da intro, a tela "Você sabia?" mostra uma curiosidade e espera confirmar
+	transition_to_scene("res://scenes/curiosidade_scene.tscn")
+
 func change_to_ranking():
-	get_tree().change_scene_to_file("res://scenes/ranking_scene.tscn")
+	transition_to_scene("res://scenes/ranking_scene.tscn")
 	
 func change_to_credits():
-	get_tree().change_scene_to_file("res://scenes/credits_scene.tscn")
+	transition_to_scene("res://scenes/credits_scene.tscn")
 
 func change_to_next_level():
 	if delivery_bonus_active or _ending_game:
@@ -66,10 +68,7 @@ func change_to_next_level():
 	
 	var scene = game_levels[scene_name]
 	current_game_level += 1
-	
-	scene_transintion_animation.play("fade_in")
-	get_tree().change_scene_to_packed(scene)
-	scene_transintion_animation.play("fade_out")
+	transition_to_scene(scene, true)
 
 
 func finalizar_rodada():
@@ -78,20 +77,16 @@ func finalizar_rodada():
 	CharacterManager.registrar_cin_concluida()
 	PlayerManager.increment_cin_count()
 	current_level += 1
-	get_tree().change_scene_to_file("res://scenes/outro_scene.tscn")
-	_can_show_game_ui = true
+	PlayerManager.set_combo_timer_paused_for_cutscene(true)
+	transition_to_scene("res://scenes/outro_scene.tscn")
 
 
 func change_to_username_scene():
-	scene_transintion_animation.play("fade_in")
-	get_tree().change_scene_to_file("res://scenes/levels/username_scene.tscn")
-	scene_transintion_animation.play("fade_out")
+	transition_to_scene("res://scenes/levels/username_scene.tscn")
 	
 
 func change_to_menu_scene():
-	scene_transintion_animation.play("fade_in")
-	get_tree().change_scene_to_file("res://scenes/levels/menu_scene.tscn")
-	scene_transintion_animation.play("fade_out")
+	transition_to_scene("res://scenes/levels/menu_scene.tscn")
 
 
 func start_delivery_bonus() -> void:
@@ -131,7 +126,9 @@ func end_game():
 	game_timer.stop()
 	game_timer.paused = false
 	delivery_bonus_active = false
-	
+	PlayerManager.set_combo_timer_paused_for_cutscene(false)
+	PlayerManager.stop_combo()
+
 	_can_show_game_ui = false
 	current_level = 0
 	current_game_level = 0
@@ -139,9 +136,54 @@ func end_game():
 	primeira_rodada = true
 	
 	PlayerManager.save_current_player()
+	transition_to_scene("res://scenes/results_screen.tscn")
+
+
+## true enquanto um fade de troca de cena está rodando (novas trocas são ignoradas)
+func is_in_transition() -> bool:
+	return _scene_transition_in_progress
+
+
+func transition_to_scene(target: Variant, resume_game_timer_after_transition := false) -> void:
+	if _scene_transition_in_progress:
+		return
+	_scene_transition_in_progress = true
+	var game_timer_was_running := not game_timer.is_stopped()
+	var game_timer_was_paused := game_timer.paused
+	if game_timer_was_running:
+		game_timer.paused = true
+	PlayerManager.set_combo_timer_paused_for_transition(true)
+
 	scene_transintion_animation.play("fade_in")
-	get_tree().change_scene_to_file("res://scenes/results_screen.tscn")
+	await scene_transintion_animation.animation_finished
+
+	var change_result := FAILED
+	if target is PackedScene:
+		change_result = get_tree().change_scene_to_packed(target)
+	else:
+		change_result = get_tree().change_scene_to_file(str(target))
+
+	if change_result != OK:
+		push_error("Não foi possível abrir a cena: %s" % str(target))
+		scene_transintion_animation.play("fade_out")
+		await scene_transintion_animation.animation_finished
+		if game_timer_was_running:
+			game_timer.paused = game_timer_was_paused
+		_scene_transition_in_progress = false
+		PlayerManager.set_combo_timer_paused_for_transition(false)
+		return
+
+	## A destination scene may change the gameplay timer in _ready(). Keep it
+	## paused until the new scene is fully visible, then resume only when the
+	## caller is entering active gameplay.
+	if not game_timer.is_stopped():
+		game_timer.paused = true
 	scene_transintion_animation.play("fade_out")
+	await scene_transintion_animation.animation_finished
+	if game_timer_was_running:
+		game_timer.paused = game_timer_was_paused or not resume_game_timer_after_transition
+	_scene_transition_in_progress = false
+	PlayerManager.set_combo_timer_paused_for_transition(false)
 
 
 func get_dashboard():

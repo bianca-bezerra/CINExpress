@@ -1,8 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://ch0ti8rxx77mt"]
+[gd_scene load_steps=38 format=3 uid="uid://ch0ti8rxx77mt"]
 
 [ext_resource type="Texture2D" uid="uid://b7sm6tqvcq28x" path="res://assets/sprites/Keyboard Extras.png" id="1_n5smy"]
 [ext_resource type="Script" uid="uid://de72ptdo7kfd" path="res://scripts/instruction.gd" id="1_stmaa"]
 [ext_resource type="Texture2D" uid="uid://bv5l0efmn2gg6" path="res://assets/sprites/Keyboard Letters and Symbols.png" id="2_stmaa"]
+[ext_resource type="Texture2D" path="res://assets/sprites/mouse_left.png" id="3_mouse"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w8wlg"]
 atlas = ExtResource("1_n5smy")
@@ -336,3 +337,9 @@ visible = false
 offset_right = 13.0
 offset_bottom = 11.0
 texture = SubResource("AtlasTexture_bxsnc")
+
+[node name="MouseLeft" type="TextureRect" parent="."]
+visible = false
+offset_right = 11.0
+offset_bottom = 15.0
+texture = ExtResource("3_mouse")

@@ -4,7 +4,6 @@ extends Node2D
 @onready var cenario = $Cenario
 @onready var balao_fala = $BalaoFala 
 @onready var balao_imagem = $BalaoImagem 
-@onready var texto_instrucao = $TextoInstrucao
 @onready var balao_atendente_fala = $BalaoAtendenteFala
 @onready var balao_atendente_imagem = $BalaoAtendenteImagem
 @onready var atendente = $AttendantGroup
@@ -13,7 +12,9 @@ var posicao_inicial_x = 59
 var posicao_final_x = 288
 var posicao_y = 140
 
-var pode_iniciar = false
+## Tempo (s) para o jogador ler a fala do personagem antes de a partida seguir
+@export var tempo_leitura_fala := 1.0
+
 var jogo_iniciado = false
 
 func _enter_tree() -> void:
@@ -30,9 +31,6 @@ func _ready():
 	
 	if balao_fala:
 		balao_fala.visible = false
-	if texto_instrucao:
-		texto_instrucao.visible = false
-	
 	if not GameManager.primeira_rodada and GameManager.game_timer:
 		GameManager.game_timer.paused = false
 	
@@ -77,13 +75,9 @@ func _on_animacao_completa_com_falas():
 	await get_tree().create_timer(0.3).timeout
 	
 	mostrar_fala_personagem()
-	await get_tree().create_timer(1.0).timeout
-	
-	if texto_instrucao:
-		texto_instrucao.visible = true
-		animar_piscar_texto()
-	
-	pode_iniciar = true
+	## A confirmação já acontece na tela "Você sabia?", então aqui segue direto
+	await get_tree().create_timer(tempo_leitura_fala).timeout
+	iniciar_jogo()
 
 func animar_entrada_sem_falas():
 	var tween_movimento = create_tween()
@@ -114,39 +108,22 @@ func mostrar_fala_personagem():
 	
 	await tween.finished
 
-func animar_piscar_texto():
-	if not texto_instrucao:
-		return
-	var tween = create_tween()
-	tween.set_loops()
-	tween.tween_property(texto_instrucao, "modulate:a", 0.3, 0.5)
-	tween.tween_property(texto_instrucao, "modulate:a", 1.0, 0.5)
-	await tween.finished
-	
 func atentente_surgindo_esquerda():
 	var tween_movimento = create_tween()
 	atendente.in_idle = false
 	atendente.sprite.animation = "default"
 	atendente.sprite.frame = 1
-	tween_movimento.tween_property(atendente, "position:x", 55, 1.0)\
+	tween_movimento.tween_property(atendente, "position:x", 55, 0.7)\
 		.set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT)
 	
 	await tween_movimento.finished
-		
 
-func _input(event):
-	if pode_iniciar and not jogo_iniciado:
-		if event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_select"):
-			iniciar_jogo()
 
 func iniciar_jogo():
-	AudioManager.play_sfx("button_click")
+	if jogo_iniciado:
+		return
 	jogo_iniciado = true
-	pode_iniciar = false
-	
-	if texto_instrucao:
-		texto_instrucao.visible = false
-	
+
 	await atentente_surgindo_esquerda()
 	await mostrar_fala_atendente()
 	await get_tree().create_timer(0.35).timeout
@@ -155,10 +132,11 @@ func iniciar_jogo():
 		balao_fala.visible = false
 	
 	GameManager.game_timer.start(GameManager.total_game_duration)
-	
+	PlayerManager.set_combo_timer_paused_for_cutscene(false)
 	GameManager.primeira_rodada = false
 	
 	GameManager.change_to_next_level()
 
 func iniciar_jogo_sem_intro():
+	PlayerManager.set_combo_timer_paused_for_cutscene(false)
 	GameManager.change_to_next_level()
