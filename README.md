@@ -1,6 +1,6 @@
 # CINExpress
 
-Jogo para stand Campus Party 2025 do Instituto de Cidadani Digital.
+Jogo para stand Campus Party do Instituto de Cidadania Digital "Félix Pacheco".
 
 ## Entrega da CIN
 
